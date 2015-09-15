@@ -32,7 +32,8 @@ class Users_Model extends CI_Model
 			'surname' 	=> $this->input->post('surname'),
 			'email' 	=> $this->input->post('email'),
 			'username' 	=> $this->input->post('username'),
-			'password' 	=> $this->encryption->encrypt($this->input->post('password'))
+			'password' 	=> $this->encryption->encrypt($this->input->post('password')),
+			'created_time' => date("Y-m-d H:i:s")
 		);
 
 		$insert = $this->db->insert('users',$new_member_insert_data);

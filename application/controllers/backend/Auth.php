@@ -51,26 +51,29 @@ class Auth extends Backend_Controller
 		$this->load->library('form_validation');
 
 		// validation rules
-		$this->form_validation->set_rules('name','trim|required');
-		$this->form_validation->set_rules('surname','trim|required');
-		$this->form_validation->set_rules('email','trim|required|valid_email|callback_check_if_email_exists');
-		$this->form_validation->set_rules('username','trim|required|min-length[4]|callback_check_if_username_exists');
-		$this->form_validation->set_rules('password','trim|required|min-length[4]|max-length[32]');
-		$this->form_validation->set_rules('password_confirm','trim|required|matches[password]');
+		$this->form_validation->set_rules('name','','trim|required');
+		$this->form_validation->set_rules('surname','','trim|required');
+		$this->form_validation->set_rules('email','','trim|required|valid_email|callback_check_if_email_exists');
+		$this->form_validation->set_rules('username','','trim|required|min_length[4]|callback_check_if_username_exists');
+		$this->form_validation->set_rules('password','','trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('password_confirm','','trim|required|matches[password]');		
 
 		if ($this->form_validation->run() === FALSE) { // dogrulama başarısız oldu
-			echo "create_member run false";
+
+			$data['name'] = $this->input->input_stream('name');
+			$data['surname'] = $this->input->input_stream('surname');
+			$data['email'] = $this->input->input_stream('email');
+			$data['username'] = $this->input->input_stream('username');
 			$this->load->view('backend/layout/header');
-			$this->load->view('backend/auth/register');
+			$this->load->view('backend/auth/register',$data);
 			$this->load->view('backend/layout/footer');
 		} else {
-			echo "create_member run true";
+
 			$this->load->model('users_model');
 
 			if ($query = $this->users_model->create_member()) {
 				
 				$data['account_created'] = 'Hesabınız olusturuldu. giriş yapabilirsiniz.';
-
 				$this->load->view('backend/layout/header');
 				$this->load->view('backend/auth/login',$data);
 				$this->load->view('backend/layout/footer');
@@ -109,6 +112,7 @@ class Auth extends Backend_Controller
 
 	public function logout() {
 		$this->session->sess_destroy();
+		session_write_close();
 		redirect('admin');
 	}
 } 
