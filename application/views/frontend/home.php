@@ -1,0 +1,1 @@
+<h2>views - frontend/home</h2>
