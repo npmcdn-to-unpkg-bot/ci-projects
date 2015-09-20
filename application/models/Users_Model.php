@@ -67,5 +67,64 @@ class Users_Model extends CI_Model
 		}
 
 	}
+
+	function user_info($username) {
+
+		$this->db->where('username',$username);
+		$this->db->join('users_details udetails', 'udetails.users_id = users.id');
+		$result = $this->db->get('users');
+
+		return $row = $result->row();
+	}
+
+	function update_member() {
+
+		$this->db->where('username', $this->session->userdata('username'));
+		$result = $this->db->get('users');
+		$users_id = $result->row()->id;
+		$users_email = $result->row()->email;
+		
+		if ($users_email != $this->input->post('email')) {
+			
+			$this->db->where('email', $this->input->post('email'));
+			$q = $this->db->get('users');
+			if ($q->num_rows()>0) {
+				return "email_available";
+			}
+		}
+
+		$users_update_data = array(
+			'email' => $this->input->post('email'),
+			'name' => $this->input->post('name'),
+			'surname' => $this->input->post('surname')
+		);
+		$users_details_update_data = array(
+			'gsm' => $this->input->post('gsm'),
+			'phone' => $this->input->post('phone'),
+			'phone2' => $this->input->post('phone2'),
+			'address' => $this->input->post('address'),
+			'corporation' => $this->input->post('corporation'),
+			'seniority' => $this->input->post('seniority'),
+			'tc_no' => $this->input->post('tc_no')
+		);
+
+		
+
+		$this->db->set($users_update_data);
+		$this->db->where('id',$users_id);
+		$update = $this->db->update('users');
+		
+		$this->db->set($users_details_update_data);
+		$this->db->where('users_id',$users_id);
+		$update2 = $this->db->update('users_details');
+		
+		if ($update && $update2) {
+			// var_dump($update);
+			// var_dump($update2);
+			// exit;
+			return TRUE;
+		}
+
+	}
 }
 ?>

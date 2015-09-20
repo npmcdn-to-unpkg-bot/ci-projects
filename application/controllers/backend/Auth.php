@@ -13,27 +13,40 @@ class Auth extends Backend_Controller
 		$this->isLoggedIn();
 		$data['title'] = "backend auth login";
 
-		$this->load->view('backend/layout/header',$data);
-		$this->load->view('backend/auth/login');
-		$this->load->view('backend/layout/footer');
+		$this->load->view('backend/auth/login',$data);
 	}
 
 	public function validate_credentials() {
 
-		$this->load->model('users_model');
-		$query = $this->users_model->validate();
+		$this->load->library('form_validation');
 
-		if ($query) { // if the user's credentials valiated...
+		// validation_form
+		$this->form_validation->set_rules('username','','trim|required|min_length[4]');
+		$this->form_validation->set_rules('password','','trim|required|min_length[4]|max_length[32]');
 
-			$data = array(
-				'username' 		=> $this->input->post('username'),
-				'is_logged_in'	=>  true
-			);
-			$this->session->set_userdata($data);
-			redirect('backend/home');
+		if ($this->form_validation->run() === FALSE) {
+
+			$data['username'] = $this->input->input_stream('username');
+
+			$this->load->view('backend/auth/login',$data);
 		} else {
 
-			$this->index();
+			$this->load->model('users_model');
+			$query = $this->users_model->validate();
+
+			if ($query) { // if the user's credentials valiated...
+
+				$data = array(
+					'username' 		=> $this->input->post('username'),
+					'is_logged_in'	=>  true
+				);
+				$this->session->set_userdata($data);
+				redirect('backend/home');
+			} else {
+
+				$data['errors'] = 'Kullanıcı Adı veya Şifreniz yanlıştır.';
+				$this->load->view('backend/auth/login',$data);
+			}
 		}
 	}
 

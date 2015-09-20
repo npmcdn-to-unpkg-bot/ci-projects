@@ -60,7 +60,9 @@ $route['default_controller'] = 'home';
 $route['auth'] = 'auth';
 
 $route['admin'] = 'backend/auth';
+$route['admin/auth/(:any)'] = 'backend/auth/$1';
 $route['admin/(:any)'] = 'backend/$1';
+$route['admin/(:any)/(:any)'] = 'backend/$1/$2';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
