@@ -13,10 +13,11 @@
 					<div class="col-lg-12">
 						<?php 
 							echo validation_errors('<p style="color:#dc0001;">');
-							if (isset($errors)) {
-								echo '<p style="color:red;">'.$errors.'</p>'; 	
-							} else if (isset($success)) {
-								echo '<p style="color:green;">'.$success.'</p>';
+
+							if ( $this->session->flashdata('errors') != null ) {
+								echo '<p style="color:red;">'.$this->session->flashdata('errors').'</p>';
+							} else if ( $this->session->flashdata('success') != null ) {
+								echo '<p style="color:green;">'.$this->session->flashdata('success').'</p>';
 							}
 						?>
 						<?php echo form_open('backend/user/profile_edit') ?>

@@ -352,3 +352,17 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.info-center {
+    margin: auto;
+    float: none;
+}
+#resultParentThemes>button,#resultParentThemes>a {
+    margin-right: 10px;
+}
+#resultThemes>button,#resultThemes>a {
+    margin-right: 10px;
+}
+.errors {
+    color: red;
+}

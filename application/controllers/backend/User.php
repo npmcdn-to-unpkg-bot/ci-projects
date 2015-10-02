@@ -4,6 +4,14 @@
 */
 class User extends Backend_Controller
 {
+	public function __construct() {
+		parent::__construct();
+		$this->loginControl();
+	}
+
+	public function index() {
+		$this->profile();
+	}
 	
 	public function profile() {
 
@@ -41,36 +49,18 @@ class User extends Backend_Controller
 			$this->load->model('users_model');
 
 			$query = $this->users_model->update_member();
-			// var_dump($query);
-			// exit;
 			if ($query === TRUE) {
-				
-				$data['success'] = 'güncellemeniz başarılı oldu.';
-				$user_row = $this->users_model->user_info($this->session->userdata('username'));
-				foreach ($user_row as $key => $value) {
-					$data[$key]= $value;
-				}
-
-				$this->load->view('backend/layout/header');
-				$this->load->view('backend/user/profile',$data);
-				$this->load->view('backend/layout/footer');
+			
+				$this->session->set_flashdata('success','güncellemeniz başarılı oldu.');
+				redirect('backend/user');
 			} else if ($query === 'email_available') {
 
-				$data['errors'] = 'Girdiginiz email kullanılmaktadır.';
-				$user_row = $this->users_model->user_info($this->session->userdata('username'));
-				foreach ($user_row as $key => $value) {
-					$data[$key]= $value;
-				}
-
-				$this->load->view('backend/layout/header');
-				$this->load->view('backend/user/profile',$data);
-				$this->load->view('backend/layout/footer');
+				$this->session->set_flashdata('errors','Girdiginiz email kullanılmaktadır.');
+				redirect('backend/user');
 			} else {
 
-				$data['errors'] = 'lütfen bilgilerinizi kontrol edin.';
-				$this->load->view('backend/layout/header');
-				$this->load->view('backend/user/profile',$data);
-				$this->load->view('backend/layout/footer');
+				$this->session->set_flashdata('errors','lütfen bilgilerinizi kontrol edin.');
+				redirect('backend/user');
 			}
 		}
 		
