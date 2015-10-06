@@ -1,0 +1,1 @@
+showcase frame - guncelleme - varsayılan tema, aktif tema

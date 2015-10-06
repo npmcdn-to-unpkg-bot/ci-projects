@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Tema Ekle</h1>
+		<h1 class="page-header">Tema Güncelle</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -8,9 +8,6 @@
 <div class="row">
 	<div class="col-lg-10 info-center">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<?php echo $themes_area_name; ?>
-			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-12">
@@ -21,7 +18,7 @@
 							<div class="form-group">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="default_themes_id" value="1" />
+										<input type="checkbox" name="default_themes_id" value="1" <?php if($default_themes_id == "1"){ echo "checked='checked'"; } ?>/>
 										Bu tema varsayılan tema olsun mu?
 									</label>
 								</div>
@@ -29,7 +26,7 @@
 							<div class="form-group">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="active_themes_id" value="1" />
+										<input type="checkbox" name="active_themes_id" value="1" <?php if($active_themes_id == "1"){ echo "checked='checked'"; } ?>/>
 										Bu tema aktif tema olsun mu?
 									</label>
 								</div>
@@ -44,7 +41,8 @@
 							</div>
 							<input type="hidden" name="themes_area_id" value="<?php echo $themes_area_id; ?>">
 							<input type="hidden" name="file_path" value="<?php echo $file_path; ?>">
-							<button type="submit" class="btn btn-default">Tema Ekle</button>
+							<input type="hidden" name="themes_id" value="<?php echo $id; ?>">
+							<button type="submit" class="btn btn-default">Tema Güncelle</button>
 						</form>
 					</div>
 				</div>
