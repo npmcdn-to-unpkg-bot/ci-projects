@@ -266,7 +266,7 @@ class Themes extends Backend_Controller
 		}
 
 		if ($data[0]->default_themes_id == 1) {
-			$this->session->set_flashdata('errors','Varsayılan temanızı silemezsiniz.');
+			$this->session->set_flashdata('errors','​varsayılan temayı silemezsiniz.');
 			redirect('backend/themes');
 		} else if ($data[0]->active_themes_id == 1) {
 			$this->themes_model->active_delete_themes($themes_id);

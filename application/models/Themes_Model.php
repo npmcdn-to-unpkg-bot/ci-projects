@@ -144,10 +144,9 @@ class Themes_Model extends CI_Model
 
 	function delete_themes($themes_id) {
 
-		$this->load->helper('file');
 		$themes = $this->get_themes($themes_id);
 
-		// delete_files(APPPATH . $themes[0]->file_path,TRUE);
+		unlink(APPPATH.$themes[0]->file_path);
 		$this->db->where('id',$themes[0]->id);
 		$this->db->delete('themes');
 		$this->session->set_flashdata('errors','temanız silindi.');
@@ -155,7 +154,19 @@ class Themes_Model extends CI_Model
 	}
 
 	function active_delete_themes($themes_id) {
-		echo "active tema silinip default tema aktif tema olacak.";
+
+		$themes = $this->get_themes($themes_id);
+
+		$this->db->set('active_themes_id',1);
+		$this->db->where('default_themes_id',1);
+		$this->db->where('themes_area_id',$themes[0]->themes_area_id);
+		$this->db->update('themes');
+
+		unlink(APPPATH.$themes[0]->file_path);
+		$this->db->where('id',$themes[0]->id);
+		$this->db->delete('themes');
+		$this->session->set_flashdata('errors','​aktif temanızı sildiniz. varsayılan tema, aktif temanız olmuştur.');
+		redirect('backend/themes');
 	}
 
 	function check_if_default_themes_id_exists() {
