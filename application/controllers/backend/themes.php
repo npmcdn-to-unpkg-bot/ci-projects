@@ -165,8 +165,10 @@ class Themes extends Backend_Controller
 	public function add_themes($themes_area_id) {
 
 		$this->load->model('themes_model');
+		$this->load->model('themes_variables_model');
 		$themes = $this->themes_model->get_themes_area_where($themes_area_id);
-
+		$class_name = $themes[0]->class_name;
+		$data['themes_variables'] = $this->themes_variables_model->$class_name();
 		$data['themes_area_id'] = $themes[0]->id;
 		$data['themes_area_name'] = $themes[0]->name;
 		$data['file_path'] = $themes[0]->file_path;
@@ -273,6 +275,31 @@ class Themes extends Backend_Controller
 		} else {
 			$this->themes_model->delete_themes($themes_id);
 		}
+	}
+
+	public function themes_parser() {
+		$this->load->library('parser');
+
+		$template = '<div id="header">
+		<div class="logo"><a href="#">{logo}</a></div>
+		<div class="hmenu">
+			<ul class="hmenu_ul">
+				{kategoriler}
+				<li><a href="{link}">{name}</a></li>
+				{/kategoriler}
+			</ul>
+		</div>
+		</div>';
+		$data = array(
+			'logo' => '<img src="'.base_url().'/assets/uploads/system/images/logo.jpg" width="200"/>',
+			'kategoriler' => array(
+				array('name' => 'mutfak','link' => 'mutfak.php'),
+				array('name' => 'elektrik','link' => 'elektrik.php')
+			)
+		);
+		$q = $this->parser->parse_string($template, $data);
+		return $q;
+		exit;
 	}
 }
 ?>
