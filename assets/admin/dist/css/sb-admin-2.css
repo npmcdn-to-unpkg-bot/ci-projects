@@ -366,3 +366,24 @@ table.dataTable thead .sorting:after {
 .errors {
     color: red;
 }
+
+.vertical-tabs {
+    border-bottom: none;
+    border-right: 1px solid #ddd;
+}
+.vertical-tabs li {
+    margin-bottom: 0;
+    float: none;
+}
+.vertical-tabs li a {
+    border-radius: 0;
+    border: none;
+}
+.vertical-tabs li.active {
+    
+}
+.vertical-tabs li.active a,.vertical-tabs li.active a:hover,.vertical-tabs li.active a:focus {
+    border: none;
+    background-color: #ddd;
+    
+}

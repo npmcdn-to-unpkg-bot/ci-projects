@@ -63,7 +63,7 @@ class Themes_Model extends CI_Model
 		}
 	}
 
-	function add_themes() {
+	function add_themes($content) {
 
 		$this->load->helper('file');
 		
@@ -95,15 +95,14 @@ class Themes_Model extends CI_Model
 		$this->db->where('id',$last_themes_id);
 		$this->db->update('themes');
 
-		$data = $this->input->post('content');
-		if ( ! write_file(APPPATH . $this->input->post('file_path') . $themes_area_[0]->file_extension . $last_themes_id .'.php', $data)) {
+		if ( ! write_file(APPPATH . $this->input->post('file_path') . $themes_area_[0]->file_extension . $last_themes_id .'.php', $content)) {
 	        $this->session->set_flashdata('errors','dosyanız yazılmadı.');
 		} else {
 	        // $this->session->set_flashdata('errors','dosyanız yazıldı.');
 		}
 	}
 
-	function edit_themes() {
+	function edit_themes($content) {
 
 		$this->load->helper('file');
 
@@ -134,8 +133,7 @@ class Themes_Model extends CI_Model
 		$this->db->where('id',$this->input->post('themes_id'));
 		$this->db->update('themes');
 
-		$data = $this->input->post('content');
-		if ( ! write_file(APPPATH . $this->input->post('file_path'), $data)) {
+		if ( ! write_file(APPPATH . $this->input->post('file_path'), $content)) {
 	        $this->session->set_flashdata('errors','dosyanız yazılmadı.');
 		} else {
 	        // $this->session->set_flashdata('errors','dosyanız yazıldı.');

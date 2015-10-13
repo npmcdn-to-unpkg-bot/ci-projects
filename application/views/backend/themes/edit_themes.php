@@ -36,6 +36,16 @@
 								<input type="text" class="form-control" name="name" value="<?php if(isset($name)){echo $name;} ?>" />
 							</div>
 							<div class="form-group">
+								<label>Tema Değişkenleri</label>
+								<p>
+									<?php 
+										foreach ($themes_variables as $key => $value) {
+											echo '{'.$key.'}' . '<br/>';
+										}
+									?>
+								</p>
+							</div>
+							<div class="form-group">
 								<label>Tema İçerik</label>
 								<textarea name="content" id="themes_content" class="form-control" cols="30" rows="10"><?php if(isset($content)){echo $content;} ?></textarea>
 							</div>

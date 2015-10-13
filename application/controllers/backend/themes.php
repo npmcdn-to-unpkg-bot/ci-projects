@@ -198,7 +198,9 @@ class Themes extends Backend_Controller
 					$this->themes_model->check_if_active_themes_id_exists();
 				}
 
-				$this->themes_model->add_themes();
+				$this->load->library('parser');
+				$content = $this->parser->parse_string($this->input->post('content'),$this->themes_variables_model->$class_name());
+				$this->themes_model->add_themes($content);
 				redirect('backend/themes');
 			}
 		} else {
@@ -212,10 +214,16 @@ class Themes extends Backend_Controller
 	public function edit_themes($themes_id) {
 
 		$this->load->model('themes_model');
+
 		$themes = $this->themes_model->get_themes($themes_id);
 		foreach ($themes[0] as $key => $value) {
 			$data[$key] = $value;
 		}
+
+		$this->load->model('themes_variables_model');
+		$themes = $this->themes_model->get_themes_area_where($data['themes_area_id']);
+		$class_name = $themes[0]->class_name;
+		$data['themes_variables'] = $this->themes_variables_model->$class_name();
 		
 		if ($this->input->post()) {
 
@@ -247,8 +255,9 @@ class Themes extends Backend_Controller
 				if ( $this->input->post('active_themes_id') ) {
 					$this->themes_model->check_if_active_themes_id_exists();
 				}
-
-				$this->themes_model->edit_themes();
+				$this->load->library('parser');
+				$content = $this->parser->parse_string($this->input->post('content'),$this->themes_variables_model->$class_name());
+				$this->themes_model->edit_themes($content);
 				redirect('backend/themes/edit_themes/'.$this->input->post('themes_id'));
 			}
 		} else {

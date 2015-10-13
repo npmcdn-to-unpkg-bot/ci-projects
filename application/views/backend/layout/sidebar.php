@@ -5,22 +5,23 @@
                 <a href="admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
+                <a href="backend/site_settings"><i class="fa fa-wrench fa-fw"></i> Site Ayarları</a>
+            </li>
+            <li>
+                <a href="tables.html"><i class="fa fa-sitemap fa-fw"></i> Kategori Ayarları</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-building-o fa-fw"></i> Tasarım Ayarları<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="backend/themes"><i class="fa fa-sitemap fa-fw"></i> Tema Yönetimi</a>
                     </li>
-                    <li>
-                        <a href="morris.html">Morris.js Charts</a>
-                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            
             <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-            </li>
-            <li>
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> İçerik Yönetimi</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
