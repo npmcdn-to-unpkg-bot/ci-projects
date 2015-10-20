@@ -33,4 +33,9 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
+    // second example
+    $("#browser").treeview({
+        animated:"normal",
+        persist: "cookie"
+    });
 });
