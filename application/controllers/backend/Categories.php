@@ -1,8 +1,8 @@
 <?php 
 /**
-* backend - Site_Settings
+* backend - Categories
 */
-class Site_Settings extends Backend_Controller
+class Categories extends Backend_Controller
 {
 	
 	public function __construct() {
@@ -14,7 +14,7 @@ class Site_Settings extends Backend_Controller
 	public function index() {
 
 		$this->load->view('backend/layout/header');
-		$this->load->view('backend/site_settings');
+		$this->load->view('backend/categories');
 		$this->load->view('backend/layout/footer');
 	}
 }
