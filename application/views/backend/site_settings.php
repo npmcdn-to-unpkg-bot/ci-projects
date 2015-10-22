@@ -13,14 +13,10 @@
 					<div class="col-lg-12">
 						<!-- Nav tabs -->
                         <ul class="nav nav-tabs vertical-tabs col-lg-2">
-                            <li class="active"><a href="#settings01" data-toggle="tab">Site Genel Ayarlar</a>
-                            </li>
-                            <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a>
-                            </li>
-                            <li><a href="#settings03" data-toggle="tab">Site Görünüm Düzeni</a>
-                            </li>
-                            <li><a href="#settings04" data-toggle="tab">Settings</a>
-                            </li>
+                            <li class="active"><a href="#settings01" data-toggle="tab">Site Genel Ayarlar</a></li>
+                            <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a></li>
+                            <li><a href="#settings03" data-toggle="tab">Site Görünüm Düzeni</a></li>
+                            <li><a href="#settings04" data-toggle="tab">Settings</a></li>
                         </ul>
 
                         <!-- Tab panes -->

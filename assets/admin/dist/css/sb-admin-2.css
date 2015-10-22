@@ -387,3 +387,7 @@ table.dataTable thead .sorting:after {
     background-color: #ddd;
     
 }
+.nav-tabs.categories-tabs>li>a {
+    padding: 8px;
+}
+.tab-content.categories-tabs {margin: 15px 0 0;}

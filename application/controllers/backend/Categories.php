@@ -17,5 +17,12 @@ class Categories extends Backend_Controller
 		$this->load->view('backend/categories');
 		$this->load->view('backend/layout/footer');
 	}
+
+
+	public function categoriesAdd() {
+
+		var_dump($this->input->post());
+		exit;
+	}
 }
 ?>
