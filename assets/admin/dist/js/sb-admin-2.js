@@ -35,7 +35,7 @@ $(function() {
     }
     try {
         // second example
-        $("#browser").treeview({
+        $(".categoriesListing>ul").treeview({
             animated:"normal",
             persist: "cookie"
         });    

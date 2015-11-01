@@ -16,33 +16,7 @@
 				<div class="row">
 					<div class="col-lg-12 categoriesListing">
                         <a href="javascript:;" data-toggle="modal" data-target="#categoriesAdd" rel="0" class="modalCategoriesAdd">Ana Kategori</a>
-                        <ul id="browser" class="filetree">
-                            <li>
-                                <span class="folder">
-                                    <a href="">Folder 1</a> 
-                                    <a href="javascript:;" data-toggle="modal" data-target="#categoriesAdd" class="fa fa-plus fa-fw modalCategoriesAdd" rel="x"></a> 
-                                    <a href="javascript:;" data-toggle="modal" data-target="#categoriesDelete" class="fa fa-trash fa-fw modalCategoriesDelete" rel="x"></a>
-                                    <a href="javascript:;" class="fa fa-external-link fa-fw categoriesLinker" rel="x"></a>
-                                </span>
-                                <ul>
-                                    <li><span class="file">File 1.1</span></li>
-                                    <li><span class="file">File 1.2</span></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="folder"><a href="">Folder 2</a></span>
-                                <ul>
-                                    <li><span class="file">File 2.1</span></li>
-                                    <li><span class="file">File 2.2</span></li>
-                                </ul>
-                            </li>
-                            <li class="closed">
-                                <span class="folder"><a href="">Folder 3 (closed at start)</a></span>
-                                <ul>
-                                    <li><span class="file">File 3.1</span></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <?php  echo $category; ?>
 					</div>
 				</div>
 			</div>
@@ -53,15 +27,19 @@
 $(function(){
     $('.modalCategoriesAdd').on('click', function(){
         var rel = $(this).attr('rel');
-        $('input[name="parent_id"].cat_parent_id').attr('value',rel);
+        $('#categoriesAdd input[name="parent_id"].cat_parent_id').attr('value',rel);
         // kategori eklemede db'ye bakarak alanları yerleştir ve relden aldıgın idyi uygun yerlere ver
     });
     $('.modalCategoriesDelete').on('click', function(){
         var rel = $(this).attr('rel');
+        var catDeleteName = $('span',this).attr('rel');
+        $('#categoriesDelete input[name="id"].cat_id').attr('value',rel);
+        $('#categoriesDelete #catDeleteName').text('"'+catDeleteName+'"');
         // kategori id ve adini alip modalda goster sonra kategoriyi sil.
     });
     $('.categoriesLinker').on('click', function(){
         var rel = $(this).attr('rel');
+        $(this).parent().find('>code.cat_link').toggle();
         // bu işlem kalsın frontend kismi yapilinca yapiplsin.
     });
 });
@@ -97,19 +75,18 @@ $(function(){
                                             <textarea name="description" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Hangi Kategoriden Sonra</label>
+                                            <label>Kategori Sırası</label>
                                             <input type="text" name="queue" class="form-control" />
                                         </div>
                                         <div class="form-group">
-                                            <label>Kategori Liste Düzeni</label>
+                                            <label>Kategori Listeleme Düzeni</label>
                                             <input type="text" name="list_layout" class="form-control" />
                                         </div>
                                         <div class="form-group">
                                             <div class="checkbox">
-                                                <label><input type="checkbox" value="1" name="status" /> Kategori Aktif mi?</label>
+                                                <label><input type="checkbox" value="1" name="status" checked="checked" /> Kategori Aktif mi?</label>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="parent_id" class="cat_parent_id" />
                                     </div>
                                     <div class="tab-pane fade" id="settings02">
                                         <div class="form-group">
@@ -141,6 +118,7 @@ $(function(){
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="parent_id" class="cat_parent_id" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
                     <button type="submit" class="btn btn-primary">Ekle</button>
                 </div>
@@ -156,17 +134,20 @@ $(function(){
 <div class="modal fade" id="categoriesDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Kategori Sil</h4>
-            </div>
-            <div class="modal-body">
-                xxx isimli kategorinizi silmek istiyor musunuz?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
-                <button type="button" class="btn btn-danger">Sil</button>
-            </div>
+            <form action="backend/categories/categoriesDelete" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Kategori Sil</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="catDeleteName"></span> isimli kategorinizi silmek istiyor musunuz?
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" class="cat_id" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </div>
+            </form>
         </div>
         <!-- /.modal-content -->
     </div>

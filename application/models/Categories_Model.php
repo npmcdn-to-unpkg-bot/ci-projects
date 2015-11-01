@@ -5,7 +5,7 @@
 class Categories_Model extends CI_Model
 {
 	
-	function get_categories_list($cat_id =  null) {
+	function get_categories_list($cat_id = null) {
 
 		$this->db->select('id, parent_id, status, cat_link, name, queue');
 		$query = $this->db->get('categories');
@@ -20,7 +20,7 @@ class Categories_Model extends CI_Model
 		}
 	}
 
-	function get_categories($cat_id =  null) {
+	function get_categories($cat_id = null) {
 
 		$query = $this->db->get('categories');
 		if ($cat_id !== null) {
