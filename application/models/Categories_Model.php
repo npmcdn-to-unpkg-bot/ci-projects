@@ -34,8 +34,16 @@ class Categories_Model extends CI_Model
 		}
 	}
 
-	function add_categories($images) {
-		var_dump($images);
+	function add_categories($images, $config) {
+		echo "dikkat modeldesin.<br>";
+		foreach ($images as $key => $value) {
+			// echo $value["tmp_name"]." - ".$config['upload_path'].$value['name']."<br>";
+			if (move_uploaded_file($value["tmp_name"], $config['upload_path'].$value['name'])) {
+				echo basename( $value["name"])." yüklenmiştir.";
+			} else {
+				echo "dosyanız hatalıdır.";
+			}
+		}
 		exit;
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),

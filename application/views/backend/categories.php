@@ -16,7 +16,7 @@
 				<div class="row">
                     <?php 
                         if ( $this->session->flashdata('add_stream_errors') != null ) {
-                            echo '<span class="'.$this->session->flashdata('add_stream_errors').'">'.if ($error) {$error}.'</span>';
+                            echo '<span class="'.$this->session->flashdata('add_stream_errors').'"></span>';
                         }
                     ?>
 					<div class="col-lg-12 categoriesListing">
