@@ -49,7 +49,8 @@ class Categories extends Backend_Controller
 		$this->load->model('categories_model');
 
 		if ($this->input->post()) {
-			
+			// kategori adi (kontrol) - kategori adi var ise devam
+			// kategori resim var ise kontrol et koşullar tamam ise kayıt
 			$this->load->library('form_validation');
 			// form validation
 			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');

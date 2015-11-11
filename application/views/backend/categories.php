@@ -81,7 +81,12 @@ $(function(){
 
                                 <!-- Tab panes -->
                                 <div class="tab-content categories-tabs">
-                                <?php echo validation_errors('<p style="color:#dc0001;">'); ?>
+                                <?php 
+                                    echo validation_errors('<p style="color:#dc0001;">'); 
+                                    if($image_errors) {
+                                        echo $image_errors;
+                                    }
+                                ?>
                                     <div class="tab-pane fade in active" id="settings01">
                                         <div class="form-group">
                                             <label>Kategori Adı</label>
