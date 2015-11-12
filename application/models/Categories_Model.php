@@ -34,8 +34,9 @@ class Categories_Model extends CI_Model
 		}
 	}
 
-	function add_categories($images, $config) {
-
+	function add_categories() {
+		echo "modeldesin add_categories";
+		exit;
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),
 			'status' => $this->input->post('status'),
@@ -51,7 +52,7 @@ class Categories_Model extends CI_Model
 		);
 		$this->db->set($new_categories_insert_data)->insert('categories');
 		$last_id = $this->db->insert_id();
-		foreach ($images as $key => $value) {
+		/*foreach ($images as $key => $value) {
 			// echo $value["tmp_name"]." - ".$config['upload_path'].$value['name']."<br>";
 			move_uploaded_file($value["tmp_name"], $config['upload_path'].'catid_'.$last_id.'-'.$value['name']);
 			if ($image_uploads[$key]) {
@@ -66,7 +67,7 @@ class Categories_Model extends CI_Model
 		$this->db->set('image', $db_img['image']);
 		$this->db->set('banner', $db_img['banner']);
 		$this->db->where('id',$last_id);
-		$this->db->update('categories');
+		$this->db->update('categories');*/
 	}
 
 	public function changeName($change_name){

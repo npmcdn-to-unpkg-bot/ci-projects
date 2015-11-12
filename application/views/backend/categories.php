@@ -83,7 +83,7 @@ $(function(){
                                 <div class="tab-content categories-tabs">
                                 <?php 
                                     echo validation_errors('<p style="color:#dc0001;">'); 
-                                    if($image_errors) {
+                                    if(isset($image_errors)) {
                                         echo $image_errors;
                                     }
                                 ?>
