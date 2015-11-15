@@ -51,16 +51,15 @@ class Categories extends Backend_Controller
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
 				$_POST[$key] = $key;
+				$images[$key] = $value;
 			}
 			$this->load->library('form_validation');
 			// form validation
 			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');
-			$this->form_validation->set_rules('image','','trim|callback_check_image_rules');
-			$this->form_validation->set_rules('banner','','trim|callback_check_image_rules');
-
+			$this->form_validation->set_rules('image','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
+			$this->form_validation->set_rules('banner','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
 			if ($this->form_validation->run() === FALSE) {
-				echo "hata var";
-				exit;
+
 				$data['add_stream_name'] = $this->input->post('name');
 				$data['add_stream_description'] = $this->input->post('description');
 				$data['add_stream_queue'] = $this->input->post('queue');
@@ -77,9 +76,8 @@ class Categories extends Backend_Controller
 				$this->load->view('backend/categories',$data);
 				$this->load->view('backend/layout/footer');
 			} else {
-				var_dump($_FILES);
-				exit;
-				$this->categories_model->add_categories();
+
+				$this->categories_model->add_categories($images);
 				redirect('backend/categories');
 			}
 		} else {
@@ -90,43 +88,40 @@ class Categories extends Backend_Controller
 
 	public function categoriesDelete() {
 		
-		var_dump($this->input->post());
-		exit;
+		$this->load->model('categories_model');
+		$this->categories_model->delete_categories($this->input->post('id'));
 	}
 
-	public function check_image_rules($image) {
+	public function image_max_size($image) {
 
-		foreach ($_FILES[$image] as $key => $value) {
-			$image_uploads[$key] = $value;
+		if ($_FILES[$image]['size'] > 1048576) {
+			$this->form_validation->set_message('image_max_size', 'Kategori {field} hata, dosyanızın boyutu buyuktur.');
+			return false;
 		}
-		if (isset($image_uploads['name']) && !empty($image_uploads['name'])) {
-			$uploadOk = 1;
-			$config = array(
-				'is_allowed' => 'jpg|jpeg|png|gif',
-				'max_size' => '1048576',
-				'upload_path' => FCPATH.'assets/uploads/system/images/'
-			);
-			$image_is_allowed = explode("|", $config['is_allowed']);
-			if (!file_exists($config['upload_path'])) {
-				echo "path";
-				$image_errors['image_errors_upload_path'] = "hata, klasör yolu: '".$config['upload_path']."' yanlıştır.";
-				$uploadOk = 0;
-			}
-			if ($image_uploads["size"] > $config['max_size']) {
-				echo "size";
-				$image_errors['image_errors_image_size'] = "hata, dosyanızın boyutu buyuktur."; // $value["size"]." > ".$config['max_size'];
-				$uploadOk = 0;
-			}
-			$image_ext = strtolower(pathinfo($image_uploads['name'], PATHINFO_EXTENSION));
+		return true;
+	}
+
+	public function image_ext($image) {
+
+		$config = array(
+			'is_allowed' => 'jpg|jpeg|png|gif'
+		);
+		$image_is_allowed = explode("|", $config['is_allowed']);
+		$image_ext = strtolower(pathinfo($_FILES[$image]['name'], PATHINFO_EXTENSION));
+		if (!empty($_FILES[$image]['name'])) {
 			if (!in_array($image_ext, $image_is_allowed)) {
-				$image_errors['image_errors_image_extension'] = "hata, sadece JPG, JPEG, PNG & GIF uzantilara izin verilir."; // $value['name'];
-				$uploadOk = 0;
-			}
-			if ($uploadOk == 0) {
+				$this->form_validation->set_message('image_ext', 'Kategori {field} hata, sadece JPG, JPEG, PNG & GIF uzantilara izin verilir.');
 				return false;
-			}
-		} else {
-			return true;
+			}	
+		}
+		return true;
+	}
+
+	public function image_upload_path($image) {
+
+		if (!file_exists(FCPATH.'assets/uploads/system/images/')) {
+			$this->form_validation->set_message('image_upload_path', '{field} hata, klasör yolu: "'.FCPATH.'assets/uploads/system/images/" yanlıştır.');
+			return false;
 		}
 		return true;
 	}

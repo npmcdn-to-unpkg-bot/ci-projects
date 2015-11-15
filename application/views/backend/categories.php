@@ -15,8 +15,11 @@
 			<div class="panel-body">
 				<div class="row">
                     <?php 
-                        if ( $this->session->flashdata('add_stream_errors') != null ) {
+                        if ( !empty($this->session->flashdata('add_stream_errors')) ) {
                             echo '<span class="'.$this->session->flashdata('add_stream_errors').'"></span>';
+                        }
+                        if ( !empty($this->session->flashdata('errors')) ) {
+                            echo '<div class="col-lg-12"><div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>'.$this->session->flashdata('errors').'</div></div>';
                         }
                     ?>
 					<div class="col-lg-12 categoriesListing">

@@ -8,38 +8,39 @@ class Categories_Model extends CI_Model
 	function get_categories_list($cat_id = null) {
 
 		$this->db->select('id, parent_id, status, cat_link, name, queue');
-		$query = $this->db->get('categories');
 		if ($cat_id !== null) {
 			$this->db->where('id', $cat_id);
-			$query = $this->db->get('categories');
+			
 		}
-		
+		$query = $this->db->get('categories');
 		if ($query->num_rows()>0) {
 
 			return $result = $query->result();
 		}
 	}
 
-	function get_categories($cat_id = null) {
-
+	function get_sub_category($cat_id) {
+		$this->db->select('id, parent_id, status, cat_link, name, queue');
+		$this->db->where('parent_id', $cat_id);
 		$query = $this->db->get('categories');
-		if ($cat_id !== null) {
-			$this->db->where('id', $cat_id);
-			$query = $this->db->get('categories');
-		}
-		
 		if ($query->num_rows()>0) {
-
-			return $result = $query->result();
+			$rows = $query->result();
+			foreach ($rows as $key => $value) {
+				$result[$value->id] = $this->get_sub_category($value->id);
+			}
+			return $result;
 		}
 	}
 
-	function add_categories() {
-		echo "modeldesin add_categories";
-		exit;
+	function add_categories($images) {
+		if (empty($this->input->post('status'))) {
+			$status = 0;
+		} else {
+			$status = 1;
+		}
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),
-			'status' => $this->input->post('status'),
+			'status' => $status,
 			// 'cat_link' => $this->input->post('cat_link'),
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
@@ -52,22 +53,18 @@ class Categories_Model extends CI_Model
 		);
 		$this->db->set($new_categories_insert_data)->insert('categories');
 		$last_id = $this->db->insert_id();
-		/*foreach ($images as $key => $value) {
-			// echo $value["tmp_name"]." - ".$config['upload_path'].$value['name']."<br>";
-			move_uploaded_file($value["tmp_name"], $config['upload_path'].'catid_'.$last_id.'-'.$value['name']);
-			if ($image_uploads[$key]) {
-				$db_img[$key] = 'catid_'.$last_id.'-'.$value['name'];
-				echo "image var";
+		foreach ($images as $key => $value) {
+			if (!empty($value['name'])) {
+				$db_img_name[$key] = 'assets/uploads/system/images/catid_'.$last_id.'-'.$this->changeName($value['name']);
 			} else {
-				echo "iamge yok";
+				$db_img_name[$key] = '';
 			}
-			
+			move_uploaded_file($value["tmp_name"], FCPATH.$db_img_name[$key]);
 		}
-		exit;
-		$this->db->set('image', $db_img['image']);
-		$this->db->set('banner', $db_img['banner']);
+		$this->db->set('image', $db_img_name['image']);
+		$this->db->set('banner', $db_img_name['banner']);
 		$this->db->where('id',$last_id);
-		$this->db->update('categories');*/
+		$this->db->update('categories');
 	}
 
 	public function changeName($change_name){
@@ -77,6 +74,25 @@ class Categories_Model extends CI_Model
 		$perma = str_replace($find, $do, $change_name);
 		$perma = preg_replace("@[^A-Za-z0-9\.\-_]@i", '', $perma);
 		return $perma;
+	}
+
+	public function delete_categories($cat_id) {
+
+		$sub_cat = $this->get_sub_category($cat_id);
+		echo "<pre>";
+		var_dump($sub_cat);
+		exit;
+		if (!empty($category[0]->image)) {
+			unlink(FCPATH.$category[0]->image);
+		}
+		if (!empty($category[0]->banner)) {
+			unlink(FCPATH.$category[0]->banner);
+		}
+		$this->db->where('id',$category[0]->id);
+		$this->db->where('parent_id',$category[0]->id);
+		$this->db->delete('categories');
+		$this->session->set_flashdata('errors','kategori silindi.');
+		redirect('backend/categories');
 	}
 }
 ?>
