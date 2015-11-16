@@ -10,25 +10,10 @@ class Categories_Model extends CI_Model
 		$this->db->select('id, parent_id, status, cat_link, name, queue');
 		if ($cat_id !== null) {
 			$this->db->where('id', $cat_id);
-			
 		}
 		$query = $this->db->get('categories');
 		if ($query->num_rows()>0) {
-
 			return $result = $query->result();
-		}
-	}
-
-	function get_sub_category($cat_id) {
-		$this->db->select('id, parent_id, status, cat_link, name, queue');
-		$this->db->where('parent_id', $cat_id);
-		$query = $this->db->get('categories');
-		if ($query->num_rows()>0) {
-			$rows = $query->result();
-			foreach ($rows as $key => $value) {
-				$result[$value->id] = $this->get_sub_category($value->id);
-			}
-			return $result;
 		}
 	}
 
@@ -76,11 +61,19 @@ class Categories_Model extends CI_Model
 		return $perma;
 	}
 
+	public function sub_categories($cat_id) {
+		$this->db->select('id, parent_id, name');
+		$this->db->where('parent_id', $cat_id);
+		$query = $this->db->get('categories');
+		if ($query->num_rows()>0) {
+			return $query->result();	
+		}
+	}
+
 	public function delete_categories($cat_id) {
 
-		$sub_cat = $this->get_sub_category($cat_id);
 		echo "<pre>";
-		var_dump($sub_cat);
+		var_dump($this->input->post());
 		exit;
 		if (!empty($category[0]->image)) {
 			unlink(FCPATH.$category[0]->image);
