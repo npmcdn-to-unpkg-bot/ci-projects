@@ -7,7 +7,6 @@ class Categories_Model extends CI_Model
 	
 	function get_categories_list($cat_id = null) {
 
-		$this->db->select('id, parent_id, status, cat_link, name, queue');
 		if ($cat_id !== null) {
 			$this->db->where('id', $cat_id);
 		}
@@ -61,19 +60,13 @@ class Categories_Model extends CI_Model
 		return $perma;
 	}
 
-	public function sub_categories($cat_id) {
-		$this->db->select('id, parent_id, name');
-		$this->db->where('parent_id', $cat_id);
-		$query = $this->db->get('categories');
-		if ($query->num_rows()>0) {
-			return $query->result();	
-		}
-	}
-
 	public function delete_categories($cat_id) {
-
+		$category = array();
+		foreach ($cat_id as $key => $value) {
+			$category[$key] = $this->get_categories_list($value);
+		}
 		echo "<pre>";
-		var_dump($this->input->post());
+		var_dump($category);
 		exit;
 		if (!empty($category[0]->image)) {
 			unlink(FCPATH.$category[0]->image);
@@ -82,7 +75,6 @@ class Categories_Model extends CI_Model
 			unlink(FCPATH.$category[0]->banner);
 		}
 		$this->db->where('id',$category[0]->id);
-		$this->db->where('parent_id',$category[0]->id);
 		$this->db->delete('categories');
 		$this->session->set_flashdata('errors','kategori silindi.');
 		redirect('backend/categories');

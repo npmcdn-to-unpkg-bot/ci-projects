@@ -89,14 +89,22 @@ class Categories extends Backend_Controller
 	public function categoriesDelete() {
 		
 		$this->load->model('categories_model');
-		$del_cat = array($this->input->post('id'));
-		$sub_categories = $this->categories_model->sub_categories($this->input->post('id'));
-		foreach ($sub_categories as $key => $value) {
-			array_push($del_cat,$value->id);
-			
+		$cat = $this->categories_model->get_categories_list();
+		$data = $this->sub_categories($cat, $this->input->post('id'));
+		$data = $this->input->post('id')."|".rtrim($data,"|");
+		$del_cat = explode("|", $data);
+		$this->categories_model->delete_categories($del_cat);
+	}
+
+	public function sub_categories($array, $currentParent) {
+		$tree = "";
+		foreach ($array as $category) {
+			if ($currentParent == $category->parent_id) {
+				$tree .= $category->id."|";
+				$tree .= $this->sub_categories($array, $category->id);
+			}
 		}
-		var_dump($del_cat);
-		exit;
+		return $tree;
 	}
 
 	public function image_max_size($image) {
