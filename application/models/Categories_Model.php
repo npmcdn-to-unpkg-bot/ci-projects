@@ -37,9 +37,11 @@ class Categories_Model extends CI_Model
 		);
 		$this->db->set($new_categories_insert_data)->insert('categories');
 		$last_id = $this->db->insert_id();
+		$this->load->helper('rand_helper');
 		foreach ($images as $key => $value) {
 			if (!empty($value['name'])) {
-				$db_img_name[$key] = 'assets/uploads/system/images/catid_'.$last_id.'-'.$this->changeName($value['name']);
+				$randomString = generateRandomString(14);
+				$db_img_name[$key] = 'assets/uploads/system/images/catid_'.$last_id.'_'.$randomString.'-'.$this->changeName($value['name']);
 			} else {
 				$db_img_name[$key] = '';
 			}
@@ -61,21 +63,21 @@ class Categories_Model extends CI_Model
 	}
 
 	public function delete_categories($cat_id) {
+
 		$category = array();
 		foreach ($cat_id as $key => $value) {
-			$category[$key] = $this->get_categories_list($value);
+			$category[$value] = $this->get_categories_list($value);
 		}
-		echo "<pre>";
-		var_dump($category);
-		exit;
-		if (!empty($category[0]->image)) {
-			unlink(FCPATH.$category[0]->image);
+		foreach ($category as $key => $value) {
+			if (!empty($category[$key][0]->image)) {
+				unlink(FCPATH.$category[$key][0]->image);
+			}
+			if (!empty($category[$key][0]->banner)) {
+				unlink(FCPATH.$category[$key][0]->banner);
+			}
+			$this->db->where('id',$category[$key][0]->id);
+			$this->db->delete('categories');
 		}
-		if (!empty($category[0]->banner)) {
-			unlink(FCPATH.$category[0]->banner);
-		}
-		$this->db->where('id',$category[0]->id);
-		$this->db->delete('categories');
 		$this->session->set_flashdata('errors','kategori silindi.');
 		redirect('backend/categories');
 	}

@@ -91,7 +91,11 @@ class Categories extends Backend_Controller
 		$this->load->model('categories_model');
 		$cat = $this->categories_model->get_categories_list();
 		$data = $this->sub_categories($cat, $this->input->post('id'));
-		$data = $this->input->post('id')."|".rtrim($data,"|");
+		if (!empty($data)) {
+			$data = $this->input->post('id')."|".rtrim($data,"|");
+		} else {
+			$data = $this->input->post('id');
+		}
 		$del_cat = explode("|", $data);
 		$this->categories_model->delete_categories($del_cat);
 	}
