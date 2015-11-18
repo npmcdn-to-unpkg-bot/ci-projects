@@ -14,7 +14,7 @@ class Categories extends Backend_Controller
 	public function index() {
 
 		$this->load->model('categories_model');
-		$cat = $this->categories_model->get_categories_list();
+		$cat = $this->categories_model->get_categories();
 		$data['category'] = $this->createTree($cat, 0);
 
 		$this->load->view('backend/layout/header');
@@ -29,7 +29,8 @@ class Categories extends Backend_Controller
 			if ($currentParent == $category->parent_id) {
 				if ($currLevel > $prevLevel) $tree .= "<ul>";
 				if ($currLevel == $prevLevel) $tree .= "</li>";
-				$tree .= "<li><span>".$category->name."</span>";
+				($category->status == 1)?$status = 'active':$status = 'passive';
+				$tree .= '<li><a href="backend/categories/categoriesUpdate/'.$category->id.'" class="'.$status.'" rel="'.$category->id.'">'.$category->name.'</a>';
 				$tree .= '<a href="javascript:;" data-toggle="modal" data-target="#categoriesAdd" class="fa fa-plus fa-fw modalCategoriesAdd" rel="'.$category->id.'"><span rel="'.$category->name.'"></span></a> 
                         <a href="javascript:;" data-toggle="modal" data-target="#categoriesDelete" class="fa fa-trash fa-fw modalCategoriesDelete" rel="'.$category->id.'"><span rel="'.$category->name.'"></span></a>
                         <a href="javascript:;" class="fa fa-external-link fa-fw categoriesLinker" rel="'.$category->id.'"></a><code class="cat_link" style="display:none;">'.$category->cat_link.'</code>';
@@ -70,7 +71,7 @@ class Categories extends Backend_Controller
 				$data['add_stream_meta_keyword'] = $this->input->post('meta_keyword');
 
 				$this->session->set_flashdata('add_stream_errors','add_stream_errors');
-				$cat = $this->categories_model->get_categories_list();
+				$cat = $this->categories_model->get_categories();
 				$data['category'] = $this->createTree($cat, 0);
 				$this->load->view('backend/layout/header');
 				$this->load->view('backend/categories',$data);
@@ -86,10 +87,20 @@ class Categories extends Backend_Controller
 		}
 	}
 
+	public function categoriesUpdate($cat_id) {
+
+		$this->load->model('categories_model');
+		$data['category'] = $this->categories_model->get_categories($cat_id);
+		
+        $this->load->view('backend/layout/header');
+		$this->load->view('backend/categoriesUpdate',$data);
+		$this->load->view('backend/layout/footer');
+	}
+
 	public function categoriesDelete() {
 		
 		$this->load->model('categories_model');
-		$cat = $this->categories_model->get_categories_list();
+		$cat = $this->categories_model->get_categories();
 		$data = $this->sub_categories($cat, $this->input->post('id'));
 		if (!empty($data)) {
 			$data = $this->input->post('id')."|".rtrim($data,"|");

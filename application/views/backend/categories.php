@@ -10,7 +10,7 @@
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-12 info-center">
+	<div class="col-lg-10 info-center">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="row">
@@ -39,19 +39,12 @@ $(function(){
     $('.modalCategoriesAdd').on('click', function(){
         var rel = $(this).attr('rel');
         $('#categoriesAdd input[name="parent_id"].cat_parent_id').attr('value',rel);
-        // kategori eklemede db'ye bakarak alanları yerleştir ve relden aldıgın idyi uygun yerlere ver
-    });
-    $('.modalCategoriesUpdate').on('click', function(){
-        var rel = $(this).attr('rel');
-        // $('#categoriesAdd input[name="parent_id"].cat_parent_id').attr('value',rel);
-        // kategori eklemede db'ye bakarak alanları yerleştir ve relden aldıgın idyi uygun yerlere ver
     });
     $('.modalCategoriesDelete').on('click', function(){
         var rel = $(this).attr('rel');
         var catDeleteName = $('span',this).attr('rel');
         $('#categoriesDelete input[name="id"].cat_id').attr('value',rel);
         $('#categoriesDelete #catDeleteName').text('"'+catDeleteName+'"');
-        // kategori id ve adini alip modalda goster sonra kategoriyi sil.
     });
     $('.categoriesLinker').on('click', function(){
         var rel = $(this).attr('rel');
@@ -75,70 +68,69 @@ $(function(){
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs categories-tabs">
-                                    <li class="active"><a href="#settings01" data-toggle="tab">Genel Ayarları</a></li>
-                                    <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a></li>
-                                    <li><a href="#settings03" data-toggle="tab">SEO Ayarları</a></li>
-                                </ul>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs categories-tabs">
+                                <li class="active"><a href="#settings01" data-toggle="tab">Genel Ayarları</a></li>
+                                <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a></li>
+                                <li><a href="#settings03" data-toggle="tab">SEO Ayarları</a></li>
+                            </ul>
 
-                                <!-- Tab panes -->
-                                <div class="tab-content categories-tabs">
-                                <?php 
-                                    echo validation_errors('<p style="color:#dc0001;">'); 
-                                    if(isset($image_errors)) {
-                                        echo $image_errors;
-                                    }
-                                ?>
-                                    <div class="tab-pane fade in active" id="settings01">
-                                        <div class="form-group">
-                                            <label>Kategori Adı</label>
-                                            <input type="text" name="name" class="form-control" value="<?php if(isset($add_stream_name)){echo $add_stream_name;} ?>" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Kategori Açıklama</label>
-                                            <textarea name="description" class="form-control"><?php if(isset($add_stream_description)){echo $add_stream_description;} ?></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Kategori Sırası</label>
-                                            <input type="text" name="queue" class="form-control" value="<?php if(isset($add_stream_queue)){echo $add_stream_queue;} ?>" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Kategori Listeleme Düzeni</label>
-                                            <input type="text" name="list_layout" class="form-control" value="<?php if(isset($add_stream_list_layout)){echo $add_stream_list_layout;} ?>"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="1" name="status" <?php if(isset($add_stream_status)){echo 'checked="checked"';}else{echo '';} ?> /> Kategori Aktif mi?</label>
-                                            </div>
-                                        </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content categories-tabs">
+                            <?php 
+                                echo validation_errors('<p style="color:#dc0001;">'); 
+                                if(isset($image_errors)) {
+                                    echo $image_errors;
+                                }
+                            ?>
+                                <div class="tab-pane fade in active" id="settings01">
+                                    <div class="form-group">
+                                        <label>Kategori Adı</label>
+                                        <input type="text" name="name" class="form-control" value="<?php if(isset($add_stream_name)){echo $add_stream_name;} ?>" />
                                     </div>
-                                    <div class="tab-pane fade" id="settings02">
-                                        <div class="form-group">
-                                            <label>Kategori Resim</label>
-                                            <input type="file" name="image" accept="image/*" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Kategori Banner</label>
-                                            <input type="file" name="banner" accept="image/*" />
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Kategori Açıklama</label>
+                                        <textarea name="description" class="form-control"><?php if(isset($add_stream_description)){echo $add_stream_description;} ?></textarea>
                                     </div>
-                                    <div class="tab-pane fade" id="settings03">
-                                        <div class="form-group">
-                                            <label>Meta Title</label>
-                                            <textarea name="meta_title" class="form-control"><?php if(isset($add_stream_meta_title)){echo $add_stream_meta_title;} ?></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Meta Description</label>
-                                            <textarea name="meta_description" class="form-control"><?php if(isset($add_stream_meta_description)){echo $add_stream_meta_description;} ?></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Meta Keyword</label>
-                                            <textarea name="meta_keyword" class="form-control"><?php if(isset($add_stream_meta_keyword)){echo $add_stream_meta_keyword;} ?></textarea>
+                                    <div class="form-group">
+                                        <label>Kategori Sırası</label>
+                                        <input type="text" name="queue" class="form-control" value="<?php if(isset($add_stream_queue)){echo $add_stream_queue;} ?>" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori Listeleme Düzeni</label>
+                                        <input type="text" name="list_layout" class="form-control" value="<?php if(isset($add_stream_list_layout)){echo $add_stream_list_layout;} ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1" name="status" <?php if(isset($add_stream_status)){echo 'checked="checked"';}else{echo '';} ?> /> Kategori Aktif mi?</label>
                                         </div>
                                     </div>
                                 </div>
-                            
+                                <div class="tab-pane fade" id="settings02">
+                                    <div class="form-group">
+                                        <label>Kategori Resim</label>
+                                        <input type="file" name="image" accept="image/*" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori Banner</label>
+                                        <input type="file" name="banner" accept="image/*" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="settings03">
+                                    <div class="form-group">
+                                        <label>Meta Title</label>
+                                        <textarea name="meta_title" class="form-control"><?php if(isset($add_stream_meta_title)){echo $add_stream_meta_title;} ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Meta Description</label>
+                                        <textarea name="meta_description" class="form-control"><?php if(isset($add_stream_meta_description)){echo $add_stream_meta_description;} ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Meta Keyword</label>
+                                        <textarea name="meta_keyword" class="form-control"><?php if(isset($add_stream_meta_keyword)){echo $add_stream_meta_keyword;} ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

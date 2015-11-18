@@ -5,7 +5,7 @@
 class Categories_Model extends CI_Model
 {
 	
-	function get_categories_list($cat_id = null) {
+	function get_categories($cat_id = null) {
 
 		if ($cat_id !== null) {
 			$this->db->where('id', $cat_id);
@@ -66,7 +66,7 @@ class Categories_Model extends CI_Model
 
 		$category = array();
 		foreach ($cat_id as $key => $value) {
-			$category[$value] = $this->get_categories_list($value);
+			$category[$value] = $this->get_categories($value);
 		}
 		foreach ($category as $key => $value) {
 			if (!empty($category[$key][0]->image)) {

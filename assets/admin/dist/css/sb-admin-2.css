@@ -395,4 +395,5 @@ table.dataTable thead .sorting:after {
 .cat_link {margin-left: 20px;border: 1px solid #ccc;color: #000;}
 .categoriesListing li span {
 }
-.categoriesListing li a {/* color:#000; */}
+.categoriesListing li a { color:#000; }
+.categoriesListing li a.passive { color:#999; }
