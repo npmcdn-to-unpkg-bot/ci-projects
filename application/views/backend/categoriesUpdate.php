@@ -12,6 +12,7 @@
                 <div class="row">
                     <form action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         <div class="col-lg-12">
+                            <?php echo validation_errors('<p style="color:#dc0001;">');  ?>
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs categories-tabs">
                                 <li class="active"><a href="#settings01" data-toggle="tab">Genel Ayarları</a></li>
@@ -50,33 +51,36 @@
                                 <div class="tab-pane fade" id="settings02">
                                     <div class="form-group">
                                         <label>Kategori Resim</label>
-                                        <input type="file" name="image" accept="image/*" />
+                                        <?php if(!empty($cat->image)){ ?><img src="<?php echo $cat->image ?>" width="50" height="50" style="display:block;"/><?php } ?><input type="file" name="image" accept="image/*" />
+                                        <input type="hidden" name="old_image" value="<?php echo $cat->image ?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Kategori Banner</label>
-                                        <input type="file" name="banner" accept="image/*" />
+                                        <?php if(!empty($cat->banner)){ ?><img src="<?php echo $cat->banner ?>" width="50" height="50" style="display:block;"/><?php } ?><input type="file" name="banner" accept="image/*" />
+                                            <input type="hidden" name="old_banner" value="<?php echo $cat->banner ?>"/>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="settings03">
                                     <div class="form-group">
                                         <label>Meta Title</label>
-                                        <textarea name="meta_title" class="form-control"></textarea>
+                                        <textarea name="meta_title" class="form-control"><?php echo $cat->meta_title ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Description</label>
-                                        <textarea name="meta_description" class="form-control"></textarea>
+                                        <textarea name="meta_description" class="form-control"><?php echo $cat->meta_description ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Keyword</label>
-                                        <textarea name="meta_keyword" class="form-control"></textarea>
+                                        <textarea name="meta_keyword" class="form-control"><?php echo $cat->meta_keyword ?></textarea>
                                     </div>
                                 </div>
                                 <?php 
                                     }
                                 ?>
                             </div>
+                            <input type="hidden" name="id" value="<?php echo $cat->id ?>" />
                             <button type="button" class="btn btn-default">Vazgeç</button>
-                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                            <button type="submit" class="btn btn-success">Güncelle</button>
                         </div>
                     </form>
                 </div>

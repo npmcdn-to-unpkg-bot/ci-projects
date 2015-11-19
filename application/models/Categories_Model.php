@@ -17,11 +17,14 @@ class Categories_Model extends CI_Model
 	}
 
 	function add_categories($images) {
+		
 		if (empty($this->input->post('status'))) {
 			$status = 0;
 		} else {
 			$status = 1;
 		}
+		$this->load->helper('rand_helper');
+
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),
 			'status' => $status,
@@ -37,7 +40,6 @@ class Categories_Model extends CI_Model
 		);
 		$this->db->set($new_categories_insert_data)->insert('categories');
 		$last_id = $this->db->insert_id();
-		$this->load->helper('rand_helper');
 		foreach ($images as $key => $value) {
 			if (!empty($value['name'])) {
 				$randomString = generateRandomString(14);
@@ -50,6 +52,42 @@ class Categories_Model extends CI_Model
 		$this->db->set('image', $db_img_name['image']);
 		$this->db->set('banner', $db_img_name['banner']);
 		$this->db->where('id',$last_id);
+		$this->db->update('categories');
+	}
+
+	public function update_categories($images) {
+
+		if (empty($this->input->post('status'))) {
+			$status = 0;
+		} else {
+			$status = 1;
+		}
+		$this->load->helper('rand_helper');
+		foreach ($images as $key => $value) {
+			if (!empty($value['name'])) {
+				unlink(FCPATH.$this->input->post('old_'.$key));
+				$randomString = generateRandomString(14);
+				$db_img_name[$key] = 'assets/uploads/system/images/catid_'.$this->input->post('id').'_'.$randomString.'-'.$this->changeName($value['name']);
+			} else {
+				$db_img_name[$key] = $this->input->post('old_'.$key);
+			}
+			move_uploaded_file($value["tmp_name"], FCPATH.$db_img_name[$key]);
+		}
+		$categories_update_data = array(
+			'status' => $status,
+			// 'cat_link' => $this->input->post('cat_link'),
+			'name' => $this->input->post('name'),
+			'description' => $this->input->post('description'),
+			'image' => $db_img_name['image'],
+			'banner' => $db_img_name['banner'],
+			'queue' => $this->input->post('queue'),
+			'list_layout' => $this->input->post('list_layout'),
+			'meta_description' => $this->input->post('meta_description'),
+			'meta_keyword' => $this->input->post('meta_keyword'),
+			'meta_title' => $this->input->post('meta_title')
+		);
+		$this->db->set($categories_update_data);
+		$this->db->where('id', $this->input->post('id'));
 		$this->db->update('categories');
 	}
 

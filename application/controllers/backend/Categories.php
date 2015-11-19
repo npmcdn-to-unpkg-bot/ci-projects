@@ -90,11 +90,35 @@ class Categories extends Backend_Controller
 	public function categoriesUpdate($cat_id) {
 
 		$this->load->model('categories_model');
-		$data['category'] = $this->categories_model->get_categories($cat_id);
-		
-        $this->load->view('backend/layout/header');
-		$this->load->view('backend/categoriesUpdate',$data);
-		$this->load->view('backend/layout/footer');
+
+		if ($this->input->post()) {
+			foreach ($_FILES as $key => $value) {
+				$_POST[$key] = $key;
+				$images[$key] = $value;
+			}
+			$this->load->library('form_validation');
+			// form validation
+			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');
+			$this->form_validation->set_rules('image','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
+			$this->form_validation->set_rules('banner','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
+			if ($this->form_validation->run() === FALSE) {
+
+				$data['category'] = $this->categories_model->get_categories($cat_id);
+		        $this->load->view('backend/layout/header');
+				$this->load->view('backend/categoriesUpdate',$data);
+				$this->load->view('backend/layout/footer');
+			} else {
+
+				$this->categories_model->update_categories($images);
+				redirect('backend/categories');
+			}
+		} else {
+
+			$data['category'] = $this->categories_model->get_categories($cat_id);
+	        $this->load->view('backend/layout/header');
+			$this->load->view('backend/categoriesUpdate',$data);
+			$this->load->view('backend/layout/footer');
+		}
 	}
 
 	public function categoriesDelete() {
