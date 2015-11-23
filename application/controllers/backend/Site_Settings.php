@@ -13,9 +13,16 @@ class Site_Settings extends Backend_Controller
 
 	public function index() {
 
-		$this->load->view('backend/layout/header');
-		$this->load->view('backend/site_settings');
-		$this->load->view('backend/layout/footer');
+		if ($this->input->post()) {
+			var_dump($this->input->post());
+			exit;
+		} else {
+
+			$this->load->view('backend/layout/header');
+			$this->load->view('backend/site_settings');
+			$this->load->view('backend/layout/footer');	
+		}
+		
 	}
 }
 ?>
