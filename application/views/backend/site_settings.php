@@ -17,7 +17,7 @@
                                 <li class="active"><a href="#settings01" data-toggle="tab">Site Genel Ayarlar</a></li>
                                 <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a></li>
                                 <li><a href="#settings03" data-toggle="tab">Site Görünüm Düzeni</a></li>
-                                <li><a href="#settings04" data-toggle="tab">Settings</a></li>
+                                <li><a href="#settings04" data-toggle="tab">Üyelik İstenilecek Sayfalar</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" value="enable" name="enable_roaming" /> sitede gezinirken üyelik istensin mi?</label>
+                                            <label><input type="checkbox" value="enable" name="enable_restrict_roaming" /> sitede gezinirken üyelik istensin mi?</label>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                                         <label><input type="radio" name="home_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="home_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="home_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="home_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="home_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,7 +79,7 @@
                                                         <label><input type="radio" name="category_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="category_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="category_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="category_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="category_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -89,7 +89,7 @@
                                                         <label><input type="radio" name="search_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="search_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="search_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="search_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="search_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -99,7 +99,7 @@
                                                         <label><input type="radio" name="brand_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="brand_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="brand_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="brand_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="brand_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -114,7 +114,7 @@
                                                         <label><input type="radio" name="product_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="product_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="product_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="product_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="product_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                                                         <label><input type="radio" name="blog_page_sidebar" value="enable_leftbar"> sadece sol bloklu</label>
                                                         <label><input type="radio" name="blog_page_sidebar" value="enable_rightbar"> sadece sag bloklu</label>
                                                         <label><input type="radio" name="blog_page_sidebar" value="passive_sidebar"> bloksuz</label>
-                                                        <label><input type="radio" name="blog_page_passive_footer" value="passive_footer"> footeru kaldır</label>
+                                                        <label><input type="checkbox" name="blog_page_passive_footer" value="passive_footer"> footeru kaldır</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,8 +139,11 @@
                                     <!-- site görünüm düzeni SON -->
                                 </div>
                                 <div class="tab-pane fade" id="settings04">
-                                    <h4>Settings Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <label>Üyelik İstenen Sayfalar</label>
+                                    <div class="checkbox"><label><input type="checkbox" name="site_restrict" value="enable"> Anasayfa (siteye girerken)</label></div>
+                                    <div class="checkbox"><label><input type="checkbox" name="listing_page_restrict" value="enable"> Listeleme Sayfası</label></div>
+                                    <div class="checkbox"><label><input type="checkbox" name="detail_page_restrict" value="enable"> Detay Sayfası</label></div>
+                                    <div class="checkbox"><label><input type="checkbox" name="blog_page_restrict" value="enable"> Blog Sayfası</label></div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>

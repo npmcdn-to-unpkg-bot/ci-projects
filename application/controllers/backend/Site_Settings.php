@@ -12,8 +12,14 @@ class Site_Settings extends Backend_Controller
 	}
 
 	public function index() {
-
+		$this->load->model('site_settings_model');
 		if ($this->input->post()) {
+
+			$site_settings_model = $this->site_settings_model->get_site_settings();
+			
+			foreach ($site_settings_model as $key => $value) {
+				echo $value->settings_name."<br>";
+			}
 			var_dump($this->input->post());
 			exit;
 		} else {
