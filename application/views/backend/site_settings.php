@@ -1,23 +1,23 @@
 <div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Site Genel Ayarlar</h1>
-	</div>
-	<!-- /.col-lg-12 -->
+    <div class="col-lg-12">
+        <h1 class="page-header">Site Genel Ayarlar</h1>
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-12 info-center">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-12">
+    <div class="col-lg-12 info-center">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
                         <form action="" method="post">
-    						<!-- Nav tabs -->
+                            <!-- Nav tabs -->
                             <ul class="nav nav-tabs vertical-tabs col-lg-2">
                                 <li class="active"><a href="#settings01" data-toggle="tab">Site Genel Ayarlar</a></li>
                                 <li><a href="#settings02" data-toggle="tab">Görsel Ayarlar</a></li>
                                 <li><a href="#settings03" data-toggle="tab">Site Görünüm Düzeni</a></li>
-                                <li><a href="#settings04" data-toggle="tab">Üyelik İstenilecek Sayfalar</a></li>
+                                <li><a href="#settings04" data-toggle="tab">Üyelik istenilecek sayfalar</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" value="enable" name="enable_restrict_roaming" /> sitede gezinirken üyelik istensin mi?</label>
+                                            <label><input type="checkbox" value="enable" name="restrict_roaming" /> sitede gezinirken üyelik istensin mi?</label>
                                         </div>
                                     </div>
                                 </div>
@@ -139,11 +139,31 @@
                                     <!-- site görünüm düzeni SON -->
                                 </div>
                                 <div class="tab-pane fade" id="settings04">
-                                    <label>Üyelik İstenen Sayfalar</label>
-                                    <div class="checkbox"><label><input type="checkbox" name="site_restrict" value="enable"> Anasayfa (siteye girerken)</label></div>
-                                    <div class="checkbox"><label><input type="checkbox" name="listing_page_restrict" value="enable"> Listeleme Sayfası</label></div>
-                                    <div class="checkbox"><label><input type="checkbox" name="detail_page_restrict" value="enable"> Detay Sayfası</label></div>
-                                    <div class="checkbox"><label><input type="checkbox" name="blog_page_restrict" value="enable"> Blog Sayfası</label></div>
+                                    <!-- site dolaşma -->
+                                    <div class="panel-body">
+                                        <label>Üyelik istenilecek sayfalar</label>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="home_restrict_roaming" value="enable"> Anasayfa (siteye girişte)</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="listing_restrict_roaming" value="enable"> Listeleme Sayfası</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="details_restrict_roaming" value="enable"> Detay Sayfası</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="blog_restrict_roaming" value="enable"> Blog Sayfası</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- site dolaşma SON -->
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -151,9 +171,9 @@
                                 <button type="submit" class="btn btn-success">Kaydet</button>
                             </div>
                         </form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
