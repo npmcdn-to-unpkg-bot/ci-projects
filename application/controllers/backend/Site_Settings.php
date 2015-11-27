@@ -15,11 +15,14 @@ class Site_Settings extends Backend_Controller
 		$this->load->model('site_settings_model');
 		if ($this->input->post()) {
 
-			$site_settings_model = $this->site_settings_model->get_site_settings();
-			
-			foreach ($site_settings_model as $key => $value) {
-				echo $value->settings_name."<br>";
-			}
+			$this->load->library('form_validation');
+			// form validation
+			$this->form_validation->set_rules('home_page_sidebar','','required');
+			$this->form_validation->set_rules('category_page_sidebar','','required');
+			$this->form_validation->set_rules('search_page_sidebar','','required');
+			$this->form_validation->set_rules('brand_page_sidebar','','required');
+			$this->form_validation->set_rules('product_page_sidebar','','required');
+			$this->form_validation->set_rules('blog_page_sidebar','','required');
 			var_dump($this->input->post());
 			exit;
 		} else {
