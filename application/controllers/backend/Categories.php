@@ -54,6 +54,7 @@ class Categories extends Backend_Controller
 				$_POST[$key] = $key;
 				$images[$key] = $value;
 			}
+			var_dump($this->input->post());exit;
 			$this->load->library('form_validation');
 			// form validation
 			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');
