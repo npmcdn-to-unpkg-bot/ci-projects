@@ -65,11 +65,17 @@ class Categories_Model extends CI_Model
 		$this->load->helper('rand_helper');
 		foreach ($images as $key => $value) {
 			if (!empty($value['name'])) {
-				unlink(FCPATH.$this->input->post('old_'.$key));
+				if (!empty($this->input->post('old_'.$key))) {
+					unlink(FCPATH.$this->input->post('old_'.$key));
+				}
 				$randomString = generateRandomString(14);
 				$db_img_name[$key] = 'assets/uploads/system/images/catid_'.$this->input->post('id').'_'.$randomString.'-'.$this->changeName($value['name']);
 			} else {
 				$db_img_name[$key] = $this->input->post('old_'.$key);
+			}
+			if ($this->input->post('delete_'.$key)) {
+				unlink(FCPATH.$this->input->post('delete_'.$key));
+				$db_img_name[$key] = '';
 			}
 			move_uploaded_file($value["tmp_name"], FCPATH.$db_img_name[$key]);
 		}

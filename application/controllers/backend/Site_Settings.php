@@ -34,14 +34,13 @@ class Site_Settings extends Backend_Controller
 			if ($this->form_validation->run() === FALSE) {
 				
 				$data = $this->input->post();
-				var_dump($data);
 				$this->load->view('backend/layout/header');
 				$this->load->view('backend/site_settings',$data);
 				$this->load->view('backend/layout/footer');
 			} else {
 				
 				$this->site_settings_model->update_site_settings($images);
-				exit;
+				redirect('backend/site_settings');
 			}
 		} else {
 
@@ -50,7 +49,6 @@ class Site_Settings extends Backend_Controller
 			foreach ($site_settings as $key => $value) {
 				$data[$value->settings_name] = $value->settings_value;
 			}
-			var_dump($data);
 			$this->load->view('backend/layout/header');
 			$this->load->view('backend/site_settings',$data);
 			$this->load->view('backend/layout/footer');

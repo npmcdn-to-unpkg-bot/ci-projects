@@ -51,13 +51,21 @@
                                 <div class="tab-pane fade" id="settings02">
                                     <div class="form-group">
                                         <label>Kategori Resim</label>
-                                        <?php if(!empty($cat->image)){ ?><img src="<?php echo $cat->image ?>" width="50" height="50" style="display:block;"/><?php } ?><input type="file" name="image" accept="image/*" />
+                                        <?php if(!empty($cat->image)){ ?>
+                                            <img src="<?php echo $cat->image ?>" width="50" height="50" style="display:block;"/>
+                                            <div class="checkbox"><label><input type="checkbox" name="delete_image" value="<?php echo $cat->image ?>"> Sil</label></div>
+                                        <?php } ?>
+                                        <input type="file" name="image" accept="image/*" />
                                         <input type="hidden" name="old_image" value="<?php echo $cat->image ?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Kategori Banner</label>
-                                        <?php if(!empty($cat->banner)){ ?><img src="<?php echo $cat->banner ?>" width="50" height="50" style="display:block;"/><?php } ?><input type="file" name="banner" accept="image/*" />
-                                            <input type="hidden" name="old_banner" value="<?php echo $cat->banner ?>"/>
+                                        <?php if(!empty($cat->banner)){ ?>
+                                            <img src="<?php echo $cat->banner ?>" width="50" height="50" style="display:block;"/>
+                                            <div class="checkbox"><label><input type="checkbox" name="delete_banner" value="<?php echo $cat->banner ?>"> Sil</label></div>
+                                        <?php } ?>
+                                        <input type="file" name="banner" accept="image/*" />
+                                        <input type="hidden" name="old_banner" value="<?php echo $cat->banner ?>"/>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="settings03">
@@ -79,7 +87,7 @@
                                 ?>
                             </div>
                             <input type="hidden" name="id" value="<?php echo $cat->id ?>" />
-                            <button type="button" class="btn btn-default">Vazgeç</button>
+                            <a href="backend/categories" class="btn btn-default">Vazgeç</a>
                             <button type="submit" class="btn btn-success">Güncelle</button>
                         </div>
                     </form>
