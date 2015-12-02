@@ -40,7 +40,7 @@
                                 <div class="tab-pane fade" id="settings02">
                                     <div class="form-group">
                                         <label>Site Logosu</label>
-                                        <?php if(!empty($site_logo)){ ?>
+                                        <?php if(!empty($site_logo) && $site_logo != 'site_logo'){ ?>
                                             <img src="<?php echo $site_logo ?>" width="50" height="50" style="display:block;"/>
                                             <div class="checkbox"><label><input type="checkbox" name="delete_site_logo" value="<?php echo $site_logo ?>"> Sil</label></div>
                                         <?php } ?>
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Watermark</label>
-                                        <?php if(!empty($watermark)){ ?>
+                                        <?php if(!empty($watermark) && $watermark != 'watermark'){ ?>
                                             <img src="<?php echo $watermark ?>" width="50" height="50" style="display:block;"/>
                                             <div class="checkbox"><label><input type="checkbox" name="delete_watermark" value="<?php echo $watermark ?>"> Sil</label></div>
                                         <?php } ?>

@@ -58,7 +58,6 @@ class Site_Settings_Model extends CI_Model
 			$this->db->where('settings_name', $key);
 			$this->db->update('site_settings');	
 		}
-		
 	}
 
 	public function changeName($change_name){

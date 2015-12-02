@@ -12,7 +12,7 @@ class Site_Settings extends Backend_Controller
 	}
 
 	public function index() {
-		$this->load->model('site_settings_model');
+		$this->load->model('backend/site_settings_model');
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
 				$_POST[$key] = $key;

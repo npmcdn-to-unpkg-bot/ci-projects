@@ -31,7 +31,7 @@ class Auth extends Backend_Controller
 			$this->load->view('backend/auth/login',$data);
 		} else {
 
-			$this->load->model('users_model');
+			$this->load->model('backend/users_model');
 			$query = $this->users_model->validate();
 
 			if ($query) { // if the user's credentials valiated...
@@ -82,7 +82,7 @@ class Auth extends Backend_Controller
 			$this->load->view('backend/layout/footer');
 		} else {
 
-			$this->load->model('users_model');
+			$this->load->model('backend/users_model');
 
 			if ($query = $this->users_model->create_member()) {
 				
@@ -100,7 +100,7 @@ class Auth extends Backend_Controller
 	}
 
 	public function check_if_username_exists($requested_username) { // custom callback function
-		$this->load->model('users_model');
+		$this->load->model('backend/users_model');
 
 		$username_available = $this->users_model->check_if_username_exists($requested_username);
 
@@ -112,7 +112,7 @@ class Auth extends Backend_Controller
 	}
 
 	public function check_if_email_exists($requested_email) { // custom callback function
-		$this->load->model('users_model');
+		$this->load->model('backend/users_model');
 
 		$email_available = $this->users_model->check_if_email_exists($requested_email);
 

@@ -18,7 +18,7 @@ class Themes extends Backend_Controller
 
 	public function themes_management() {
 		
-		$this->load->model('themes_model');
+		$this->load->model('backend/themes_model');
 		$data['themes'] = $themes = $this->themes_model->get_themes_area_parent();
 
 		$this->load->view('backend/layout/header');
@@ -29,7 +29,7 @@ class Themes extends Backend_Controller
 	public function check_if_parent_themes_exists() {
 
 		$parent_id = $this->input->post('parent_id');
-		$this->load->model('themes_model');
+		$this->load->model('backend/themes_model');
 		$themes = $this->themes_model->get_themes_area_parent($parent_id);
 
 		if ($themes) {
@@ -164,8 +164,8 @@ class Themes extends Backend_Controller
 
 	public function add_themes($themes_area_id) {
 
-		$this->load->model('themes_model');
-		$this->load->model('themes_variables_model');
+		$this->load->model('backend/themes_model');
+		$this->load->model('backend/themes_variables_model');
 		$themes = $this->themes_model->get_themes_area_where($themes_area_id);
 		$class_name = $themes[0]->class_name;
 		$data['themes_variables'] = $this->themes_variables_model->$class_name();
@@ -213,14 +213,14 @@ class Themes extends Backend_Controller
 
 	public function edit_themes($themes_id) {
 
-		$this->load->model('themes_model');
+		$this->load->model('backend/themes_model');
 
 		$themes = $this->themes_model->get_themes($themes_id);
 		foreach ($themes[0] as $key => $value) {
 			$data[$key] = $value;
 		}
 
-		$this->load->model('themes_variables_model');
+		$this->load->model('backend/themes_variables_model');
 		$themes = $this->themes_model->get_themes_area_where($data['themes_area_id']);
 		$class_name = $themes[0]->class_name;
 		$data['themes_variables'] = $this->themes_variables_model->$class_name();
@@ -270,7 +270,7 @@ class Themes extends Backend_Controller
 
 	public function delete_themes($themes_id) {
 		
-		$this->load->model('themes_model');
+		$this->load->model('backend/themes_model');
 		$themes = $this->themes_model->get_themes($themes_id);
 		foreach ($themes as $key => $value) {
 			$data[$key] = $value;

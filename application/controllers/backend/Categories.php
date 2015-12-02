@@ -13,7 +13,7 @@ class Categories extends Backend_Controller
 
 	public function index() {
 
-		$this->load->model('categories_model');
+		$this->load->model('backend/categories_model');
 		$cat = $this->categories_model->get_categories();
 		$data['category'] = $this->createTree($cat, 0);
 
@@ -47,7 +47,7 @@ class Categories extends Backend_Controller
 
 	public function categoriesAdd() {
 
-		$this->load->model('categories_model');
+		$this->load->model('backend/categories_model');
 
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
@@ -90,7 +90,7 @@ class Categories extends Backend_Controller
 
 	public function categoriesUpdate($cat_id) {
 
-		$this->load->model('categories_model');
+		$this->load->model('backend/categories_model');
 
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
@@ -124,7 +124,7 @@ class Categories extends Backend_Controller
 
 	public function categoriesDelete() {
 		
-		$this->load->model('categories_model');
+		$this->load->model('backend/categories_model');
 		$cat = $this->categories_model->get_categories();
 		$data = $this->sub_categories($cat, $this->input->post('id'));
 		if (!empty($data)) {

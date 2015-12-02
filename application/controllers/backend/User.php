@@ -15,7 +15,7 @@ class User extends Backend_Controller
 	
 	public function profile() {
 
-		$this->load->model('users_model');
+		$this->load->model('backend/users_model');
 
 		$user_row = $this->users_model->user_info($this->session->userdata('username'));
 		
@@ -46,7 +46,7 @@ class User extends Backend_Controller
 			$this->profile();
 		} else {
 
-			$this->load->model('users_model');
+			$this->load->model('backend/users_model');
 
 			$query = $this->users_model->update_member();
 			if ($query === TRUE) {
