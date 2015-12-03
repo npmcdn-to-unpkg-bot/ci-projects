@@ -11,11 +11,19 @@ class Home extends Frontend_Controller
 	}
 
 	public function index() {
-		
+
+		$this->load->model('frontend/themes_model');
+		// $data['example'] = $this->themes_model->example();
+		// exit;
+		$data['header'] = $this->themes_model->get_header();
+		$data['footer'] = $this->themes_model->get_footer();
+		// echo "<pre>";
+		// var_dump($data);
+		// exit;
 		$data['title'] = 'frontend - home';
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/home');
-		$this->load->view('frontend/layout/footer');
+		$this->load->view('frontend/layout/footer',$data);
 
 	}
 }

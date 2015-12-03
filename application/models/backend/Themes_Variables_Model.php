@@ -7,8 +7,11 @@ class Themes_Variables_Model extends CI_Model
 	
 	function header() {
 
+		$this->db->where('settings_name','site_logo');
+		$db_site_logo = $this->db->get('site_settings');
+		$db_site_logo = $db_site_logo->result();
 		return $themes_variables = array(
-			'logo' => '<img src="assets/uploads/images/logo.png" />',
+			'logo' => '<img src="'.$db_site_logo[0]->settings_value.'" />',
 			'kategoriler' => '<li class="kat_01"><a href="">beyaz eşya</a></li>
 <li class="kat_02"><a href="">elektronik</a></li>
 <li class="kat_03">
