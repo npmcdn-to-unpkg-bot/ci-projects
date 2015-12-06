@@ -16,6 +16,9 @@
                     <li>
                         <a href="backend/themes"><i class="fa fa-puzzle-piece fa-fw"></i> Tema Yönetimi</a>
                     </li>
+                    <li>
+                        <a href="backend/custom_code"><i class="fa fa-leaf fa-fw"></i> Özelleştirme (head, body bitimi öncesi)</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

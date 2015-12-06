@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title><?php echo $title ?></title>
+	<?php echo (isset($head_code))?$head_code[0]->custom_code_value:''; ?>
 </head>

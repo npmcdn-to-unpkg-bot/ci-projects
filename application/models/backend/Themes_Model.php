@@ -84,7 +84,7 @@ class Themes_Model extends CI_Model
 			'default_themes_id' => $default_themes_id,
 			'active_themes_id' => $active_themes_id,
 			'name' => $this->input->post('name'),
-			'content' => $this->input->post('content'),
+			'content' => $this->input->post('content', FALSE),
 			'create_time' => date("Y-m-d H:i:s")
 		);
 		$insert = $this->db->set($new_themes_insert_data)->insert('themes');
@@ -123,7 +123,7 @@ class Themes_Model extends CI_Model
 			'default_themes_id' => $default_themes_id,
 			'active_themes_id' => $active_themes_id,
 			'name' => $this->input->post('name'),
-			'content' => $this->input->post('content')
+			'content' => $this->input->post('content', FALSE)
 		);
 		$this->db->set($themes_update_data);
 		$this->db->where('id', $this->input->post('themes_id'));

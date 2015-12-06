@@ -1,5 +1,9 @@
+</section>
+</div>
 <div id="footer">
+<div class="container">
 hazir tema footer icerik
 <br>
-3aralik footer güncelleme
+güncelleme: ev footer alanı
+</div>
 </div>

@@ -199,7 +199,7 @@ class Themes extends Backend_Controller
 				}
 
 				$this->load->library('parser');
-				$content = $this->parser->parse_string($this->input->post('content'),$this->themes_variables_model->$class_name());
+				$content = $this->parser->parse_string($this->input->post('content', FALSE),$this->themes_variables_model->$class_name());
 				$this->themes_model->add_themes($content);
 				redirect('backend/themes');
 			}
@@ -256,7 +256,7 @@ class Themes extends Backend_Controller
 					$this->themes_model->check_if_active_themes_id_exists();
 				}
 				$this->load->library('parser');
-				$content = $this->parser->parse_string($this->input->post('content'),$this->themes_variables_model->$class_name());
+				$content = $this->parser->parse_string($this->input->post('content', FALSE),$this->themes_variables_model->$class_name());
 				$this->themes_model->edit_themes($content);
 				redirect('backend/themes/edit_themes/'.$this->input->post('themes_id'));
 			}
