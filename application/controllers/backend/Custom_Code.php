@@ -14,9 +14,11 @@ class Custom_Code extends Backend_Controller
 	public function index() {
 		$this->load->model('backend/custom_code_model');
 		if ($this->input->post()) {
+
 			$this->custom_code_model->update_custom_code();
 			redirect('backend/custom_code');
 		} else {
+			
 			$custom_code = $this->custom_code_model->get_custom_code();
 			$data = array();
 			foreach ($custom_code as $key => $value) {

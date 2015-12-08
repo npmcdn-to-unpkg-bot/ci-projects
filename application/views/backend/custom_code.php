@@ -11,6 +11,11 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php 
+                            if ( $this->session->flashdata('errors') != null ) {
+                                echo '<p style="color:red;">'.$this->session->flashdata('errors').'</p>';
+                            }
+                        ?>
                         <form action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         <?php echo validation_errors('<p style="color:#dc0001;">'); ?>
                             <!-- Nav tabs -->
@@ -24,13 +29,13 @@
                                 <div class="tab-pane fade in active" id="settings01">
                                     <div class="form-group">
                                         <label>&lthead&gt Kodları</label>
-                                        <textarea class="form-control" name="custom_head_code" rows="10"><?php echo ( isset($custom_head_code) ) ?  $custom_head_code : '' ; ?></textarea>
+                                        <textarea class="form-control" name="themes_head_code" rows="10"><?php echo ( isset($themes_head_code) ) ?  $themes_head_code : '' ; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="settings02">
                                     <div class="form-group">
                                         <label>&lt/body&gt Bitiminden Önce</label>
-                                        <textarea class="form-control" name="custom_foot_code" rows="10"><?php echo ( isset($custom_foot_code) ) ? $custom_foot_code : '' ; ?></textarea>
+                                        <textarea class="form-control" name="themes_foot_code" rows="10"><?php echo ( isset($themes_foot_code) ) ? $themes_foot_code : '' ; ?></textarea>
                                     </div>
                                 </div>
                             </div>

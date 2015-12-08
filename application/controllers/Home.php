@@ -18,8 +18,6 @@ class Home extends Frontend_Controller
 		// exit;
 		$data['header'] = $this->themes_model->get_header();
 		$data['footer'] = $this->themes_model->get_footer();
-		$data['head_code'] = $this->custom_code_model->get_head_code();
-		$data['foot_code'] = $this->custom_code_model->get_foot_code();
 		// echo "<pre>";
 		// var_dump($data);
 		// exit;
