@@ -19,12 +19,14 @@
                     <li>
                         <a href="backend/custom_code"><i class="fa fa-leaf fa-fw"></i> Özelleştirme (head, body bitimi öncesi)</a>
                     </li>
+                    <li>
+                        <a href="backend/showcase"><i class="glyphicon glyphicon-paperclip fa-fw"></i> Vitrin Yönetimi</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            
             <li>
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> İçerik Yönetimi</a>
+                <a href="backend/blog"><i class="fa fa-edit fa-fw"></i> İçerik Yönetimi</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

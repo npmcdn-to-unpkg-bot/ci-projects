@@ -43,5 +43,18 @@ class Themes_Variables_Model extends CI_Model
 
 		);
 	}
+
+	function blog_frame() {
+
+		return $themes_variables = array(
+
+		);
+	}
+
+	function blog_views() {
+		return $themes_variables = array(
+
+		);
+	}
 }
 ?>

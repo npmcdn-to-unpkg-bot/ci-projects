@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Hüseyin DOL</a>
+            <a class="navbar-brand" href="javascript:;">Hüseyin DOL</a>
         </div>
         <!-- /.navbar-header -->
 

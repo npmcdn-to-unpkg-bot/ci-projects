@@ -366,7 +366,9 @@ table.dataTable thead .sorting:after {
 .errors {
     color: red;
 }
-
+.success {
+    color: green;
+}
 .vertical-tabs {
     border-bottom: none;
     border-right: 1px solid #ddd;

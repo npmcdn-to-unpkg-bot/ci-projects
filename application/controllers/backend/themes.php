@@ -102,12 +102,12 @@ class Themes extends Backend_Controller
 				}
 			}
 			$str .= '</select></div>';
-			$str .= '<a href="javascript:;" class="btn btn-default btn-outline" id="edit_themes">Temayı Güncelle</a>';
-			$str .= '<a href="javascript:;" class="btn btn-outline btn-danger" id="delete_themes">Temayı Sil</a>';
-			$str .= '<a href="javascript:;" class="btn btn-outline btn-warning" id="add_themes">Tema Ekle</a>';
+			$str .= '<a href="javascript:;" class="btn btn-default btn-outline" id="themes_edit">Temayı Güncelle</a>';
+			$str .= '<a href="javascript:;" class="btn btn-outline btn-danger" id="themes_delete">Temayı Sil</a>';
+			$str .= '<a href="javascript:;" class="btn btn-outline btn-warning" id="themes_add">Tema Ekle</a>';
 			$str .= '<script>
 						$(function(){
-							$(\'#edit_themes\').on(\'click\',function(){
+							$(\'#themes_edit\').on(\'click\',function(){
 								var themes_id = $(\'#themes_id\').val();
 								if (themes_id == 0) {
 									$(\'#resultParentThemes\').html("");
@@ -116,9 +116,9 @@ class Themes extends Backend_Controller
 									$(\'.errors\').text(\'tema güncellemek için tema seçmeniz gerekmekte.\');
 									return false;
 								}
-								window.location.href = "backend/themes/edit_themes/"+themes_id;
+								window.location.href = "backend/themes/themes_edit/"+themes_id;
 							});
-							$(\'#delete_themes\').on(\'click\',function(){
+							$(\'#themes_delete\').on(\'click\',function(){
 								var themes_id = $(\'#themes_id\').val();
 								if (themes_id == 0) {
 									$(\'#resultParentThemes\').html("");
@@ -127,32 +127,32 @@ class Themes extends Backend_Controller
 									$(\'.errors\').text(\'tema silmek için tema seçmeniz gerekmekte.\');
 									return false;
 								}
-								window.location.href = "backend/themes/delete_themes/"+themes_id;
+								window.location.href = "backend/themes/themes_delete/"+themes_id;
 							});
-							$(\'#add_themes\').on(\'click\',function(){
+							$(\'#themes_add\').on(\'click\',function(){
 								var themes_id = $(\'#parent_themes_area_id\').val();
 								if (themes_id) {
 									themes_id = $(\'#parent_themes_area_id\').val();
 								} else {
 									themes_id = $(\'#themes_area_id\').val();
 								}
-								window.location.href = "backend/themes/add_themes/"+themes_id;
+								window.location.href = "backend/themes/themes_add/"+themes_id;
 							});
 						});
 					</script>';
 		} else {
 
-			$str = '<a href="javascript:;" class="btn btn-outline btn-warning" id="add_themes">Tema Ekle</a>';
+			$str = '<a href="javascript:;" class="btn btn-outline btn-warning" id="themes_add">Tema Ekle</a>';
 			$str .= '<script>
 						$(function(){
-							$(\'#add_themes\').on(\'click\',function(){
+							$(\'#themes_add\').on(\'click\',function(){
 								var themes_id = $(\'#parent_themes_area_id\').val();
 								if (themes_id) {
 									themes_id = $(\'#parent_themes_area_id\').val();
 								} else {
 									themes_id = $(\'#themes_area_id\').val();
 								}
-								window.location.href = "backend/themes/add_themes/"+themes_id;
+								window.location.href = "backend/themes/themes_add/"+themes_id;
 							});
 						});
 					</script>';
@@ -162,7 +162,7 @@ class Themes extends Backend_Controller
 		
 	}
 
-	public function add_themes($themes_area_id) {
+	public function themes_add($themes_area_id) {
 
 		$this->load->model('backend/themes_model');
 		$this->load->model('backend/themes_variables_model');
@@ -186,7 +186,7 @@ class Themes extends Backend_Controller
 				$data['name'] = $this->input->input_stream('name');
 				$data['content'] = $this->input->input_stream('content');
 				$this->load->view('backend/layout/header');
-				$this->load->view('backend/themes/add_themes',$data);
+				$this->load->view('backend/themes/themes_add',$data);
 				$this->load->view('backend/layout/footer');
 			} else {
 				// var_dump($this->input->post());
@@ -200,18 +200,18 @@ class Themes extends Backend_Controller
 
 				$this->load->library('parser');
 				$content = $this->parser->parse_string($this->input->post('content', FALSE),$this->themes_variables_model->$class_name());
-				$this->themes_model->add_themes($content);
+				$this->themes_model->themes_add($content);
 				redirect('backend/themes');
 			}
 		} else {
 
 			$this->load->view('backend/layout/header');
-			$this->load->view('backend/themes/add_themes',$data);
+			$this->load->view('backend/themes/themes_add',$data);
 			$this->load->view('backend/layout/footer');
 		}
 	}
 
-	public function edit_themes($themes_id) {
+	public function themes_edit($themes_id) {
 
 		$this->load->model('backend/themes_model');
 
@@ -244,7 +244,7 @@ class Themes extends Backend_Controller
 				$data['name'] = $this->input->input_stream('name');
 				$data['content'] = $this->input->input_stream('content');
 				$this->load->view('backend/layout/header');
-				$this->load->view('backend/themes/edit_themes',$data);
+				$this->load->view('backend/themes/themes_edit',$data);
 				$this->load->view('backend/layout/footer');
 			} else {
 
@@ -257,18 +257,18 @@ class Themes extends Backend_Controller
 				}
 				$this->load->library('parser');
 				$content = $this->parser->parse_string($this->input->post('content', FALSE),$this->themes_variables_model->$class_name());
-				$this->themes_model->edit_themes($content);
-				redirect('backend/themes/edit_themes/'.$this->input->post('themes_id'));
+				$this->themes_model->themes_edit($content);
+				redirect('backend/themes/themes_edit/'.$this->input->post('themes_id'));
 			}
 		} else {
 			
 			$this->load->view('backend/layout/header');
-			$this->load->view('backend/themes/edit_themes',$data);
+			$this->load->view('backend/themes/themes_edit',$data);
 			$this->load->view('backend/layout/footer');
 		}
 	}
 
-	public function delete_themes($themes_id) {
+	public function themes_delete($themes_id) {
 		
 		$this->load->model('backend/themes_model');
 		$themes = $this->themes_model->get_themes($themes_id);
@@ -280,9 +280,9 @@ class Themes extends Backend_Controller
 			$this->session->set_flashdata('errors','​varsayılan temayı silemezsiniz.');
 			redirect('backend/themes');
 		} else if ($data[0]->active_themes_id == 1) {
-			$this->themes_model->active_delete_themes($themes_id);
+			$this->themes_model->active_themes_delete($themes_id);
 		} else {
-			$this->themes_model->delete_themes($themes_id);
+			$this->themes_model->themes_delete($themes_id);
 		}
 	}
 
