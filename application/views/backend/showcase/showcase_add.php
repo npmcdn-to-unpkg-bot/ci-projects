@@ -1,4 +1,4 @@
-<script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+<script src="assets/admin/dist/js/lib/ckeditor.js"></script>
 <script src="assets/admin/bower_components/bootstrap-chosen-master/chosen.jquery.js"></script>
 <link rel="stylesheet" href="assets/admin/bower_components/bootstrap-chosen-master/bootstrap-chosen.css">
 <div class="row">
@@ -18,20 +18,60 @@
 							<?php echo validation_errors('<p style="color:#dc0001;">'); ?>
 							<div class="form-group">
                                 <div class="checkbox">
-                                    <label><input type="checkbox" value="1" name="show_home_page"> Anasayfada Göster</label>
+                                    <label><input type="checkbox" value="1" name="show_home_page" <?php echo (isset($show_home_page))?'checked':''; ?> > Anasayfada Göster</label>
                                 </div>
                             </div>
                             <div class="form-group">
+                            
+                            </div>
+                            <div class="form-group">
                             	<label>Hangi kategorilerde gösterilsin?</label>
-								<select data-placeholder="Hangi kategorilerde gösterilmesini istiyorsanız seçiniz." class="chosen-select form-control" multiple>
-									<option>American Black Bear</option>
-									<option>Asiatic Black Bear</option>
-									<option>Brown Bear</option>
-									<option>Giant Panda</option>
-									<option>Sloth Bear</option>
-									<option>Sun Bear</option>
-									<option>Polar Bear</option>
-									<option>Spectacled Bear</option>
+								<select data-placeholder="Hangi kategorilerde gösterilmesini istiyorsanız seçiniz." class="chosen-select form-control" name="showcase_to_categories[]" multiple>
+									<?php foreach ($categories as $key => $value) { ?>
+										<?php if (in_array($value->id, $showcase_to_categories)) { ?>
+											<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
+										<?php } else { ?>
+											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+                            </div>
+                            <div class="form-group">
+                            	<label>Hangi bloglarda gösterilsin?</label>
+								<select data-placeholder="Hangi bloglarda gösterilmesini istiyorsanız seçiniz." class="chosen-select form-control" name="showcase_to_blog[]" multiple>
+									<?php foreach ($blog as $key => $value) { ?>
+										<?php if (in_array($value->id, $showcase_to_blog)) { ?>
+											<option value="<?php echo $value->id; ?>" selected><?php echo $value->title ?></option>
+										<?php } else { ?>
+											<option value="<?php echo $value->id; ?>"><?php echo $value->title ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+                            </div>
+                            <div class="form-group">
+                            	<label>Vitrin çercevesi seçiniz</label>
+								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="themes_area_id">
+									<option value="0">Seçiniz</option>
+									<?php foreach ($showcase_frame as $key => $value) { ?>
+										<?php if ($value->id == $themes_area_id) { ?>
+											<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
+										<?php } else { ?>
+											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+                            </div>
+                            <div class="form-group">
+                            	<label>Vitrin gösterimi seçiniz</label>
+								<select data-placeholder="Vitrin gösterimi seçiniz." class="chosen-select form-control" name="themes_id">
+									<option value="0">Seçiniz</option>
+									<?php foreach ($showcase_views as $key => $value) { ?>
+										<?php if ($value->id == $themes_id) { ?>
+											<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
+										<?php } else { ?>
+											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
+										<?php } ?>
+									<?php } ?>
 								</select>
                             </div>
 							<div class="form-group">

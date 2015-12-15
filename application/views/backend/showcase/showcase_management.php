@@ -17,7 +17,17 @@
 							<a href="backend/showcase/showcase_add" class="btn btn-outline btn-warning">İçerik Ekle</a>
 						</div>
 						<div class="form-group">
-							vitrinlerin listelemesi
+							<!-- vitrin listelemesi -->
+							<ul id="draggablePanelList" class="list-unstyled">
+								<?php foreach ($showcase_list as $key => $value) { ?>
+									<li class="panel panel-info">
+										<div class="panel-heading"><?php echo $value->title ?></div>
+										<div class="panel-body">
+											
+										</div>
+									</li>
+								<?php } ?>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -25,3 +35,18 @@
 		</div>
 	</div>
 </div>
+<script>
+	var panelList = $('#draggablePanelList');
+	panelList.sortable({
+		// Only make the .panel-heading child elements support dragging.
+		// Omit this to make then entire <li>...</li> draggable.
+		handle: '.panel-heading', 
+		update: function() {
+			$('.panel', panelList).each(function(index, elem) {
+				var $listItem = $(elem),
+				newIndex = $listItem.index();
+				// Persist the new indices.
+			});
+		}
+	});
+</script>
