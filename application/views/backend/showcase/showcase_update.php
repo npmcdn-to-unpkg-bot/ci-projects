@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="assets/admin/bower_components/bootstrap-chosen-master/bootstrap-chosen.css">
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Vitrin Ekle</h1>
+		<h1 class="page-header">Vitrin Güncelle</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -16,6 +16,7 @@
 					<form action="" method="post">
 						<div class="col-lg-12">
 							<?php echo validation_errors('<p style="color:#dc0001;">'); ?>
+							<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
 							<div class="form-group">
                                 <div class="checkbox">
                                     <label><input type="checkbox" value="1" name="show_home_page" <?php echo (isset($show_home_page))?'checked':''; ?> > Anasayfada Göster</label>
@@ -103,7 +104,8 @@
 								<label>Vitrin İçerik</label>
 								<textarea name="content" id="content" class="form-control" cols="30" rows="10"><?php echo (isset($content))?$content:''; ?></textarea>
 							</div>
-							<button type="submit" class="btn btn-default">Vitrin Ekle</button>
+							<input type="hidden" name="id" value="<?php echo $id ?>">
+							<button type="submit" class="btn btn-default">Vitrin Güncelle</button>
 							<a href="backend/showcase" type="submit" class="btn btn-default">Vazgeç</a>
 						</div>
 					</form>
