@@ -1,0 +1,1 @@
+değişkenleri yapılmamış blog views

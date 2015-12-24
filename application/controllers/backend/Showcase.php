@@ -111,14 +111,18 @@ class Showcase extends Backend_Controller
 		$data['id'] = $id;
 		$this->load->model('backend/blog_model');
 		$this->load->model('backend/showcase_model');
+		$this->load->model('backend/themes_model');
 		$data['blog'] = $this->blog_model->get_blog();
-		$get_blog_to_showcase_ = $this->showcase_model->get_blog_to_showcase($id);
-		if (isset($get_blog_to_showcase_)) {
-			foreach ($get_blog_to_showcase_ as $key => $value) {
+		$data['blog_showcase_frame'] = $this->themes_model->get_themes_list(7);
+		$data['blog_showcase_views'] = $this->themes_model->get_themes_list(8);
+		$get_blog_to_showcase = $this->showcase_model->get_blog_to_showcase($id);
+		if (isset($get_blog_to_showcase)) {
+			foreach ($get_blog_to_showcase as $key => $value) {
 				$data['blog_to_showcase'][$key] = $value->blog_id;
+				$data['blog_frame'] = $value->blog_frame;
+				$data['blog_views'] = $value->blog_views;
 			}
 		}
-		// echo "<pre>";var_dump($data);exit;
 		if ($this->input->post()) {
 			$this->showcase_model->blog_to_showcase_add();
 			$this->session->set_flashdata('success','kaydedildi.');

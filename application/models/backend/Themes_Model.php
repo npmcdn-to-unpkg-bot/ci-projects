@@ -63,7 +63,7 @@ class Themes_Model extends CI_Model
 		}
 	}
 
-	function add_themes($content) {
+	function themes_add($content) {
 
 		$this->load->helper('file');
 		
@@ -102,7 +102,7 @@ class Themes_Model extends CI_Model
 		}
 	}
 
-	function edit_themes($content) {
+	function themes_edit($content) {
 
 		$this->load->helper('file');
 
@@ -140,7 +140,7 @@ class Themes_Model extends CI_Model
 		}
 	}
 
-	function delete_themes($themes_id) {
+	function themes_delete($themes_id) {
 
 		$themes = $this->get_themes($themes_id);
 
@@ -151,7 +151,7 @@ class Themes_Model extends CI_Model
 		redirect('backend/themes');
 	}
 
-	function active_delete_themes($themes_id) {
+	function active_themes_delete($themes_id) {
 
 		$themes = $this->get_themes($themes_id);
 

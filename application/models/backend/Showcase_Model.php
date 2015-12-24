@@ -117,16 +117,19 @@ class Showcase_Model extends CI_Model
 	}
 
 	function blog_to_showcase_add() {
+		// echo "<pre>";var_dump($this->input->post());exit;
 		$this->db->where('showcase_id', $this->input->post('id'));
 		$this->db->delete('blog_to_showcase');
 
 		if ($this->input->post('blog_to_showcase')) {
 			foreach ($this->input->post('blog_to_showcase') as $key => $value) {
-				$blog_to_showcase_update_data = array(
+				$blog_to_showcase_new_data = array(
 					'showcase_id' => $this->input->post('id'),
-					'blog_id' => $value
+					'blog_frame' => $this->input->post('blog_frame'),
+					'blog_views' => $this->input->post('blog_views'),
+					'blog_id' => $value,
 				);
-				$this->db->set($blog_to_showcase_update_data)->insert('blog_to_showcase');
+				$this->db->set($blog_to_showcase_new_data)->insert('blog_to_showcase');
 			}
 		}
 	}
