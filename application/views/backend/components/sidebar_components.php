@@ -22,7 +22,7 @@
 							<!-- vitrin listelemesi -->
 							<ul id="draggablePanelList" class="list-unstyled draggablePanelList">
 
-									<li class="panel panel-info">
+									<li class="panel panel-info" rel="1">
 										<div class="panel-heading">baslik1</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
@@ -33,7 +33,7 @@
 										</div>
 									</li>
 
-									<li class="panel panel-info">
+									<li class="panel panel-info" rel="2">
 										<div class="panel-heading">baslik2</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
@@ -44,7 +44,7 @@
 										</div>
 									</li>
 
-									<li class="panel panel-info">
+									<li class="panel panel-info" rel="3">
 										<div class="panel-heading">baslik3</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
@@ -63,7 +63,7 @@
 							<!-- vitrin listelemesi -->
 							<ul id="draggablePanelList" class="list-unstyled draggablePanelList">
 
-									<li class="panel panel-info">
+									<li class="panel panel-info" rel="4">
 										<div class="panel-heading">baslik4</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
@@ -74,7 +74,7 @@
 										</div>
 									</li>
 
-									<li class="panel panel-info">
+									<li class="panel panel-info" rel="5">
 										<div class="panel-heading">baslik5</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
@@ -122,12 +122,14 @@
 	panelList.sortable({
 		// Only make the .panel-heading child elements support dragging.
 		// Omit this to make then entire <li>...</li> draggable.
-		handle: '.panel-heading', 
+		handle: '.panel-heading',
+		connectWith: '.draggablePanelList',
 		update: function() {
 			$('.panel', panelList).each(function(index, elem) {
 				var $listItem = $(elem),
 				newIndex = $listItem.index();
-				// Persist the new indices.
+				listId = $listItem.attr('rel');
+				console.log('newIndex:'+newIndex+', listId:'+listId);
 			});
 		}
 	});
