@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Vitrin Yönetimi</h1>
+		<h1 class="page-header">Sağ / Sol Bileşen Yönetimi</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -14,7 +14,7 @@
 					<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<a href="backend" class="btn btn-outline btn-warning">Vitrin Ekle</a>
+							<a href="backend" class="btn btn-outline btn-warning">Sağ / Sol Bileşen Ekle</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -23,7 +23,7 @@
 							<ul id="draggablePanelList" class="list-unstyled draggablePanelList">
 
 									<li class="panel panel-info">
-										<div class="panel-heading">baslik</div>
+										<div class="panel-heading">baslik1</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
 											<span class="pull-right">
@@ -34,7 +34,7 @@
 									</li>
 
 									<li class="panel panel-info">
-										<div class="panel-heading">baslik</div>
+										<div class="panel-heading">baslik2</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
 											<span class="pull-right">
@@ -45,7 +45,7 @@
 									</li>
 
 									<li class="panel panel-info">
-										<div class="panel-heading">baslik</div>
+										<div class="panel-heading">baslik3</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
 											<span class="pull-right">
@@ -64,7 +64,7 @@
 							<ul id="draggablePanelList" class="list-unstyled draggablePanelList">
 
 									<li class="panel panel-info">
-										<div class="panel-heading">baslik</div>
+										<div class="panel-heading">baslik4</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
 											<span class="pull-right">
@@ -75,7 +75,7 @@
 									</li>
 
 									<li class="panel panel-info">
-										<div class="panel-heading">baslik</div>
+										<div class="panel-heading">baslik5</div>
 										<div class="panel-body">
 											<a href="backend">Vitrine Blog Ekle </a>
 											<span class="pull-right">

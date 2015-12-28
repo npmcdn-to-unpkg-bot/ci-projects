@@ -23,7 +23,7 @@
                         <a href="backend/showcase"><i class="glyphicon glyphicon-paperclip fa-fw"></i> Vitrin Yönetimi</a>
                     </li>
                     <li>
-                        <a href="backend/sidebar_components"><i class="glyphicon glyphicon-compressed fa-fw"></i> Sol / Sağ Bileşenler</a>
+                        <a href="backend/sidebar_components"><i class="glyphicon glyphicon-compressed fa-fw"></i> Sağ / Sol Bileşenler</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
