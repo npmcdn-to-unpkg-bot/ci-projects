@@ -13,7 +13,6 @@ class Blog_Model extends CI_Model
 		if ($query->num_rows()>0) {
 			return $result = $query->result();
 		}
-
 	}
 	
 	function blog_add() {

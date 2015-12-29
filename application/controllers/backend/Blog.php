@@ -24,8 +24,8 @@ class Blog extends Backend_Controller
 		$this->load->model('backend/blog_model');
 		if ($this->input->post()) {
 			$data = $this->input->post();
-			$this->load->library('form_validation');
 			// form_validation
+			$this->load->library('form_validation');
 			$this->form_validation->set_rules('title','','trim|required');
 			if ($this->form_validation->run() === FALSE) {
 				$this->load->view('backend/layout/header');
@@ -47,8 +47,8 @@ class Blog extends Backend_Controller
 		$this->load->model('backend/blog_model');
 		if ($this->input->post()) {
 			$data = $this->input->post();
-			$this->load->library('form_validation');
 			// form_validation
+			$this->load->library('form_validation');
 			$this->form_validation->set_rules('title','','trim|required');
 			if ($this->form_validation->run() === FALSE) {
 				$data['data'] = $this->blog_model->get_blog($id);
