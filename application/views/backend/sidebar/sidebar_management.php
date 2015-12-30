@@ -25,7 +25,7 @@
 									<li class="panel panel-info" rel="1" data-side="left">
 										<div class="panel-heading">baslik1</div>
 										<div class="panel-body">
-											<a href="backend">Vitrine Blog Ekle </a>
+											<a href="backend">Vitrine Blog Ekle</a>
 											<span class="pull-right">
 												<a href="backend">Güncelle</a>
 												<a href="javascript:;" data-toggle="modal" data-target="#showcase_delete" class="modal_showcase_delete" rel="1"><span rel="baslik1">Sil</span></a>
@@ -36,7 +36,7 @@
 									<li class="panel panel-info" rel="2" data-side="left">
 										<div class="panel-heading">baslik2</div>
 										<div class="panel-body">
-											<a href="backend">Vitrine Blog Ekle </a>
+											<a href="backend">Vitrine Blog Ekle</a>
 											<span class="pull-right">
 												<a href="backend">Güncelle</a>
 												<a href="javascript:;" data-toggle="modal" data-target="#showcase_delete" class="modal_showcase_delete" rel="2"><span rel="baslik2">Sil</span></a>
@@ -47,7 +47,7 @@
 									<li class="panel panel-info" rel="3" data-side="left">
 										<div class="panel-heading">baslik3</div>
 										<div class="panel-body">
-											<a href="backend">Vitrine Blog Ekle </a>
+											<a href="backend">Vitrine Blog Ekle</a>
 											<span class="pull-right">
 												<a href="backend">Güncelle</a>
 												<a href="javascript:;" data-toggle="modal" data-target="#showcase_delete" class="modal_showcase_delete" rel="3"><span rel="baslik3">Sil</span></a>
@@ -66,7 +66,7 @@
 									<li class="panel panel-info" rel="4" data-side="right">
 										<div class="panel-heading">baslik4</div>
 										<div class="panel-body">
-											<a href="backend">Vitrine Blog Ekle </a>
+											<a href="backend">Vitrine Blog Ekle</a>
 											<span class="pull-right">
 												<a href="backend">Güncelle</a>
 												<a href="javascript:;" data-toggle="modal" data-target="#showcase_delete" class="modal_showcase_delete" rel="4"><span rel="baslik4">Sil</span></a>
@@ -77,7 +77,7 @@
 									<li class="panel panel-info" rel="5" data-side="right">
 										<div class="panel-heading">baslik5</div>
 										<div class="panel-body">
-											<a href="backend">Vitrine Blog Ekle </a>
+											<a href="backend">Vitrine Blog Ekle</a>
 											<span class="pull-right">
 												<a href="backend">Güncelle</a>
 												<a href="javascript:;" data-toggle="modal" data-target="#showcase_delete" class="modal_showcase_delete" rel="5"><span rel="baslik5">Sil</span></a>
