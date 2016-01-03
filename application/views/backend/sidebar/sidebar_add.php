@@ -16,8 +16,8 @@
 							<?php echo validation_errors('<p style="color:#dc0001;">'); ?>
 							<div class="form-group">
                                 <div class="radio">
-                                    <label><input type="radio" name="which_side" value="left" <?php if (isset($which_side) && $which_side == 'left') { ?>checked="checked"<?php } ?> checked> Sol</label>
-                                    <label><input type="radio" name="which_side" value="right" <?php if (isset($which_side) && $which_side == 'right') { ?>checked="checked"<?php } ?> > Sağ</label>
+                                    <label><input type="radio" name="which_side" value="left" <?php echo (isset($which_side) && $which_side == 'left')?'checked="checked"':''; ?> checked> Sol</label>
+                                    <label><input type="radio" name="which_side" value="right" <?php echo (isset($which_side) && $which_side == 'right')?'checked="checked"':''; ?> > Sağ</label>
                                 </div>
                             </div>
                             <div class="form-group">

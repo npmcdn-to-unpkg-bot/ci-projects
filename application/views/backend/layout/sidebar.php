@@ -5,6 +5,9 @@
                 <a href="admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
+                <a href="backend/files_management"><i class="fa fa-upload fa-fw"></i> Dosya Yöneticisi</a>
+            </li>
+            <li>
                 <a href="backend/site_settings"><i class="fa fa-wrench fa-fw"></i> Site Ayarları</a>
             </li>
             <li>
