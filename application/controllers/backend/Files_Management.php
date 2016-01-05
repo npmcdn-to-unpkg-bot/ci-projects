@@ -10,16 +10,19 @@ class Files_Management extends Backend_Controller
 	}
 
 	public function index() {
-		$this->load->helper('file');
-		$dir = get_dir_file_info(FCPATH.'assets/uploads/js');
+		$get_dir = 'assets/uploads';
+		$this->load->model('backend/files_management_model');
+		$dir = $this->files_management_model->get_dir_model($get_dir);
 		$data['folders'] = array();
 		$data['files'] = array();
 		foreach ($dir as $key => $value) {
-			$isfile = explode(".", $key);
-			if (count($isfile)>1) {
-				$data['files'][$key] = $value;
-			} else {
-				$data['folders'][$key] = $value;
+			if ($key != 'system') {
+				$isfile = explode(".", $key);
+				if (count($isfile)>1) {
+					$data['files'][$key] = (object)$value;
+				} else {
+					$data['folders'][$key] = (object)$value;
+				}	
 			}
 		}
 		// echo"<pre>";var_dump($data);exit;
