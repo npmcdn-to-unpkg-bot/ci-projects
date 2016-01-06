@@ -8,6 +8,11 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <a href="backend/files_management">~kök</a>
+                </h4>
+            </div>
 			<div class="panel-body">
 				<div class="row">
                     <div class="col-lg-2"></div>
@@ -26,8 +31,8 @@
                                 <?php $counts=1; foreach ($folders as $key => $value) { ?>
                                     <tr>
                                         <td><?php echo $counts; ?></td>
-                                        <td><?php echo $value->name; ?></td>
-                                        <td><?php echo $value->server_path; ?></td>
+                                        <td><a href="<?php echo 'backend/files_management?dir='.$value->server_path; ?>"> <?php echo $value->name; ?> </a></td>
+                                        <td><code class="cat_link"><?php echo $value->server_path; ?></code></td>
                                         <td>sil</td>
                                     </tr>
                                 <?php $counts++; } ?>

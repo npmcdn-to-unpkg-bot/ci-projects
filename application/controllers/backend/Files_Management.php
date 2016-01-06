@@ -10,7 +10,10 @@ class Files_Management extends Backend_Controller
 	}
 
 	public function index() {
-		$get_dir = 'assets/uploads';
+		$get_dir = FCPATH.'assets/uploads/';
+		if ($this->input->get('dir')) {
+			$get_dir = $this->input->get('dir');
+		}
 		$this->load->model('backend/files_management_model');
 		$dir = $this->files_management_model->get_dir_model($get_dir);
 		$data['folders'] = array();
@@ -22,13 +25,22 @@ class Files_Management extends Backend_Controller
 					$data['files'][$key] = (object)$value;
 				} else {
 					$data['folders'][$key] = (object)$value;
-				}	
+				}
 			}
+			$relative_path = $value['relative_path'];
 		}
-		// echo"<pre>";var_dump($data);exit;
+		$relative_path = explode('assets\\', $relative_path);
+		/* relative_path istedigim: uploads - uploads\js - uploads\js\bootstrapjs */
+		// $relative_path = explode('\\', $relative_path[1]);
+		var_dump($relative_path);exit;
+		// foreach ($relative_path as $key => $value) {
+		// 	$data['dir'][$key] = $value;
+		// }
+		echo"<pre>";var_dump($data);exit;
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/files_management',$data);
 		$this->load->view('backend/layout/footer');
 	}
+
 }
 ?>
