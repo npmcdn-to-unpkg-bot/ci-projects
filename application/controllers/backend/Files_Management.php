@@ -29,14 +29,19 @@ class Files_Management extends Backend_Controller
 			}
 			$relative_path = $value['relative_path'];
 		}
-		$relative_path = explode('assets\\', $relative_path);
-		/* relative_path istedigim: uploads - uploads\js - uploads\js\bootstrapjs */
-		// $relative_path = explode('\\', $relative_path[1]);
-		var_dump($relative_path);exit;
-		// foreach ($relative_path as $key => $value) {
-		// 	$data['dir'][$key] = $value;
-		// }
-		echo"<pre>";var_dump($data);exit;
+		$relative_path = explode(FCPATH, $relative_path);
+		$relative_path = explode('/', $relative_path[1]);
+		// var_dump($relative_path);exit;
+		$breadcrumb = '';
+		foreach($relative_path as $l){
+            $breadcrumb .= $l;
+            $data['breadcrumb'][$l] = (object)array(
+            	'crumb' => FCPATH.$breadcrumb,
+            	'bread' => $l
+            );
+            $breadcrumb .= '/';
+         }
+		// echo"<pre>";var_dump($data);exit;
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/files_management',$data);
 		$this->load->view('backend/layout/footer');

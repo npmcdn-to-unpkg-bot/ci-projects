@@ -11,6 +11,9 @@
             <div class="panel-heading">
                 <h4>
                     <a href="backend/files_management">~kök</a>
+                    <?php foreach ($breadcrumb as $key => $value) { ?>
+                        / <a href="<?php echo 'backend/files_management?dir='.$value->crumb; ?>"><?php echo $value->bread; ?></a>
+                    <?php } ?>
                 </h4>
             </div>
 			<div class="panel-body">
