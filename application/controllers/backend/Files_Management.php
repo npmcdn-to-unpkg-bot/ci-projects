@@ -10,7 +10,7 @@ class Files_Management extends Backend_Controller
 	}
 
 	public function index() {
-		$get_dir = FCPATH.'assets/uploads/';
+		$get_dir = FCPATH.'assets/uploads';
 		if ($this->input->get('dir')) {
 			$get_dir = $this->input->get('dir');
 		}
@@ -18,33 +18,78 @@ class Files_Management extends Backend_Controller
 		$dir = $this->files_management_model->get_dir_model($get_dir);
 		$data['folders'] = array();
 		$data['files'] = array();
-		foreach ($dir as $key => $value) {
-			if ($key != 'system') {
-				$isfile = explode(".", $key);
-				if (count($isfile)>1) {
-					$data['files'][$key] = (object)$value;
-				} else {
-					$data['folders'][$key] = (object)$value;
+		if (!empty($dir)) {
+			foreach ($dir as $key => $value) {
+				if ($key != 'system') {
+					$dir_ = $get_dir.'/'.$key;
+					if (is_file($dir_)) {
+						$data['files'][$key] = (object)$value;
+					} 
+					if (is_dir($dir_)) {
+						$data['folders'][$key] = (object)$value;
+					}
 				}
+				$relative_path = $value['relative_path'];
+				$data['relative_path'] = $value['relative_path'];
 			}
-			$relative_path = $value['relative_path'];
+		} else {
+			$relative_path = $get_dir;
+			$data['relative_path'] = $get_dir;
 		}
 		$relative_path = explode(FCPATH, $relative_path);
 		$relative_path = explode('/', $relative_path[1]);
-		// var_dump($relative_path);exit;
 		$breadcrumb = '';
 		foreach($relative_path as $l){
-            $breadcrumb .= $l;
-            $data['breadcrumb'][$l] = (object)array(
-            	'crumb' => FCPATH.$breadcrumb,
-            	'bread' => $l
-            );
-            $breadcrumb .= '/';
-         }
+			$breadcrumb .= $l;
+			if ($l != 'assets') {
+				$data['breadcrumb'][$l] = (object)array(
+					'crumb' => FCPATH.$breadcrumb,
+					'bread' => $l
+				);
+			}
+			$breadcrumb .= '/';
+		}
 		// echo"<pre>";var_dump($data);exit;
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/files_management',$data);
 		$this->load->view('backend/layout/footer');
+	}
+
+	public function folders_add() {
+		// var_dump($this->input->post());exit;
+		$make_dir = $this->input->post('relative_path').'/'.$this->input->post('folder');
+		if(file_exists($make_dir)) {
+			$this->session->set_flashdata('errors',$this->input->post('folder').' adlı klasör vardır.');
+			redirect('backend/files_management');
+		} else {
+			if ($make_dir) {
+				$old_umask = umask(0);
+				$make_dir = mkdir($this->input->post('relative_path').'/'.$this->input->post('folder'),0777);
+				umask($old_umask);
+				$this->session->set_flashdata('success','klasör eklendi.');
+				redirect('backend/files_management');
+			} else {
+				$this->session->set_flashdata('errors','klasör eklenemedi.');
+				redirect('backend/files_management');
+			}
+		}
+	}
+
+	public function folders_delete() {
+		$delete_dir = $this->input->get('dir');
+		if(!file_exists($delete_dir)) {
+			$this->session->set_flashdata('errors',$this->input->post('folder').' adlı klasör yoktur.');
+			redirect('backend/files_management');
+		} else {
+			if ($delete_dir) {
+				rmdir($this->input->get('dir'));
+				$this->session->set_flashdata('success','klasör silindi.');
+				redirect('backend/files_management');
+			} else {
+				$this->session->set_flashdata('errors','klasör silinemedi.');
+				redirect('backend/files_management');
+			}
+		}
 	}
 
 }

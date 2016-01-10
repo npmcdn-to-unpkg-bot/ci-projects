@@ -10,16 +10,39 @@
 		<div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
-                    <a href="backend/files_management">~kök</a>
                     <?php foreach ($breadcrumb as $key => $value) { ?>
-                        / <a href="<?php echo 'backend/files_management?dir='.$value->crumb; ?>"><?php echo $value->bread; ?></a>
+                        / <a href="<?php echo 'backend/files_management?dir='.$value->crumb; ?>"><?php echo ($value->bread=='uploads')?'~Kök':$value->bread; ?></a>
                     <?php } ?>
                 </h4>
             </div>
 			<div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
+                        <div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
+                    </div>
+                </div>
 				<div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <form action="backend/files_management/folders_add" method="post" accept-charset="utf-8">
+                                <label>Klasör Oluştur</label>
+                                <input class="form-control" name="folder" type="text">
+                                <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
+                                <input type="submit" value="Ekle" class="btn btn-outline btn-success pull-right" style="margin-top:5px;">
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <form action="backend/files_management/files_add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                <label>Dosya Yükle</label>
+                                <input type="file">
+                                <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
+                                <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -36,7 +59,7 @@
                                         <td><?php echo $counts; ?></td>
                                         <td><a href="<?php echo 'backend/files_management?dir='.$value->server_path; ?>"> <?php echo $value->name; ?> </a></td>
                                         <td><code class="cat_link"><?php echo $value->server_path; ?></code></td>
-                                        <td>sil</td>
+                                        <td><a href="<?php echo 'backend/files_management/folders_delete?dir='.$value->server_path; ?>"> sil </a></td>
                                     </tr>
                                 <?php $counts++; } ?>
                                 </tbody>
