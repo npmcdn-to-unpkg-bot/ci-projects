@@ -40,7 +40,7 @@
 if ( ! function_exists('image_max_size'))
 {
     
-  public function image_max_size($image,$size = 1048576) {
+  function image_max_size($image,$size = 1048576) {
 
     if ($_FILES[$image]['size'] > $size) {
       $this->form_validation->set_message('image_max_size', 'Kategori {field} hata, dosyanızın boyutu buyuktur.');
@@ -51,7 +51,7 @@ if ( ! function_exists('image_max_size'))
 }
 if ( ! function_exists('image_ext'))
 {
-  public function image_ext($image,$extension = 'jpg|jpeg|png|gif') {
+  function image_ext($image,$extension = 'jpg|jpeg|png|gif') {
 
     $config = array(
       'is_allowed' => $extension
@@ -69,7 +69,7 @@ if ( ! function_exists('image_ext'))
 }
 if ( ! function_exists('image_upload_path'))
 {
-  public function image_upload_path($image,$uploads_path = 'assets/uploads/system/images/') {
+  function image_upload_path($image,$uploads_path = 'assets/uploads/system/images/') {
 
     if (!file_exists(FCPATH.$uploads_path)) {
       $this->form_validation->set_message('image_upload_path', '{field} hata, klasör yolu: "'.FCPATH.$uploads_path'" yanlıştır.');

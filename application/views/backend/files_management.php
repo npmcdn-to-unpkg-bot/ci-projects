@@ -41,6 +41,15 @@
                                 <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
                             </form>
                         </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <form action="backend/files_management/files_multiple_add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                <label>Çoklu Dosya Yükle</label>
+                                <input type="file" name="file[]" multiple="multiple" />
+                                <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
+                                <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
+                            </form>
+                        </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="table-responsive">
@@ -59,7 +68,7 @@
                                         <td><?php echo $counts; ?></td>
                                         <td><a href="<?php echo 'backend/files_management?dir='.$value->server_path; ?>"> <?php echo $value->name; ?> </a></td>
                                         <td><code class="cat_link"><?php echo $value->server_path; ?></code></td>
-                                        <td><a href="<?php echo 'backend/files_management/folders_delete?dir='.$value->server_path; ?>"> sil </a></td>
+                                        <td><a href="<?php echo 'backend/files_management/folders_delete?dir='.$value->server_path.'&relative_path='.$value->relative_path; ?>"> sil </a></td>
                                     </tr>
                                 <?php $counts++; } ?>
                                 </tbody>
@@ -82,7 +91,7 @@
                                         <td><?php echo $counts; ?></td>
                                         <td><?php echo $value->name; ?></td>
                                         <td><?php echo $value->server_path; ?></td>
-                                        <td>sil</td>
+                                        <td><a href="<?php echo 'backend/files_management/files_delete?file='.$value->server_path.'&relative_path='.$value->relative_path; ?>"> sil </a></td>
                                     </tr>
                                 <?php $counts++; } ?>
                                 </tbody>

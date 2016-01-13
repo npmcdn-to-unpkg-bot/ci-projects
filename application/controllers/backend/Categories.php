@@ -55,8 +55,8 @@ class Categories extends Backend_Controller
 				$images[$key] = $value;
 			}
 			// var_dump($this->input->post());exit;
-			$this->load->library('form_validation');
 			// form validation
+			$this->load->library('form_validation');
 			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');
 			$this->form_validation->set_rules('image','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
 			$this->form_validation->set_rules('banner','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
@@ -97,8 +97,8 @@ class Categories extends Backend_Controller
 				$_POST[$key] = $key;
 				$images[$key] = $value;
 			}
-			$this->load->library('form_validation');
 			// form validation
+			$this->load->library('form_validation');
 			$this->form_validation->set_rules('name','Kategori Adını Giriniz','trim|required');
 			$this->form_validation->set_rules('image','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
 			$this->form_validation->set_rules('banner','','trim|callback_image_max_size|callback_image_ext|callback_image_upload_path');
