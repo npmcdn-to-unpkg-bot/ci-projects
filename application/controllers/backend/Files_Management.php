@@ -63,7 +63,6 @@ class Files_Management extends Backend_Controller
 	}
 
 	public function folders_add() {
-		// var_dump($this->input->post());exit;
 		$make_dir = $this->input->post('relative_path').'/'.$this->input->post('folder');
 		if(file_exists($make_dir)) {
 			$this->session->set_flashdata('errors',$this->input->post('folder').' adlı klasör vardır.');
@@ -100,64 +99,35 @@ class Files_Management extends Backend_Controller
 	}
 
 	public function files_add() {
-		foreach ($_FILES as $key => $value) {
-			$move_files = $value;
-			$file = $key;
-		}
-		$move_file = $this->input->post('relative_path').'/'.$move_files['name'];
-		if ( !file_exists($this->input->post('relative_path')) ) {
-			$this->session->set_flashdata('errors',$this->input->post('relative_path').' adlı klasör yoktur.');
-			redirect('backend/files_management?dir='.$this->input->post('relative_path'));
-		} else {
-			$this->load->helper('files_helper');
+		$target_folders = $this->input->post('relative_path');
+		$file_count = count($_FILES['file']['name']);
+		$data = array();
+		for ($i=0; $i<$file_count; $i++) {
+			// echo "<pre>";var_dump($_FILES['file']);
 			// dosya boyutu kontrolu
-			if (!file_max_size($file)) {
-				$this->session->set_flashdata('errors','dosya boyutunu aştınız.');
-				redirect('backend/files_management?dir='.$this->input->post('relative_path'));
-			}
-			// dosya uzantisi kontrolu
-			if (!file_ext($file,'jpg|jpeg|png|gif|pdf|ttf|woff|woff2|eot|svg|js|css|html|htm')) {
-				$this->session->set_flashdata('errors','dosya uzanti hatası.');
-				redirect('backend/files_management?dir='.$this->input->post('relative_path'));
-			}
-			// dosya yükleme işlemi
-			if( move_uploaded_file($move_files['tmp_name'] , $move_file ) ) {
-				$this->session->set_flashdata('success','dosyanız yüklendi.');
-				redirect('backend/files_management?dir='.$this->input->post('relative_path'));
+			if ( $_FILES['file']['size'][$i] > 1048576 ) {
+				$data['errors'][$i] = $_FILES['file']['name'][$i]." - dosya boyutunu aştı.";
 			} else {
-				$this->session->set_flashdata('errors','dosya yüklenirken hata oluştu.');
-				redirect('backend/files_management?dir='.$this->input->post('relative_path'));
+				// dosya yükleme işlemi
+				if( move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_folders.'/'.$_FILES['file']['name'][$i]) ) {
+					$data['success'][$i] = $_FILES['file']['name'][$i]." - yüklendi.";
+				}
 			}
 		}
+		$this->session->set_flashdata('files_add',$data);
+		redirect('backend/files_management?dir='.$target_folders);
 	}
 
 	public function files_delete() {
 		$delete_file = $this->input->get('file');
-		if(!file_exists($delete_file)) {
-			$this->session->set_flashdata('errors','dosya yoktur.');
+		if ($delete_file) {
+			unlink($this->input->get('file'));
+			$this->session->set_flashdata('success','klasör silindi.');
 			redirect('backend/files_management?dir='.$this->input->get('relative_path'));
 		} else {
-			if ($delete_file) {
-				unlink($this->input->get('file'));
-				$this->session->set_flashdata('success','klasör silindi.');
-				redirect('backend/files_management?dir='.$this->input->get('relative_path'));
-			} else {
-				$this->session->set_flashdata('errors','klasör silinemedi.');
-				redirect('backend/files_management?dir='.$this->input->get('relative_path'));
-			}
+			$this->session->set_flashdata('errors','klasör silinemedi.');
+			redirect('backend/files_management?dir='.$this->input->get('relative_path'));
 		}
-	}
-
-	public function files_multiple_add() {
-		$folders = $this->input->post('relative_path');
-		$file_count = count($_FILES['file']['name']); 
-		for($i=0; $i<$file_count; $i++){ 
-			if(!empty($_FILES['file']['name'][$i])){ 
-				move_uploaded_file($_FILES['file']['tmp_name'][$i], $folders."/".$_FILES['file']['name'][$i]);
-			}
-		}
-		$this->session->set_flashdata('success','dosyalarınız yüklendi.');
-		redirect('backend/files_management?dir='.$this->input->get('relative_path'));
 	}
 
 }

@@ -35,20 +35,24 @@
                         <div class="clearfix"></div>
                         <div class="form-group">
                             <form action="backend/files_management/files_add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                <label>Dosya Yükle</label>
-                                <input type="file" name="file" />
+                                <label>Çoklu Dosya Yükle</label>
+                                <input type="file" name="file[]" multiple="multiple" />
                                 <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
                                 <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
                             </form>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group">
-                            <form action="backend/files_management/files_multiple_add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                <label>Çoklu Dosya Yükle</label>
-                                <input type="file" name="file[]" multiple="multiple" />
-                                <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
-                                <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
-                            </form>
+                            <?php if (!empty($this->session->flashdata('files_add')['success'])): ?>
+                                <?php foreach ($this->session->flashdata('files_add')['success'] as $key => $value): ?>
+                                    <div class="success"><?php echo $value.'<br/>' ?></div>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                            <?php if (!empty($this->session->flashdata('files_add')['errors'])): ?>
+                                <?php foreach ($this->session->flashdata('files_add')['errors'] as $key => $value): ?>
+                                    <div class="errors"><?php echo $value.'<br/>' ?></div>
+                                <?php endforeach ?>
+                            <?php endif ?>
                         </div>
                     </div>
                     <div class="col-lg-9">
