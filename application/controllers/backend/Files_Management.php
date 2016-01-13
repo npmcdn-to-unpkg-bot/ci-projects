@@ -99,5 +99,13 @@ class Files_Management extends Backend_Controller
 		}
 	}
 
+	public function files_add() {
+		foreach ($_FILES as $key => $value) {
+			$_POST[$key] = $key;
+			$images[$key] = $value;
+		}
+		var_dump($this->input->post());exit;
+	}
+
 }
 ?>

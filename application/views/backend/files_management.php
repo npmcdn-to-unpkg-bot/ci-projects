@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <form action="backend/files_management/files_add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                 <label>Dosya Yükle</label>
-                                <input type="file">
+                                <input type="file" name="file" />
                                 <input class="form-control" name="relative_path" type="hidden" value="<?php echo $relative_path; ?>">
                                 <input type="submit" value="Yükle" class="btn btn-outline btn-primary pull-right" style="margin-top:5px;">
                             </form>
