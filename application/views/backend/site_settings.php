@@ -72,10 +72,10 @@
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                     <div class="radio">
-                                                        <label><input type="radio" name="home_page_sidebar" value="enable_sidebar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="home_page_sidebar" value="enable_leftbar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="home_page_sidebar" value="enable_rightbar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="home_page_sidebar" value="passive_sidebar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="home_page_sidebar" value="sidebar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="home_page_sidebar" value="leftbar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="home_page_sidebar" value="rightbar" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="home_page_sidebar" value="passive" <?php if (isset($home_page_sidebar) && $home_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="home_page_passive_footer" value="passive_footer" <?php if (isset($home_page_passive_footer) && $home_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
@@ -88,30 +88,30 @@
                                                 <div class="form-group">
                                                     <label>Kategori Listeleme Sayfası</label>
                                                     <div class="radio">
-                                                        <label><input type="radio" name="category_page_sidebar" value="enable_sidebar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="category_page_sidebar" value="enable_leftbar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="category_page_sidebar" value="enable_rightbar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="category_page_sidebar" value="passive_sidebar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="category_page_sidebar" value="sidebar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="category_page_sidebar" value="leftbar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="category_page_sidebar" value="rightbar" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="category_page_sidebar" value="passive" <?php if (isset($category_page_sidebar) && $category_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="category_page_passive_footer" value="passive_footer" <?php if (isset($category_page_passive_footer) && $category_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Arama Listeleme Sayfası</label>
                                                     <div class="radio">
-                                                        <label><input type="radio" name="search_page_sidebar" value="enable_sidebar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="search_page_sidebar" value="enable_leftbar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="search_page_sidebar" value="enable_rightbar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="search_page_sidebar" value="passive_sidebar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="search_page_sidebar" value="sidebar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="search_page_sidebar" value="leftbar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="search_page_sidebar" value="rightbar" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="search_page_sidebar" value="passive" <?php if (isset($search_page_sidebar) && $search_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="search_page_passive_footer" value="passive_footer" <?php if (isset($search_page_passive_footer) && $search_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Marka Listeleme Sayfası</label>
                                                     <div class="radio">
-                                                        <label><input type="radio" name="brand_page_sidebar" value="enable_sidebar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="brand_page_sidebar" value="enable_leftbar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="brand_page_sidebar" value="enable_rightbar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="brand_page_sidebar" value="passive_sidebar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="brand_page_sidebar" value="sidebar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="brand_page_sidebar" value="leftbar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="brand_page_sidebar" value="rightbar" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="brand_page_sidebar" value="passive" <?php if (isset($brand_page_sidebar) && $brand_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="brand_page_passive_footer" value="passive_footer" <?php if (isset($brand_page_passive_footer) && $brand_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
@@ -123,10 +123,10 @@
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                     <div class="radio">
-                                                        <label><input type="radio" name="product_page_sidebar" value="enable_sidebar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="product_page_sidebar" value="enable_leftbar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="product_page_sidebar" value="enable_rightbar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="product_page_sidebar" value="passive_sidebar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="product_page_sidebar" value="sidebar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="product_page_sidebar" value="leftbar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="product_page_sidebar" value="rightbar" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="product_page_sidebar" value="passive" <?php if (isset($product_page_sidebar) && $product_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="product_page_passive_footer" value="passive_footer" <?php if (isset($product_page_passive_footer) && $product_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
@@ -138,10 +138,10 @@
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                     <div class="radio">
-                                                        <label><input type="radio" name="blog_page_sidebar" value="enable_sidebar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'enable_sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
-                                                        <label><input type="radio" name="blog_page_sidebar" value="enable_leftbar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'enable_leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
-                                                        <label><input type="radio" name="blog_page_sidebar" value="enable_rightbar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'enable_rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
-                                                        <label><input type="radio" name="blog_page_sidebar" value="passive_sidebar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'passive_sidebar') { ?>checked="checked"<?php } ?> > bloksuz</label>
+                                                        <label><input type="radio" name="blog_page_sidebar" value="sidebar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'sidebar') { ?>checked="checked"<?php } ?> > sağ ve sol bloklu</label>
+                                                        <label><input type="radio" name="blog_page_sidebar" value="leftbar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'leftbar') { ?>checked="checked"<?php } ?> > sadece sol bloklu</label>
+                                                        <label><input type="radio" name="blog_page_sidebar" value="rightbar" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'rightbar') { ?>checked="checked"<?php } ?> > sadece sag bloklu</label>
+                                                        <label><input type="radio" name="blog_page_sidebar" value="passive" <?php if (isset($blog_page_sidebar) && $blog_page_sidebar == 'passive') { ?>checked="checked"<?php } ?> > bloksuz</label>
                                                         <label><input type="checkbox" name="blog_page_passive_footer" value="passive_footer" <?php if (isset($blog_page_passive_footer) && $blog_page_passive_footer == 'passive_footer') { ?>checked="checked"<?php } ?> > footeru kaldır</label>
                                                     </div>
                                                 </div>
