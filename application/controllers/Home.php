@@ -20,15 +20,17 @@ class Home extends Frontend_Controller
 		$data['header'] = $this->themes_model->get_header();
 		$data['footer'] = $this->themes_model->get_footer();
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
-		// echo "<pre>";var_dump($data);exit;
+		// echo "<pre>";var_dump($sidebar_);exit;
 		$this->load->view('frontend/layout/header',$data);
-		if ($sidebar_ == 'sidebar' || $sidebar_ == 'leftbar') {
+		
+		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
 			$this->load->view('frontend/layout/leftbar');
 		}
 		$this->load->view('frontend/home');
-		if ($sidebar_ == 'sidebar' || $sidebar_ == 'rightbar') {
+		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'rightbar') {
 			$this->load->view('frontend/layout/rightbar');
 		}
+
 		$this->load->view('frontend/layout/footer',$data);
 
 	}

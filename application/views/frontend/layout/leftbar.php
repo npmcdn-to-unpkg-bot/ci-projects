@@ -1,1 +1,1 @@
-leftbar.php
+<div class="col-lg-2"><div class="row">leftbar.php</div></div>
