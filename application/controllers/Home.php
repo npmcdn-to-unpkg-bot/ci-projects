@@ -15,22 +15,24 @@ class Home extends Frontend_Controller
 		$this->load->model('frontend/themes_model');
 		$this->load->model('frontend/custom_code_model');
 		$this->load->model('frontend/site_settings_model');
+		$this->load->model('frontend/sidebar_model');
 		// $data['example'] = $this->themes_model->example();
 		// exit;
 		$data['header'] = $this->themes_model->get_header();
 		$data['footer'] = $this->themes_model->get_footer();
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
-		// echo "<pre>";var_dump($sidebar_);exit;
+		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
+
 		$this->load->view('frontend/layout/header',$data);
-		
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
-			$this->load->view('frontend/layout/leftbar');
+			$leftbar['sidebar'] = $this->sidebar_model->get_leftbar();
+			$this->load->view('frontend/layout/leftbar',$leftbar);
 		}
 		$this->load->view('frontend/home');
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'rightbar') {
-			$this->load->view('frontend/layout/rightbar');
+			$rightbar['sidebar'] = $this->sidebar_model->get_rightbar();
+			$this->load->view('frontend/layout/rightbar',$rightbar);
 		}
-
 		$this->load->view('frontend/layout/footer',$data);
 
 	}
