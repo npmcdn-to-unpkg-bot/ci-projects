@@ -28,6 +28,7 @@ class Sidebar_Model extends CI_Model
 			'status' => $status,
 			'which_side' => $this->input->post('which_side'),
 			'queue' => 0,
+			'themes_id' => $this->input->post('themes_id'),
 			'create_time' => date("Y-m-d H:i:s")
 		);
 		$this->db->set($new_sidebar_insert_data)->insert('sidebar');
@@ -43,6 +44,7 @@ class Sidebar_Model extends CI_Model
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content'),
 			'status' => $status,
+			'themes_id' => $this->input->post('themes_id'),
 			'which_side' => $this->input->post('which_side')
 		);
 		$this->db->set($sidebar_update_data);

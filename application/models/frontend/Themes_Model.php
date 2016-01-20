@@ -4,6 +4,15 @@
 */
 class Themes_Model extends CI_Model
 {
+	function get_themes($id = null) {
+		if ($id != null) {
+			$this->db->where('id',$id);
+		}
+		$query = $this->db->get('themes');
+		if ($query->num_rows()>0) {
+			return $result = $query->result();
+		}
+	}
 	
 	function get_header() {
 		// themes_area table class_name header olan id si themes table themes_area_id aynı ve active_themes_id = 1 

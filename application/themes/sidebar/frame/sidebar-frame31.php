@@ -1,1 +1,1 @@
-qwe
+qwe<br><?php echo $sidebar_value->content ?>

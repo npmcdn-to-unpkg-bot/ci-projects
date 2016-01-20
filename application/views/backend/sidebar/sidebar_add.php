@@ -21,6 +21,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                            	<label>Bileşen teması seçiniz</label>
+								<select data-placeholder="Bileşen teması seçiniz." class="chosen-select form-control" name="themes_id">
+									<option value="0">Seçiniz</option>
+									<?php if (isset($themes_id)): ?>
+										<?php foreach ($sidebar_frame as $key => $value) { ?>
+											<?php if ($value->id == $themes_id) { ?>
+												<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
+											<?php } else { ?>
+												<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
+											<?php } ?>
+										<?php } ?>
+									<?php else: ?>
+										<?php foreach ($sidebar_frame as $key => $value) { ?>
+											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
+										<?php } ?>	
+									<?php endif ?>
+								</select>
+                            </div>
+                            <div class="form-group">
                                 <div class="checkbox">
                                     <label><input type="checkbox" value="1" name="status" checked="checked"> Bileşen gösterilsin mi?</label>
                                 </div>

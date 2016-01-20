@@ -59,8 +59,8 @@ class Themes_Variables_Model extends CI_Model
 
 	function sidebar_frame() {
 		return $themes_variables = array(
-			'bileşen başlık' => '$sidebar_value->title',
-			'bileşen içerik' => '$sidebar_value->content'
+			'bileşen başlık' => '<?php echo $sidebar_value->title ?>',
+			'bileşen içerik' => '<?php echo $sidebar_value->content ?>'
 		);
 	}
 }

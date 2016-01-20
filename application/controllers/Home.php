@@ -25,12 +25,22 @@ class Home extends Frontend_Controller
 
 		$this->load->view('frontend/layout/header',$data);
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
-			$leftbar['sidebar'] = $this->sidebar_model->get_leftbar();
+			$leftbar = $this->sidebar_model->get_leftbar();
+			foreach ($leftbar as $key => $value) {
+				$get_themes = $this->themes_model->get_themes($value->themes_id);
+				$value->file_path = $get_themes[0]->file_path;
+				$leftbar['sidebar'][$key] = $value;
+			}
 			$this->load->view('frontend/layout/leftbar',$leftbar);
 		}
 		$this->load->view('frontend/home');
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'rightbar') {
-			$rightbar['sidebar'] = $this->sidebar_model->get_rightbar();
+			$rightbar = $this->sidebar_model->get_rightbar();
+			foreach ($rightbar as $key => $value) {
+				$get_themes = $this->themes_model->get_themes($value->themes_id);
+				$value->file_path = $get_themes[0]->file_path;
+				$rightbar['sidebar'][$key] = $value;
+			}
 			$this->load->view('frontend/layout/rightbar',$rightbar);
 		}
 		$this->load->view('frontend/layout/footer',$data);
