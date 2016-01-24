@@ -41,20 +41,25 @@ class Showcase_Model extends CI_Model
 		);
 		$this->db->set($new_showcase_insert_data)->insert('showcase');
 		$last_id = $this->db->insert_id();
-		foreach ($this->input->post('showcase_to_categories') as $key => $value) {
-			$new_showcase_to_categories_insert_data = array(
-				'showcase_id' => $last_id,
-				'categories_id' => $value
-			);
-			$this->db->set($new_showcase_to_categories_insert_data)->insert('showcase_to_categories');
+		if (!empty($this->input->post('showcase_to_categories'))) {
+			foreach ($this->input->post('showcase_to_categories') as $key => $value) {
+				$new_showcase_to_categories_insert_data = array(
+					'showcase_id' => $last_id,
+					'categories_id' => $value
+				);
+				$this->db->set($new_showcase_to_categories_insert_data)->insert('showcase_to_categories');
+			}
 		}
-		foreach ($this->input->post('showcase_to_blog') as $key => $value) {
-			$new_showcase_to_blog_insert_data = array(
-				'showcase_id' => $last_id,
-				'blog_id' => $value
-			);
-			$this->db->set($new_showcase_to_blog_insert_data)->insert('showcase_to_blog');
+		if (!empty($this->input->post('showcase_to_blog'))) {
+			foreach ($this->input->post('showcase_to_blog') as $key => $value) {
+				$new_showcase_to_blog_insert_data = array(
+					'showcase_id' => $last_id,
+					'blog_id' => $value
+				);
+				$this->db->set($new_showcase_to_blog_insert_data)->insert('showcase_to_blog');
+			}
 		}
+		
 	}
 
 	function showcase_update() {
@@ -104,6 +109,9 @@ class Showcase_Model extends CI_Model
 
 		$this->db->where('showcase_id', $this->input->post('id'));
 		$this->db->delete('showcase_to_categories');
+
+		$this->db->where('showcase_id', $this->input->post('id'));
+		$this->db->delete('blog_to_showcase');
 	}
 
 	function get_blog_to_showcase($showcase_id = null) {
@@ -125,7 +133,6 @@ class Showcase_Model extends CI_Model
 			foreach ($this->input->post('blog_to_showcase') as $key => $value) {
 				$blog_to_showcase_new_data = array(
 					'showcase_id' => $this->input->post('id'),
-					'blog_frame' => $this->input->post('blog_frame'),
 					'blog_views' => $this->input->post('blog_views'),
 					'blog_id' => $value,
 				);

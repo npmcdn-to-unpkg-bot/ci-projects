@@ -16,25 +16,6 @@
 						<div class="col-lg-12">
 							<?php echo validation_errors('<p style="color:#dc0001;">'); ?>
 							<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
-							<div class="form-group">
-                            	<label>Blog çercevesi seçiniz</label>
-								<select data-placeholder="Blog çercevesi seçiniz." class="chosen-select form-control" name="blog_frame">
-									<option value="0">Seçiniz</option>
-									<?php if (isset($blog_frame)): ?>
-										<?php foreach ($blog_showcase_frame as $key => $value) { ?>
-											<?php if ($value->id == $blog_frame) { ?>
-												<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
-											<?php } else { ?>
-												<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
-											<?php } ?>
-										<?php } ?>
-									<?php else: ?>
-										<?php foreach ($blog_showcase_frame as $key => $value) { ?>
-											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
-										<?php } ?>	
-									<?php endif ?>
-								</select>
-                            </div>
                             <div class="form-group">
                             	<label>Blog gösterimi seçiniz</label>
 								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="blog_views">

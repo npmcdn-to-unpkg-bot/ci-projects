@@ -25,35 +25,25 @@ class Themes_Variables_Model extends CI_Model
 	}
 
 	function footer() {
-
 		return $themes_variables = array(
 			'footer logo' => '<img src="assets/uploads/images/logo.png" />'
 		);
 	}
 
 	function showcase_frame() {
-
 		return $themes_variables = array(
-
-		);
-	}
-
-	function showcase_views() {
-		return $themes_variables = array(
-
-		);
-	}
-
-	function blog_frame() {
-
-		return $themes_variables = array(
-
+			'vitrin başlık' => '<?php echo $showcase_value->title ?>',
+			'vitrin içerik' => '<?php echo $showcase_value->content ?>',
+			'blog listele' => '<?php foreach ($showcase_value->blog as $blog_key => $blog_value): ?><?php include(APPPATH.$blog_value->file_path); ?><?php endforeach ?>'
 		);
 	}
 
 	function blog_views() {
 		return $themes_variables = array(
-
+			'sayfa link(perma)' => '<?php echo $blog_value->perma_link ?>',
+			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
+			'sayfa başlık' => '<?php echo $blog_value->title ?>',
+			'sayfa içerik' => '<?php echo $blog_value->content ?>'
 		);
 	}
 

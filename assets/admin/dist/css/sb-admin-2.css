@@ -410,3 +410,4 @@ table.dataTable thead .sorting:after {
     background-color: #333333;
 }
 .draggablePanelList {min-height:20px;}
+.tab-content-margin-top {margin-top:20px;}

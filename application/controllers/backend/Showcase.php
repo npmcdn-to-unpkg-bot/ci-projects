@@ -103,7 +103,7 @@ class Showcase extends Backend_Controller
 	public function showcase_delete() {
 		$this->load->model('backend/showcase_model');
 		$this->showcase_model->showcase_delete();
-		$this->session->set_flashdata('error','vitrin silindi.');
+		$this->session->set_flashdata('errors','vitrin silindi.');
 		redirect('backend/showcase');
 	}
 
@@ -119,7 +119,6 @@ class Showcase extends Backend_Controller
 		if (isset($get_blog_to_showcase)) {
 			foreach ($get_blog_to_showcase as $key => $value) {
 				$data['blog_to_showcase'][$key] = $value->blog_id;
-				$data['blog_frame'] = $value->blog_frame;
 				$data['blog_views'] = $value->blog_views;
 			}
 		}
