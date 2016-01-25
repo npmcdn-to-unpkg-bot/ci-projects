@@ -90,9 +90,15 @@ class Blog_Model extends CI_Model
 		}
 	}
 
-	function blog_delete($blog_id) {
-		$this->db->where('id', $blog_id);
-		$this->db->delete('blog');
+	function blog_delete() {
+		$get_blog_ = $this->get_blog($this->input->post('id'));
+		foreach ($get_blog_ as $key => $value) {
+			if (!empty($value->list_image)) {
+				unlink(FCPATH.$value->list_image);
+			}
+			$this->db->where('id',$value->id);
+			$this->db->delete('blog');
+		}
 	}
 
 	public function changeName($change_name){

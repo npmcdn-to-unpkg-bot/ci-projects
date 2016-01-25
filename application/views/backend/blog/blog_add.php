@@ -73,4 +73,5 @@
 </div>
 <script>
     CKEDITOR.replace( 'content' );
+    CKEDITOR.replace( 'list_content' );
 </script>

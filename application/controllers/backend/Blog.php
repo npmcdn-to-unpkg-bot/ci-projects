@@ -77,9 +77,9 @@ class Blog extends Backend_Controller
 		}
 	}
 
-	public function blog_delete($id) {
+	public function blog_delete() {
 		$this->load->model('backend/blog_model');
-		$this->blog_model->blog_delete($id);
+		$this->blog_model->blog_delete();
 		$this->session->set_flashdata('errors','blog silindi.');
 		redirect('backend/blog');
 	}

@@ -33,7 +33,7 @@ class Home extends Frontend_Controller
 					if (!empty($bts_value->blog_views)) {
 						$bts_views = $this->themes_model->get_themes($bts_value->blog_views);
 						$bts_value->file_path = $bts_views[0]->file_path;
-						$get_blog_ = $this->blog_model->get_blog_to_showcase();
+						$get_blog_ = $this->blog_model->get_blog_to_showcase($bts_value->blog_id);
 						foreach ($get_blog_[0] as $get_blog_key => $get_blog_value) {
 							$bts_value->$get_blog_key = $get_blog_value;
 						}
@@ -43,7 +43,7 @@ class Home extends Frontend_Controller
 			}
 			$data['showcase'][$key] = $value;
 		}
-		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
+		// var_dump($sidebar_);var_dump($data);exit;
 
 		$this->load->view('frontend/layout/header',$data);
 
