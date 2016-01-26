@@ -28,6 +28,9 @@
                     <li>
                         <a href="backend/sidebar"><i class="glyphicon glyphicon-compressed fa-fw"></i> Sağ / Sol Bileşenler</a>
                     </li>
+                    <li>
+                        <a href="backend/banner_management"><i class="fa fa-image fa-fw"></i> Banner Yönetimi</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
