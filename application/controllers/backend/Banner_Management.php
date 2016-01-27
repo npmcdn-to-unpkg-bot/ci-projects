@@ -21,6 +21,25 @@ class Banner_Management extends Backend_Controller
 		$this->load->view('backend/layout/footer');
 	}
 
+	public function banner_edit() {
+		echo "var_dump : ";var_dump($this->input->post());
+		$data = $this->input->post();
+		$this->load->model('backend/banner_model');
+		$data['banner'] = $this->banner_model->get_banner($this->input->post('target'), $this->input->post('banner_type'));
+		echo "banner : ";var_dump($data);
+		$this->load->view('backend/layout/header');
+		$this->load->view('backend/banner/banner_edit',$data);
+		$this->load->view('backend/layout/footer');
+	}
+
+	public function banner_add() {
+		foreach ($_FILES as $key => $value) {
+			$_POST[$key] = $key;
+			$images[$key] = $value;
+		}
+		var_dump($this->input->post());exit;
+	}
+
 	public function createTree($array, $currentParent, $currLevel = 0, $prevLevel = -1) {
 
 		$tree = "";
