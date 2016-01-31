@@ -1,1 +1,0 @@
-hazir tema showcase views icerik guncelleme - varsayılan ,aktif

@@ -14,7 +14,10 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-12">
-						<form action="backend/banner_management/banner_edit" method="post">
+						<div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
+						<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
+						<?php echo validation_errors('<p style="color:#dc0001;">'); ?>
+						<form action="backend/banner_management/banner_edit" method="get">
 							<div class="form-group">
 								<label>Banner Nerede Gösterilsin</label>
 								<div class="radio"><label><input type="radio" name="target" value="home" checked="">Anasayfa</label></div>

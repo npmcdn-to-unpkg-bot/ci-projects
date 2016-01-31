@@ -411,3 +411,4 @@ table.dataTable thead .sorting:after {
 }
 .draggablePanelList {min-height:20px;}
 .tab-content-margin-top {margin-top:20px;}
+.move_ {cursor: move;}
