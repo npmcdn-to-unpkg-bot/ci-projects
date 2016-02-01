@@ -17,7 +17,7 @@ class Showcase_Model extends CI_Model
 		ON blog.id = blog_to_showcase.blog_id 
 		WHERE showcase.show_home_page = 1*/
 		// sadece anasayfaya ait olan vitrinlerin gelmesi bu vitrinlere ait bloglar
-		$this->db->select('showcase.id, showcase.title, showcase.content, showcase.show_home_page, showcase.themes_area_id');
+		$this->db->select('showcase.id, showcase.title, showcase.content, showcase.show_home_page, showcase.themes_id, showcase.themes_area_id');
 		$this->db->from('showcase');
 		$this->db->where('showcase.show_home_page',1);
 		$query = $this->db->get();
@@ -27,7 +27,7 @@ class Showcase_Model extends CI_Model
 	}
 
 	function get_blog_to_showcase($showcase_id = null) {
-		$this->db->select('blog_id,blog_views');
+		$this->db->select('blog_id,themes_id,themes_area_id');
 		if ($showcase_id != null) {
 			$this->db->where('showcase_id',$showcase_id);
 		}

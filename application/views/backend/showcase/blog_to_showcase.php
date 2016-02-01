@@ -18,11 +18,11 @@
 							<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
                             <div class="form-group">
                             	<label>Blog gösterimi seçiniz</label>
-								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="blog_views">
+								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="themes_id">
 									<option value="0">Seçiniz</option>
-									<?php if (isset($blog_views)): ?>
+									<?php if (isset($themes_id)): ?>
 										<?php foreach ($blog_showcase_views as $key => $value) { ?>
-											<?php if ($value->id == $blog_views) { ?>
+											<?php if ($value->id == $themes_id) { ?>
 												<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
 											<?php } else { ?>
 												<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
@@ -35,6 +35,7 @@
 									<?php endif ?>
 								</select>
                             </div>
+                            <input type="hidden" name="themes_area_id" value="<?php echo $blog_showcase_views[0]->themes_area_id ?>">
 							<div class="form-group">
                             	<label>Bu vitrinde hangi bloglar gösterilsin?</label>
 								<select data-placeholder="Bu vitrinde hangi bloglar gösterilsin?" class="chosen-select form-control" name="blog_to_showcase[]" multiple>

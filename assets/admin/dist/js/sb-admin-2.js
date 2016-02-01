@@ -38,7 +38,7 @@ $(function() {
         $(".categoriesListing>ul").treeview({
             animated:"normal",
             persist: "cookie"
-        });    
+        });
     } catch(e){}
     
 });

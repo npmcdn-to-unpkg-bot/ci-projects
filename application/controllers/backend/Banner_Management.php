@@ -13,8 +13,8 @@ class Banner_Management extends Backend_Controller
 	
 	public function index() {
 		$this->load->model('backend/categories_model');
-		$cat = $this->categories_model->get_categories();
-		$data['category'] = $this->createTree($cat, 0);
+		$banner_listing_ = $this->categories_model->get_categories();
+		$data['banner_listing'] = $this->createTree($banner_listing_, 0);
 		// echo "<pre>";var_dump($data);exit;
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/banner/banner_management', $data);

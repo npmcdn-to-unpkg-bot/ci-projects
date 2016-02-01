@@ -36,7 +36,7 @@ class Showcase_Model extends CI_Model
 			'content' => $this->input->post('content', FALSE),
 			'show_home_page' => $this->input->post('show_home_page'),
 			'themes_area_id' => $this->input->post('themes_area_id'),
-			// 'themes_id' => $this->input->post('themes_id'),
+			'themes_id' => $this->input->post('themes_id'),
 			'create_time' => date("Y-m-d H:i:s")
 		);
 		$this->db->set($new_showcase_insert_data)->insert('showcase');
@@ -68,7 +68,7 @@ class Showcase_Model extends CI_Model
 			'content' => $this->input->post('content', FALSE),
 			'show_home_page' => $this->input->post('show_home_page'),
 			'themes_area_id' => $this->input->post('themes_area_id'),
-			// 'themes_id' => $this->input->post('themes_id')
+			'themes_id' => $this->input->post('themes_id')
 		);
 		$this->db->set($showcase_update_data);
 		$this->db->where('id', $this->input->post('id'));
@@ -133,7 +133,8 @@ class Showcase_Model extends CI_Model
 			foreach ($this->input->post('blog_to_showcase') as $key => $value) {
 				$blog_to_showcase_new_data = array(
 					'showcase_id' => $this->input->post('id'),
-					'blog_views' => $this->input->post('blog_views'),
+					'themes_area_id' => $this->input->post('themes_area_id'),
+					'themes_id' => $this->input->post('themes_id'),
 					'blog_id' => $value,
 				);
 				$this->db->set($blog_to_showcase_new_data)->insert('blog_to_showcase');

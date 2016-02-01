@@ -59,11 +59,11 @@
                             </div>
                             <div class="form-group">
                             	<label>Vitrin çercevesi seçiniz</label>
-								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="themes_area_id">
+								<select data-placeholder="Vitrin çercevesi seçiniz." class="chosen-select form-control" name="themes_id">
 									<option value="0">Seçiniz</option>
-									<?php if (isset($themes_area_id)): ?>
+									<?php if (isset($themes_id)): ?>
 										<?php foreach ($showcase_frame as $key => $value) { ?>
-											<?php if ($value->id == $themes_area_id) { ?>
+											<?php if ($value->id == $themes_id) { ?>
 												<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
 											<?php } else { ?>
 												<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
@@ -76,25 +76,7 @@
 									<?php endif ?>
 								</select>
                             </div>
-                            <!-- <div class="form-group">
-                            	<label>Vitrin gösterimi seçiniz</label>
-								<select data-placeholder="Vitrin gösterimi seçiniz." class="chosen-select form-control" name="themes_id">
-									<option value="0">Seçiniz</option>
-									<?php if (isset($themes_id)): ?>
-										<?php foreach ($showcase_views as $key => $value) { ?>
-											<?php if ($value->id == $themes_id) { ?>
-												<option value="<?php echo $value->id; ?>" selected><?php echo $value->name ?></option>
-											<?php } else { ?>
-												<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
-											<?php } ?>
-										<?php } ?>
-									<?php else: ?>
-										<?php foreach ($showcase_views as $key => $value) { ?>
-											<option value="<?php echo $value->id; ?>"><?php echo $value->name ?></option>
-										<?php } ?>	
-									<?php endif ?>
-								</select>
-                            </div> -->
+                            <input type="hidden" name="themes_area_id" value="<?php echo $showcase_frame[0]->themes_area_id ?>">
 							<div class="form-group">
 								<label>Vitrin Başlık</label>
 								<input type="text" class="form-control" name="title" value="<?php echo (isset($title))?$title:''; ?>" />

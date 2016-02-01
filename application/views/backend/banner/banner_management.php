@@ -22,7 +22,7 @@
 								<label>Banner Nerede Gösterilsin</label>
 								<div class="radio"><label><input type="radio" name="target" value="home" checked="">Anasayfa</label></div>
 								<div class="radio categoriesListing">
-									<?php echo $category; ?>
+									<?php echo $banner_listing; ?>
 								</div>
 							</div>
 							<div class="form-group">

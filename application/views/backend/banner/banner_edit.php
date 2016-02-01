@@ -25,7 +25,7 @@
 											<div class="panel-heading move_"><span class="glyphicon glyphicon-move"></span></div>
 											<div class="panel-body">
 												<span class="pull-left">
-													<img src="<?php echo $banner_value->image ?>" alt="<?php echo $banner_value->alt_text ?>" width="120" height="120">
+													<img src="<?php echo $banner_value->image ?>" alt="<?php echo $banner_value->alt_text ?>" width="80" height="80">
 												</span>
 												<span class="pull-left panel-body">
 													Alt Text = <?php echo $banner_value->alt_text ?><br>
