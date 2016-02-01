@@ -17,6 +17,7 @@ class Custom_Code extends Backend_Controller
 
 			$this->custom_code_model->update_custom_code();
 			redirect('backend/custom_code');
+			$this->session->set_flashdata('success','kaydedildi.');
 		} else {
 			
 			$custom_code = $this->custom_code_model->get_custom_code();

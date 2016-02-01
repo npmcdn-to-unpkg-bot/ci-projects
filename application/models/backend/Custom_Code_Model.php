@@ -18,7 +18,7 @@ class Custom_Code_Model extends CI_Model
 
 	function update_custom_code() {
 		$this->load->helper('file');
-		foreach ($this->input->post(null,false) as $key => $value) {
+		foreach ($this->input->post(null, false) as $key => $value) {
 			$custom_code_update_data = array(
 				'custom_code_value' => $value
 			);

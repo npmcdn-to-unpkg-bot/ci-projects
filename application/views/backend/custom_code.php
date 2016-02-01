@@ -11,11 +11,8 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?php 
-                            if ( $this->session->flashdata('errors') != null ) {
-                                echo '<p style="color:red;">'.$this->session->flashdata('errors').'</p>';
-                            }
-                        ?>
+                        <div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
+                        <div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
                         <form action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         <?php echo validation_errors('<p style="color:#dc0001;">'); ?>
                             <!-- Nav tabs -->
