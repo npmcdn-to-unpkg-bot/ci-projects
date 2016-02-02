@@ -3,7 +3,9 @@
 <!-- stylesheet.css -->
 <link rel="stylesheet" href="assets/uploads/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" href="assets/uploads/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/uploads/css/swiper.min.css" />
 <link rel="stylesheet" href="assets/uploads/css/style.css" />
 <!-- script.js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="assets/uploads/js/bootstrap.min.js"></script>
+<script src="assets/uploads/js/swiper.min.js"></script>

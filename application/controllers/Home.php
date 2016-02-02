@@ -57,7 +57,7 @@ class Home extends Frontend_Controller
 		$data['slider'] = $this->banner_model->get_banner('slide','home');
 		$data['banner'] = $this->banner_model->get_banner('banner','home');
 
-		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
+		echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
 
 		$this->load->view('frontend/layout/header',$data);
 

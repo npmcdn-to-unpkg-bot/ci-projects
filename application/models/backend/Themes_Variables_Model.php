@@ -54,5 +54,20 @@ class Themes_Variables_Model extends CI_Model
 			'bileşen içerik' => '<?php echo $sidebar_value->content ?>'
 		);
 	}
+
+	function home() {
+		return $themes_variables = array(
+		);
+	}
+
+	function slider() {
+		return $themes_variables = array(
+		);
+	}
+
+	function banner() {
+		return $themes_variables = array(
+		);
+	}
 }
 ?>

@@ -104,7 +104,7 @@ class Banner_Management extends Backend_Controller
 				if ($currLevel > $prevLevel) $tree .= "<ul>";
 				if ($currLevel == $prevLevel) $tree .= "</li>";
 				($category->status == 1)?$status = 'active':$status = 'passive';
-				$tree .= '<li><label><input type="radio" name="target" value="'.$category->id.'">'.$category->name.'</label>';
+				$tree .= '<li><label><input type="radio" name="target" value="cat_'.$category->id.'">'.$category->name.'</label>';
 				if ($currLevel > $prevLevel) { $prevLevel = $currLevel; }
 				$currLevel++;
 				$tree .= $this->createTree($array, $category->id, $currLevel, $prevLevel);
