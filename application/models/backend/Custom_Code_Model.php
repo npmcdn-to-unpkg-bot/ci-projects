@@ -18,6 +18,7 @@ class Custom_Code_Model extends CI_Model
 
 	function update_custom_code() {
 		$this->load->helper('file');
+		// var_dump($this->input->post(null, false));exit;
 		foreach ($this->input->post(null, false) as $key => $value) {
 			$custom_code_update_data = array(
 				'custom_code_value' => $value
@@ -27,8 +28,8 @@ class Custom_Code_Model extends CI_Model
 			$this->db->update('custom_code');
 
 			$file_path = explode("_", $key);
-			if (file_exists(APPPATH.$file_path[0]."\\".$file_path[1])) {
-				if ( ! write_file(APPPATH.$file_path[0]."\\".$file_path[1]."\\".$file_path[1].'.php', $value)) {
+			if (file_exists(APPPATH.$file_path[0]."/".$file_path[1])) {
+				if ( ! write_file(APPPATH.$file_path[0]."/".$file_path[1]."/".$file_path[1].'.php', $value)) {
 			        $this->session->set_flashdata('errors','dosyanız yazılmadı.');
 				} else {
 			        $custom_code_update_data = array(

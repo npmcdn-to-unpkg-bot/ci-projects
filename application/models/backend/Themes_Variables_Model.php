@@ -57,6 +57,9 @@ class Themes_Variables_Model extends CI_Model
 
 	function home() {
 		return $themes_variables = array(
+			'slider' => '',
+			'slider' => '',
+			'vitrin' => '<?php foreach ($showcase as $showcase_key => $showcase_value) { include(APPPATH.$showcase_value->file_path); } ?>',
 		);
 	}
 
