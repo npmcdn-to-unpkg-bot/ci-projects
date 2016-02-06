@@ -19,7 +19,6 @@ class Themes_Model extends CI_Model
 		$this->db->where('id',$id);
 		$query = $this->db->get('themes_area');
 		if ($query->num_rows()>0) {
-			
 			return $result = $query->result();
 		}
 	}
@@ -46,7 +45,8 @@ class Themes_Model extends CI_Model
 	}
 
 	function get_themes_list($themes_area_id) {
-		
+		$this->db->select('themes.*,themes_area.limited');
+		$this->db->join('themes_area','themes.themes_area_id = themes_area.id');
 		$this->db->where('themes_area_id',$themes_area_id);
 		$query = $this->db->get('themes');
 		if ($query->num_rows()>0) {

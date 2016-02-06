@@ -21,6 +21,9 @@ class Home extends Frontend_Controller
 		// header - footer
 		$data['header'] = $this->themes_model->get_header();
 		$data['footer'] = $this->themes_model->get_footer();
+		$data['home'] = $this->themes_model->get_home();
+		$data['slider_themes'] = $this->themes_model->get_slider();
+		$data['banner_themes'] = $this->themes_model->get_banner();
 		// bloklar
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
 		// vitrinler

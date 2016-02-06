@@ -83,9 +83,8 @@ class Themes extends Backend_Controller
 	}
 
 	public function themes_exists($themes) {
-
+		// echo "<pre>";var_dump($themes[0]->limited);var_dump(count($themes));exit;
 		if (isset($themes[0]->themes_area_id)) {
-			
 			$str = '<div class="form-group">			
 			<label>Temanızı Seçiniz</label>
 			<select name="themes_id" id="themes_id" class="form-control">
@@ -103,8 +102,8 @@ class Themes extends Backend_Controller
 			}
 			$str .= '</select></div>';
 			$str .= '<a href="javascript:;" class="btn btn-default btn-outline" id="themes_edit">Temayı Güncelle</a>';
-			$str .= '<a href="javascript:;" class="btn btn-outline btn-danger" id="themes_delete">Temayı Sil</a>';
-			$str .= '<a href="javascript:;" class="btn btn-outline btn-warning" id="themes_add">Tema Ekle</a>';
+			$str .= '<a href="javascript:;" class="btn btn-outline btn-danger no_themes_delete" id="themes_delete">Temayı Sil</a>';
+			$str .= '<a href="javascript:;" class="btn btn-outline btn-warning no_themes_add" id="themes_add">Tema Ekle</a>';
 			$str .= '<script>
 						$(function(){
 							$(\'#themes_edit\').on(\'click\',function(){
@@ -156,6 +155,9 @@ class Themes extends Backend_Controller
 							});
 						});
 					</script>';
+		}
+		if ($themes[0]->limited >= count($themes)) {
+			$str .= '<style>.no_themes_add {display:none;}.no_themes_delete {display:none;}</style>';
 		}
 
 		echo $str;

@@ -57,19 +57,29 @@ class Themes_Variables_Model extends CI_Model
 
 	function home() {
 		return $themes_variables = array(
-			'slider' => '',
-			'slider' => '',
+			'slider' => '<?php if (isset($slider)) { require(APPPATH.$slider_themes[0]->file_path); } ?>',
+			'banner' => '<?php if (isset($banner)) { require(APPPATH.$banner_themes[0]->file_path); } ?>',
 			'vitrin' => '<?php foreach ($showcase as $showcase_key => $showcase_value) { include(APPPATH.$showcase_value->file_path); } ?>',
 		);
 	}
 
 	function slider() {
 		return $themes_variables = array(
+			'slider' => '<?php foreach ($slider as $slider_key => $slider_value): ?>',
+			'slider link' => '<?php echo $slider_value->link ?>',
+			'slider alt_text' => '<?php echo $slider_value->alt_text ?>',
+			'slider resim' => '<?php echo $slider_value->image ?>',
+			'/slider' => '<?php endforeach ?>'
 		);
 	}
 
 	function banner() {
 		return $themes_variables = array(
+			'banner' => '<?php foreach ($banner as $banner_key => $banner_value): ?>',
+			'banner link' => '<?php echo $banner_value->link ?>',
+			'banner alt_text' => '<?php echo $banner_value->alt_text ?>',
+			'banner resim' => '<?php echo $banner_value->image ?>',
+			'/banner' => '<?php endforeach ?>'
 		);
 	}
 }
