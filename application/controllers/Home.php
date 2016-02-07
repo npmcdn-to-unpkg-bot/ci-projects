@@ -18,6 +18,9 @@ class Home extends Frontend_Controller
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
 		$this->load->model('frontend/banner_model');
+		$this->load->model('backend/categories_model');
+		$categories = $this->categories_model->get_categories();
+		echo "<pre>";var_dump($categories);exit;
 		// header - footer
 		$data['header'] = $this->themes_model->get_header();
 		$data['footer'] = $this->themes_model->get_footer();
