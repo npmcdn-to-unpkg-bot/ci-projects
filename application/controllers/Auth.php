@@ -11,7 +11,7 @@
  	}
 
  	public function index() {
- 		$this->loginControl();
+ 		
  	}
 
  	public function login() {
@@ -27,9 +27,9 @@
 
  		if ($this->form_validation->run() == false) {
  			
- 			$this->load->view('frontend/layout/header',$data);
+ 			
  			$this->load->view('frontend/auth/login',$data);
- 			$this->load->view('frontend/layout/footer',$data);
+ 			
 
  		} else {
 
@@ -40,13 +40,13 @@
  				$this->session->set_userdata('login',true);
  				
  				$data['sessions'] = $this->session->userdata('login');
- 				$this->load->view('frontend/layout/header',$data);
+ 				
 	 			$this->load->view('frontend/auth/login',$data);
-	 			$this->load->view('frontend/layout/footer',$data);
+	 			
  			} else {
- 				$this->load->view('frontend/layout/header',$data);
+ 				
  			$this->load->view('frontend/auth/login',$data);
- 			$this->load->view('frontend/layout/footer',$data);
+ 			
  			}
  			// redirect(base_url());
  			
