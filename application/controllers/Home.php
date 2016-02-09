@@ -23,12 +23,12 @@ class Home extends Frontend_Controller
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
 		$this->load->model('frontend/banner_model');
-		// header - footer
-		$data['header'] = $this->themes_model->get_header();
-		$data['footer'] = $this->themes_model->get_footer();
-		$data['home'] = $this->themes_model->get_home();
-		$data['slider_themes'] = $this->themes_model->get_slider();
-		$data['banner_themes'] = $this->themes_model->get_banner();
+		// header - footer - home - slider - banner -> file_path
+		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
+		$data['home'] = $this->themes_model->get_themes_class_name('home');
+		$data['slider_themes'] = $this->themes_model->get_themes_class_name('slider');
+		$data['banner_themes'] = $this->themes_model->get_themes_class_name('banner');
 		// bloklar
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
 		// vitrinler

@@ -82,5 +82,15 @@ class Themes_Variables_Model extends CI_Model
 			'/banner' => '<?php endforeach ?>'
 		);
 	}
+
+	function login() {
+		return $themes_variables = array(
+		);
+	}
+
+	function register() {
+		return $themes_variables = array(
+		);
+	}
 }
 ?>

@@ -18,39 +18,15 @@
 
  		$this->load->helper('form');
  		$this->load->library('form_validation');
+ 		$this->load->model('frontend/themes_model');
+ 		// header - footer - home - slider - banner -> file_path
+		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
+		$data['login'] = $this->themes_model->get_themes_class_name('login');
 
- 		$data['title'] = 'login page';
- 		$data['sessions'] = $this->session->userdata('login');
-
- 		$this->form_validation->set_rules('username','Username','required|trim');
- 		$this->form_validation->set_rules('password','Password','required|trim');
-
- 		if ($this->form_validation->run() == false) {
- 			
- 			
- 			$this->load->view('frontend/auth/login',$data);
- 			
-
- 		} else {
-
- 			$username = $this->input->post('username');
- 			$password = $this->input->post('password');
-
- 			if ($username == 'huseyindol' && $password == '1234') {
- 				$this->session->set_userdata('login',true);
- 				
- 				$data['sessions'] = $this->session->userdata('login');
- 				
-	 			$this->load->view('frontend/auth/login',$data);
-	 			
- 			} else {
- 				
- 			$this->load->view('frontend/auth/login',$data);
- 			
- 			}
- 			// redirect(base_url());
- 			
- 		}
+		$this->load->view('frontend/layout/header',$data);
+		$this->load->view('frontend/auth/login',$data);
+		$this->load->view('frontend/layout/footer',$data);
 
  	}
  } 

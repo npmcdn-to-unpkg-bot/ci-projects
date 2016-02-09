@@ -25,11 +25,11 @@ class Themes_Model extends CI_Model
 		}
 	}
 	
-	function get_header() {
+	function get_themes_class_name($class_name) {
 		// themes_area table class_name header olan id si themes table themes_area_id aynı ve active_themes_id = 1 
 		$this->db->select('themes_area.id,themes_area.class_name,themes.themes_area_id,themes.active_themes_id,themes.file_path,themes.create_time,themes.update_time');
 		$this->db->from('themes_area');
-		$this->db->where('class_name','header');
+		$this->db->where('class_name',$class_name);
 		$this->db->join('themes', 'themes.themes_area_id = themes_area.id');
 		$this->db->where('active_themes_id',1);
 		$query = $this->db->get();
@@ -38,7 +38,7 @@ class Themes_Model extends CI_Model
 		}
 	}
 
-	function get_footer() {
+	/*function get_footer() {
 		// themes_area table class_name footer olan id si themes table themes_area_id aynı ve active_themes_id = 1 
 		$this->db->select('themes_area.id,themes_area.class_name,themes.themes_area_id,themes.active_themes_id,themes.file_path,themes.create_time,themes.update_time');
 		$this->db->from('themes_area');
@@ -88,7 +88,7 @@ class Themes_Model extends CI_Model
 		if ($query->num_rows()>0) {
 			return $result = $query->result();
 		}
-	}
+	}*/
 
 	function example() {
 		$this->db->select('settings_value');
