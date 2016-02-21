@@ -8,6 +8,7 @@ class Home extends Backend_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->loginControl();
+		var_dump($this->session->all_userdata());
 	}
 
 	public function index() {

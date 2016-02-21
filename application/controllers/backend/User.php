@@ -18,7 +18,7 @@ class User extends Backend_Controller
 		$this->load->model('backend/users_model');
 
 		$user_row = $this->users_model->user_info($this->session->userdata('username'));
-		
+
 		foreach ($user_row as $key => $value) {
 			$data[$key]= $value;
 		}

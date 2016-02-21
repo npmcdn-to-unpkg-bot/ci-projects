@@ -60,9 +60,7 @@
                         <?php
 							echo form_close(); 
 							echo validation_errors('<p style="color:#dc0001;">');
-							if (isset($errors)) {
-								echo '<p style="color:#dc0001;">'.$errors.'</p>';
-							}
+							echo (isset($errors))? '<p style="color:#dc0001;">'.$errors.'</p>' : '' ;
 						?>
                     </div>
                 </div>

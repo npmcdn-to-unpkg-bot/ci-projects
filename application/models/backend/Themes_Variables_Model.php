@@ -13,14 +13,15 @@ class Themes_Variables_Model extends CI_Model
 		return $themes_variables = array(
 			'logo' => '<img src="'.$db_site_logo[0]->settings_value.'" />',
 			'kategoriler' => '<li class="kat_01"><a href="">beyaz eşya</a></li>
-<li class="kat_02"><a href="">elektronik</a></li>
-<li class="kat_03">
-	<a href="">bilgisayar</a>
-	<ul class="submenu">
-		<li class="kat_04"><a href="">masa üstü</a></li>
-		<li class="kat_05"><a href="">laptop</a></li>
-	</ul>
-</li>'
+				<li class="kat_02"><a href="">elektronik</a></li>
+				<li class="kat_03">
+					<a href="">bilgisayar</a>
+					<ul class="submenu">
+						<li class="kat_04"><a href="">masa üstü</a></li>
+						<li class="kat_05"><a href="">laptop</a></li>
+					</ul>
+				</li>',
+			'kullanıcı adı' => '<?php echo $this->session->userdata("frontend_username") ?>'
 		);
 	}
 

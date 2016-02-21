@@ -124,8 +124,8 @@ class Auth extends Backend_Controller
 	}
 
 	public function logout() {
-		$this->session->sess_destroy();
-		session_write_close();
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('is_logged_in');
 		redirect('admin');
 	}
 } 

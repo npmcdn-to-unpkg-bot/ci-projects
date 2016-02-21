@@ -72,9 +72,9 @@ class Users_Model extends CI_Model
 
 		$this->db->where('username',$username);
 		$this->db->join('users_details udetails', 'udetails.users_id = users.id');
-		$result = $this->db->get('users');
-
-		return $row = $result->row();
+		$query = $this->db->get('users');
+		return $query->row();
+		
 	}
 
 	function update_member() {

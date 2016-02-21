@@ -23,11 +23,14 @@ class Frontend_Controller extends MY_Controller
 
 	public function loginControl() {
 		if (!$this->session->userdata('frontend_is_logged_in')) {
-			redirect(base_url('auth/login'));
+			redirect(base_url('auth'));
 		}
 	}
-
-
+	public function isLoggedIn() {
+		if ($this->session->userdata('frontend_is_logged_in')) {
+			redirect('home');
+		}
+	}
 }
 /**
 * Backend_Controller
