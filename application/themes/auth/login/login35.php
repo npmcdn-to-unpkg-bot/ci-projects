@@ -1,3 +1,4 @@
+<?php echo ( $this->session->userdata('frontend_login_attempt')>=3 ) ? "<script src='https://www.google.com/recaptcha/api.js'></script>" : "" ; ?>
 <?php echo form_open('auth/login'); ?>
 	<table>
 		<tr>
@@ -7,6 +8,10 @@
 		<tr>
 			<td>şifre:</td>
 			<td><?php echo form_password('password','','placeholder="Şifreniz" class="password form-control"'); ?></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><?php echo ( $this->session->userdata('frontend_login_attempt')>=3 ) ? '<div class="g-recaptcha" data-sitekey="6LcjwRgTAAAAAPbiXi6Pi3EEHW8SUm1D1ejKmyEI"></div>' : '' ; ?></td>
 		</tr>
 		<tr>
 			<td> </td>
