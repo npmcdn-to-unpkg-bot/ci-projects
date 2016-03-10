@@ -22,12 +22,12 @@ class Frontend_Controller extends MY_Controller
 	}
 
 	public function loginControl() {
-		if (!$this->session->userdata('frontend_is_logged_in')) {
+		if (!$this->session->userdata('is_logged_in')) {
 			redirect(base_url('auth'));
 		}
 	}
 	public function isLoggedIn() {
-		if ($this->session->userdata('frontend_is_logged_in')) {
+		if ($this->session->userdata('is_logged_in')) {
 			redirect('home');
 		}
 	}
@@ -44,12 +44,12 @@ class Backend_Controller extends MY_Controller
 	}
 
 	public function loginControl() {
-		if (!$this->session->userdata('is_logged_in')) {
+		if (!$this->session->userdata('backend_is_logged_in')) {
 			redirect(base_url('/backend/auth'));
 		}
 	}
 	public function isLoggedIn() {
-		if ($this->session->userdata('is_logged_in')) {
+		if ($this->session->userdata('backend_is_logged_in')) {
 			redirect('backend/home');
 		}
 	}

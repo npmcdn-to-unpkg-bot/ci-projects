@@ -37,8 +37,8 @@ class Auth extends Backend_Controller
 			if ($query) { // if the user's credentials valiated...
 
 				$data = array(
-					'username' 		=> $this->input->post('username'),
-					'is_logged_in'	=>  true
+					'backend_username' 		=> $this->input->post('username'),
+					'backend_is_logged_in'	=>  true
 				);
 				$this->session->set_userdata($data);
 				redirect('backend/home');
@@ -124,8 +124,8 @@ class Auth extends Backend_Controller
 	}
 
 	public function logout() {
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('is_logged_in');
+		$this->session->unset_userdata('backend_username');
+		$this->session->unset_userdata('backend_is_logged_in');
 		redirect('admin');
 	}
 } 

@@ -34,34 +34,33 @@
 				$this->load->view('frontend/auth/login',$data);
 				$this->load->view('frontend/layout/footer',$data);
 			} else {
+				$this->load->model('frontend/users_model');
 				$g_recaptcha_secret = "6LcjwRgTAAAAAPZGsRUiWu13NSga9zED7aY-fxsC";
 				$g_recaptcha_url = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$g_recaptcha_secret."&response=".$this->input->post('g-recaptcha-response')."&remoteip=".$this->input->ip_address());
 				$g_recaptcha = json_decode($g_recaptcha_url,TRUE);
-				if ($g_recaptcha['success']) {
+				if ($this->input->post('g-recaptcha-response') === NULL || $g_recaptcha['success']) {
 					// recaptcha dogru
-					$this->load->model('frontend/users_model');
 					$query = $this->users_model->validate();
 					if ($query) { // if the user's credentials valiated...
 						$get_users_ = $this->users_model->get_users();
 						$get_users_vendor = (isset($get_users_->vendor))? true : false ;
 						$get_users_customer = (isset($get_users_->customer))? true : false ;
 						$data = array(
-							'frontend_username' => $this->input->post('username'),
-							'frontend_is_logged_in'	=>  true,
-							'frontend_vendor' => $get_users_vendor,
-							'frontend_customer' => $get_users_customer
+							'username' => $this->input->post('username'),
+							'is_logged_in'	=>  true,
+							'vendor' => $get_users_vendor,
+							'customer' => $get_users_customer
 						);
 						$this->session->set_userdata($data);
-						$this->session->unset_userdata('frontend_login_attempt');
+						$this->session->unset_userdata('login_attempt');
 						redirect('home');
 					} else {
-						$login_attempt = $this->session->userdata('frontend_login_attempt');
+						$login_attempt = $this->session->userdata('login_attempt');
 						$login_attempt++;
 						$userdata_session = array(
-							'frontend_login_attempt' => $login_attempt
+							'login_attempt' => $login_attempt
 						);
 						$this->session->set_userdata($userdata_session);
-						var_dump($this->session->all_userdata());
 						$data['errors'] = 'Kullanıcı Adı veya Şifreniz yanlıştır.';
 						$this->load->view('frontend/layout/header',$data);
 						$this->load->view('frontend/auth/login',$data);
@@ -69,13 +68,12 @@
 					}
 				} else {
 					// recaptcha yanlis
-					$login_attempt = $this->session->userdata('frontend_login_attempt');
+					$login_attempt = $this->session->userdata('login_attempt');
 					$login_attempt++;
 					$userdata_session = array(
-						'frontend_login_attempt' => $login_attempt
+						'login_attempt' => $login_attempt
 					);
 					$this->session->set_userdata($userdata_session);
-					var_dump($this->session->all_userdata());
 					$data['errors'] = 'recaptcha işaretlemelisiniz.';
 					$this->load->view('frontend/layout/header',$data);
 					$this->load->view('frontend/auth/login',$data);
@@ -90,11 +88,27 @@
 		
  	}
 
+ 	public function register() {
+ 		$this->isLoggedIn();
+ 		// $this->load->library('form_validation');
+ 		$this->load->model('frontend/themes_model');
+ 		// header - footer - login
+		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
+		$data['register'] = $this->themes_model->get_themes_class_name('register');
+		if ($this->input->post()) {
+			
+		}
+		$this->load->view('frontend/layout/header',$data);
+		$this->load->view('frontend/auth/register',$data);
+		$this->load->view('frontend/layout/footer',$data);
+ 	}
+
  	public function logout() {
-		$this->session->unset_userdata('frontend_username');
-		$this->session->unset_userdata('frontend_is_logged_in');
-		$this->session->unset_userdata('frontend_vendor');
-		$this->session->unset_userdata('frontend_customer');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('is_logged_in');
+		$this->session->unset_userdata('vendor');
+		$this->session->unset_userdata('customer');
 		redirect('auth');
 	}
  } 
