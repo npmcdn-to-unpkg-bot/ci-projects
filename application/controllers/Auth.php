@@ -52,13 +52,13 @@
 							'customer' => $get_users_customer
 						);
 						$this->session->set_userdata($data);
-						$this->session->unset_userdata('login_attempt');
+						$this->session->unset_userdata('frontend_login_attempt');
 						redirect('home');
 					} else {
-						$login_attempt = $this->session->userdata('login_attempt');
-						$login_attempt++;
+						$frontend_login_attempt = $this->session->userdata('frontend_login_attempt');
+						$frontend_login_attempt++;
 						$userdata_session = array(
-							'login_attempt' => $login_attempt
+							'frontend_login_attempt' => $frontend_login_attempt
 						);
 						$this->session->set_userdata($userdata_session);
 						$data['errors'] = 'Kullanıcı Adı veya Şifreniz yanlıştır.';
@@ -68,10 +68,10 @@
 					}
 				} else {
 					// recaptcha yanlis
-					$login_attempt = $this->session->userdata('login_attempt');
-					$login_attempt++;
+					$frontend_login_attempt = $this->session->userdata('frontend_login_attempt');
+					$frontend_login_attempt++;
 					$userdata_session = array(
-						'login_attempt' => $login_attempt
+						'frontend_login_attempt' => $frontend_login_attempt
 					);
 					$this->session->set_userdata($userdata_session);
 					$data['errors'] = 'recaptcha işaretlemelisiniz.';
