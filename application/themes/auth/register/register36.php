@@ -26,12 +26,28 @@
 			<td><?php echo form_password('password_repeat','','placeholder="şifre tekrarı" class="password form-control"'); ?></td>
 		</tr>
 		<tr>
+			<td>cinsiyet:</td>
+			<td>
+				<div class="form_control">
+					<label for="Bay"><?php echo form_radio('gender','1'); ?> Bay</label>
+					<label for="Bayan"><?php echo form_radio('gender','0'); ?> Bayan</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>doğum tarihi:</td>
+			<td><input type="date" name="date_of_birth" class="form_control"></td>
+		</tr>
+		<tr>
 			<td></td>
 			<td><div class="g-recaptcha" data-sitekey="6LcjwRgTAAAAAPbiXi6Pi3EEHW8SUm1D1ejKmyEI"></div></td>
 		</tr>
 		<tr>
 			<td> </td>
-			<td><?php echo form_submit('submit','Üye Kayıt','class="btn btn-lg btn-success btn-block"'); ?></td>
+			<td>
+				<?php echo form_reset('reset','temizle','class="btn btn-lg btn-danger btn-block"'); ?>
+				<?php echo form_submit('submit','Üye Kayıt','class="btn btn-lg btn-success btn-block"'); ?>
+			</td>
 		</tr>
 		<tr>
 			<td></td>
