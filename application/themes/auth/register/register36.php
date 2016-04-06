@@ -45,7 +45,7 @@
 		<tr>
 			<td> </td>
 			<td>
-				<?php echo form_reset('reset','temizle','class="btn btn-lg btn-danger btn-block"'); ?>
+				<?php echo form_reset('reset','Temizle','class="btn btn-lg btn-danger btn-block"'); ?>
 				<?php echo form_submit('submit','Üye Kayıt','class="btn btn-lg btn-success btn-block"'); ?>
 			</td>
 		</tr>

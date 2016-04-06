@@ -39,8 +39,33 @@ class Users_Model extends CI_Model
 				$userdata->$u_perm_name = $u_perm_value->name;
 			}
 		}
-
 		return $userdata;
+	}
+
+	
+	function check_if_username_exists($username) {
+
+		$this->db->where('username',$username);
+		$result = $this->db->get('users');
+
+		if ($result->num_rows() > 0) {
+			return FALSE; // username taken
+		} else {
+			return TRUE; // username can be reg'd
+		}
+
+	}
+
+	function check_if_email_exists($email) {
+
+		$this->db->where('email',$email);
+		$result = $this->db->get('users');
+
+		if ($result->num_rows() > 0) {
+			return FALSE; // email taken
+		} else {
+			return TRUE; // email can be reg'd
+		}
 
 	}
 }
