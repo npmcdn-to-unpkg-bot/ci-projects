@@ -36,7 +36,27 @@
 		</tr>
 		<tr>
 			<td>doğum tarihi:</td>
-			<td><input type="date" name="date_of_birth" class="form_control"></td>
+			<td>
+				<input type="date" name="date_of_birth" class="form_control" />
+				<select name="day_of_birth">
+					<option value="0">Gün</option>
+					<?php for ($i=1; $i <= 31; $i++) {
+						echo "<option value=".$i.">".$i."</option>";
+					} ?>
+				</select>
+				<select name="month_of_birth">
+					<option value="0">Ay</option>
+					<?php for ($i=1; $i <= 12; $i++) {
+						echo "<option value=".$i.">".$i."</option>";
+					} ?>
+				</select>
+				<select name="year_of_birth">
+					<option value="0">Yıl</option>
+					<?php for ($i=1938; $i <= 2016; $i++) {
+						echo "<option value=".$i.">".$i."</option>";
+					} ?>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td></td>

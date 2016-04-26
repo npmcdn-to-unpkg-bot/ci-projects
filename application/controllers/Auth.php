@@ -105,6 +105,7 @@
 				$this->form_validation->set_rules('username','','trim|required|min_length[4]|callback_check_if_username_exists');
 				$this->form_validation->set_rules('email','','trim|required|valid_email|callback_check_if_email_exists');
 				$this->form_validation->set_rules('password','','trim|required|min_length[4]|max_length[32]');
+				$this->form_validation->set_rules('password_repeat','','trim|required|min_length[4]|max_length[32]|matches[password]');
 				if ($this->form_validation->run() === FALSE) {
 					$data['username'] = $this->input->input_stream('username');
 					$data['email'] = $this->input->input_stream('email');
