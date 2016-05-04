@@ -115,7 +115,8 @@
 					$this->load->view('frontend/auth/register',$data);
 					$this->load->view('frontend/layout/footer',$data);
 				} else {
-
+                    var_dump($this->input->post());
+                    exit;
 				}	
 			} else {
 				$data['errors'] = 'recaptcha işaretlemelisiniz.';
@@ -123,10 +124,11 @@
 				$this->load->view('frontend/auth/register',$data);
 				$this->load->view('frontend/layout/footer',$data);
 			}
-		}
-		$this->load->view('frontend/layout/header',$data);
-		$this->load->view('frontend/auth/register',$data);
-		$this->load->view('frontend/layout/footer',$data);
+		} else {
+            $this->load->view('frontend/layout/header',$data);
+            $this->load->view('frontend/auth/register',$data);
+            $this->load->view('frontend/layout/footer',$data);
+        }
  	}
 
  	public function logout() {
