@@ -68,7 +68,7 @@ class Users_Model extends CI_Model
 
 	}
 
-	function add_users() {
+	function add_users() { 
 		$new_users_insert_data = array(
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
