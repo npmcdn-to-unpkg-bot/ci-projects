@@ -41,6 +41,7 @@ class Users_Model extends CI_Model
 		}
 		return $userdata;
 	}
+
 	
 	function check_if_username_exists($username) {
 
@@ -66,23 +67,6 @@ class Users_Model extends CI_Model
 			return TRUE; // email can be reg'd
 		}
 
-	}
-
-	function add_users() {
-		$new_users_insert_data = array(
-			'username' => $this->input->post('username'),
-			'email' => $this->input->post('email'),
-			'name' => $this->input->post('name'),
-			'surname' => $this->input->post('surname'),
-			'password' => $this->encryption->encrypt($this->input->post('password')),
-			'gender' => $this->input->post('gender'),
-			'date_of_birth' => $this->input->post('date_of_birth'),
-			'day_of_birth' => $this->input->post('day_of_birth'),
-			'month_of_birth' => $this->input->post('month_of_birth'),
-			'year_of_birth' => $this->input->post('year_of_birth'),
-			'created_time' => date("Y-m-d H:i:s")
-		);
-		$this->db->set($new_users_insert_data)->insert('users');
 	}
 }
 ?>
