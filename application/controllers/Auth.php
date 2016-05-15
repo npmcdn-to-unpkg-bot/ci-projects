@@ -115,8 +115,8 @@
 					$this->load->view('frontend/auth/register',$data);
 					$this->load->view('frontend/layout/footer',$data);
 				} else {
-                    $this->load->model('frontend/users_model');
-                    $this->users_model->add_user();
+                    /*$this->load->model('frontend/users_model');
+                    $this->users_model->add_user();*/
                     $this->session->set_flashdata('success','üye kayıt işlemi başarılı bir şekilde yapıldı.');
 					redirect('home');
 				}	
