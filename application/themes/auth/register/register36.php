@@ -59,6 +59,53 @@
 			</td>
 		</tr>
 		<tr>
+			<td>ülke:</td>
+			<td>
+				<select name="country" onclick="">
+					<option value="0">Seçiniz</option>
+					<?php foreach ($country as $country_key => $country_value): ?>
+						<option value="<?php echo $country_value->country_id; ?>"><?php echo $country_value->country_name; ?></option>
+					<?php endforeach ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>il:</td>
+			<td>
+				<select name="city">
+					<option value="0">Seçiniz</option>
+					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>ilçe:</td>
+			<td>
+				<select name="county">
+					<option value="0">Seçiniz</option>
+					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>semt:</td>
+			<td>
+				<select name="district">
+					<option value="0">Seçiniz</option>
+					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>mahalle:</td>
+			<td>
+				<select name="neighborhood">
+					<option value="0">Seçiniz</option>
+					
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td></td>
 			<td><div class="g-recaptcha" data-sitekey="6LcjwRgTAAAAAPbiXi6Pi3EEHW8SUm1D1ejKmyEI"></div></td>
 		</tr>
