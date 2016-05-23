@@ -128,6 +128,10 @@ class Auth extends Backend_Controller
 		$this->session->unset_userdata('backend_is_logged_in');
 		redirect('admin');
 	}
+
+	/*public function encrypt_pass() {
+		echo $this->encryption->encrypt(123456);
+	}*/
 } 
 
 ?>

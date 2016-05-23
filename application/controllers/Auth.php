@@ -96,6 +96,7 @@
 		$data['header'] = $this->themes_model->get_themes_class_name('header');
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
 		$data['register'] = $this->themes_model->get_themes_class_name('register');
+		$data['country'] = $this->country();
 		if ($this->input->post()) {
 			$g_recaptcha_secret = "6LcjwRgTAAAAAPZGsRUiWu13NSga9zED7aY-fxsC";
 			$g_recaptcha_url = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$g_recaptcha_secret."&response=".$this->input->post('g-recaptcha-response')."&remoteip=".$this->input->ip_address());

@@ -61,48 +61,44 @@
 		<tr>
 			<td>ülke:</td>
 			<td>
-				<select name="country" onclick="">
+				<select name="country" onchange="findAddress('http://localhost/ci-projects/address/json_city',$(this).val(),'city','option','value')">
 					<option value="0">Seçiniz</option>
 					<?php foreach ($country as $country_key => $country_value): ?>
 						<option value="<?php echo $country_value->country_id; ?>"><?php echo $country_value->country_name; ?></option>
 					<?php endforeach ?>
-				</select>
+				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>
 		<tr>
 			<td>il:</td>
 			<td>
-				<select name="city">
+				<select name="city" id="city" onchange="findAddress('http://localhost/ci-projects/address/json_county',$(this).val(),'county','option','value')">
 					<option value="0">Seçiniz</option>
-					
-				</select>
+				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>
 		<tr>
 			<td>ilçe:</td>
 			<td>
-				<select name="county">
+				<select name="county" id="county" onchange="findAddress('http://localhost/ci-projects/address/json_district',$(this).val(),'district','option','value')">
 					<option value="0">Seçiniz</option>
-					
-				</select>
+				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>
 		<tr>
 			<td>semt:</td>
 			<td>
-				<select name="district">
+				<select name="district" id="district" onchange="findAddress('http://localhost/ci-projects/address/json_neighborhood',$(this).val(),'neighborhood','option','value')">
 					<option value="0">Seçiniz</option>
-					
-				</select>
+				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>
 		<tr>
 			<td>mahalle:</td>
 			<td>
-				<select name="neighborhood">
+				<select name="neighborhood" id="neighborhood">
 					<option value="0">Seçiniz</option>
-					
-				</select>
+				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>
 		<tr>
