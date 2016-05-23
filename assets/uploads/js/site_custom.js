@@ -1,16 +1,19 @@
-function findAddress(url,id,get_address,tag_list,tag_attr) {
+function findAddress(url,id,get_address) {
+    // url         : http://localhost/ci-projects/address/json_xxx -> xxx istenilen city,county,district veya neighborhood
+    // id          : city,county,district veya neighborhood ait oldugu id
+    // get_address : city,county,district veya neighborhood istenilen adresin aynı olması lazım
     var ga_id = 'e.'+get_address+'_id';
     var ga_name = 'e.'+get_address+'_name';
     
     $.getJSON(url+'/'+id, function (data) {
         // console.log(data);
         if (data === null) {
-            var html = '<'+tag_list+' '+tag_attr+'="0">Seçiniz</'+tag_list+'>';
+            var html = '<option value="0">Seçiniz</option>';
             $('#'+get_address).html(html);
         }
-        var html = '<'+tag_list+' '+tag_attr+'="0">Seçiniz</'+tag_list+'>';
+        var html = '<option value="0">Seçiniz</option>';
         $.each(data,function(i,e){
-            html += '<'+tag_list+' '+tag_attr+'="'+eval(ga_id)+'">'+eval(ga_name)+'</'+tag_list+'>';
+            html += '<option value="'+eval(ga_id)+'">'+eval(ga_name)+'</option>';
         });
         $('#'+get_address).html(html);
     });
