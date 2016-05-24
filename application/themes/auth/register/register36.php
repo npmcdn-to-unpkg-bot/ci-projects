@@ -38,19 +38,19 @@
 			<td>doğum tarihi:</td>
 			<td>
 				<input type="date" name="date_of_birth" class="form-control" />
-				<select name="day_of_birth" class="form-control">
+				<select name="day_of_birth" class="col-lg-4">
 					<option value="0">Gün</option>
 					<?php for ($i=1; $i <= 31; $i++) {
 						echo "<option value=".$i.">".$i."</option>";
 					} ?>
 				</select>
-				<select name="month_of_birth" class="form-control">
+				<select name="month_of_birth" class="col-lg-4">
 					<option value="0">Ay</option>
 					<?php for ($i=1; $i <= 12; $i++) {
 						echo "<option value=".$i.">".$i."</option>";
 					} ?>
 				</select>
-				<select name="year_of_birth" class="form-control">
+				<select name="year_of_birth" class="col-lg-4">
 					<option value="0">Yıl</option>
 					<?php for ($i=1938; $i <= 2016; $i++) {
 						echo "<option value=".$i.">".$i."</option>";
@@ -59,21 +59,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td>ülke:</td>
-			<td>
-				<select name="country" onchange="findAddress('http://localhost/ci-projects/address/json_city',$(this).val(),'city','option','value')" class="form-control">
-					<option value="0">Seçiniz</option>
-					<?php foreach ($country as $country_key => $country_value): ?>
-						<option value="<?php echo $country_value->country_id; ?>"><?php echo $country_value->country_name; ?></option>
-					<?php endforeach ?>
-				</select><input type="hidden" name="users_address" value="1">
-			</td>
-		</tr>
-		<tr>
 			<td>il:</td>
 			<td>
 				<select name="city" id="city" onchange="findAddress('http://localhost/ci-projects/address/json_county',$(this).val(),'county','option','value')" class="form-control">
 					<option value="0">Seçiniz</option>
+					<?php foreach ($city as $city_key => $city_value): ?>
+						<option value="<?php echo $city_value->city_id; ?>"><?php echo $city_value->city_name; ?></option>
+					<?php endforeach ?>
 				</select><input type="hidden" name="users_address" value="1">
 			</td>
 		</tr>

@@ -69,6 +69,7 @@ class Users_Model extends CI_Model
 	}
 
 	function add_users() {
+		$this->load->model('frontend/users_address_model');
 		$new_users_insert_data = array(
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
@@ -83,6 +84,8 @@ class Users_Model extends CI_Model
 			'created_time' => date("Y-m-d H:i:s")
 		);
 		$this->db->set($new_users_insert_data)->insert('users');
+		$last_add_users_id = $this->db->insert_id();
+		$this->users_address_model->add_users_address($last_add_users_id);
 	}
 }
 ?>
