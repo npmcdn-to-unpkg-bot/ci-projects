@@ -61,7 +61,7 @@
 		<tr>
 			<td>il:</td>
 			<td>
-				<select name="city" id="city" onchange="findAddress('http://localhost/ci-projects/address/json_county',$(this).val(),'county','option','value')" class="form-control">
+				<select name="city_id" id="city" onchange="findAddress('http://localhost/ci-projects/address/json_county',$(this).val(),'county','option','value')" class="form-control">
 					<option value="0">Seçiniz</option>
 					<?php foreach ($city as $city_key => $city_value): ?>
 						<option value="<?php echo $city_value->city_id; ?>"><?php echo $city_value->city_name; ?></option>
@@ -72,7 +72,7 @@
 		<tr>
 			<td>ilçe:</td>
 			<td>
-				<select name="county" id="county" onchange="findAddress('http://localhost/ci-projects/address/json_district',$(this).val(),'district','option','value')" class="form-control">
+				<select name="county_id" id="county" onchange="findAddress('http://localhost/ci-projects/address/json_district',$(this).val(),'district','option','value')" class="form-control">
 					<option value="0">Seçiniz</option>
 				</select><input type="hidden" name="users_address" value="1">
 			</td>
@@ -80,7 +80,7 @@
 		<tr>
 			<td>semt:</td>
 			<td>
-				<select name="district" id="district" onchange="findAddress('http://localhost/ci-projects/address/json_neighborhood',$(this).val(),'neighborhood','option','value')" class="form-control">
+				<select name="district_id" id="district" onchange="findAddress('http://localhost/ci-projects/address/json_neighborhood',$(this).val(),'neighborhood','option','value')" class="form-control">
 					<option value="0">Seçiniz</option>
 				</select><input type="hidden" name="users_address" value="1">
 			</td>
@@ -88,7 +88,7 @@
 		<tr>
 			<td>mahalle:</td>
 			<td>
-				<select name="neighborhood" id="neighborhood" class="form-control">
+				<select name="neighborhood_id" id="neighborhood" class="form-control">
 					<option value="0">Seçiniz</option>
 				</select><input type="hidden" name="users_address" value="1">
 			</td>
@@ -106,6 +106,7 @@
 		<tr>
 			<td> </td>
 			<td>
+				<input type="hidden" name="permissions_id" value="4">
 				<?php echo form_reset('reset','Temizle','class="btn btn-lg btn-danger btn-block"'); ?>
 				<?php echo form_submit('submit','Üye Kayıt','class="btn btn-lg btn-success btn-block"'); ?>
 			</td>

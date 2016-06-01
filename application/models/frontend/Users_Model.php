@@ -69,7 +69,6 @@ class Users_Model extends CI_Model
 	}
 
 	function add_users() {
-		$this->load->model('frontend/users_address_model');
 		$new_users_insert_data = array(
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
@@ -85,7 +84,14 @@ class Users_Model extends CI_Model
 		);
 		$this->db->set($new_users_insert_data)->insert('users');
 		$last_add_users_id = $this->db->insert_id();
-		$this->users_address_model->add_users_address($last_add_users_id);
+		if ($this->input->post('users_address')) {
+			$this->load->model('frontend/users_address_model');
+			$this->users_address_model->add_users_address($last_add_users_id);
+		}
+		if ($this->input->post('permissions_id')) {
+			$this->load->model('frontend/users_permissions_model');
+			$this->users_permissions_model->add_users_permissions($last_add_users_id);
+		}
 	}
 }
 ?>

@@ -103,7 +103,7 @@
 			$g_recaptcha = json_decode($g_recaptcha_url,TRUE);
 			if ($this->input->post('g-recaptcha-response') === NULL || $g_recaptcha['success']) {
 				// validation_form
-				$this->form_validation->set_rules('username','','trim|required|min_length[4]|callback_check_if_username_exists');
+				$this->form_validation->set_rules('username','','trim|required|min_length[3]|callback_check_if_username_exists');
 				$this->form_validation->set_rules('email','','trim|required|valid_email|callback_check_if_email_exists');
 				$this->form_validation->set_rules('password','','trim|required|min_length[4]|max_length[32]');
 				$this->form_validation->set_rules('password_repeat','','trim|required|min_length[4]|max_length[32]|matches[password]');
@@ -119,8 +119,8 @@
                     $this->load->model('frontend/users_model');
                     $this->users_model->add_users();
                     
-                    /*$this->session->set_flashdata('success','<!-- Button trigger modal --><button type="button" class="btn btn-primary btn-lg uyelik-tamam" data-toggle="modal" data-target="#myModal" style="display:none;">Üyelik Tamamlandı</button><!-- Modal --><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Üyelik İşlemi</h4></div><div class="modal-body">üye kayıt işlemi başarılı bir şekilde yapıldı.</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button><a href="myinfo" class="btn btn-primary">Hesabım</a></div></div></div></div><script>$(".uyelik-tamam").click();</script>');
-					redirect('home');*/
+                    $this->session->set_flashdata('success','<!-- Button trigger modal --><button type="button" class="btn btn-primary btn-lg uyelik-tamam" data-toggle="modal" data-target="#myModal" style="display:none;">Üyelik Tamamlandı</button><!-- Modal --><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Üyelik İşlemi</h4></div><div class="modal-body">üye kayıt işlemi başarılı bir şekilde yapıldı.</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button><a href="myinfo" class="btn btn-primary">Hesabım</a></div></div></div></div><script>$(".uyelik-tamam").click();</script>');
+					redirect('home');
 				}	
 			} else {
 				$data['errors'] = 'recaptcha işaretlemelisiniz.';
