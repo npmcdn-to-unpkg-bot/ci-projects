@@ -5,7 +5,7 @@
  class Auth extends Frontend_Controller
  {
  	
- 	function __construct()
+ 	public function __construct()
  	{
  		parent::__construct();
  	}
@@ -26,7 +26,7 @@
 		if ($this->input->post()) {
 			// validation_form
 	 		$this->load->library('form_validation');
-			$this->form_validation->set_rules('username','','trim|required|min_length[4]');
+			$this->form_validation->set_rules('username','','trim|required|min_length[3]');
 			$this->form_validation->set_rules('password','','trim|required|min_length[4]|max_length[32]');
 			if ($this->form_validation->run() === FALSE) {
 				$data['username'] = $this->input->input_stream('username');
@@ -42,14 +42,15 @@
 					// recaptcha dogru
 					$query = $this->users_model->validate();
 					if ($query) { // if the user's credentials valiated...
-						$get_users_ = $this->users_model->get_users();
-						$get_users_vendor = (isset($get_users_->vendor))? true : false ;
-						$get_users_customer = (isset($get_users_->customer))? true : false ;
+						$get_perm_users_ = $this->users_model->get_perm_users();
+						$get_perm_users_vendor = (isset($get_perm_users_->vendor))? true : false ;
+						$get_perm_users_customer = (isset($get_perm_users_->customer))? true : false ;
 						$data = array(
-							'username' => $this->input->post('username'),
+							'user_id' => $get_perm_users_->id,
+							'username' => $get_perm_users_->username,
 							'is_logged_in'	=>  true,
-							'vendor' => $get_users_vendor,
-							'customer' => $get_users_customer
+							'vendor' => $get_perm_users_vendor,
+							'customer' => $get_perm_users_customer
 						);
 						$this->session->set_userdata($data);
 						$this->session->unset_userdata('frontend_login_attempt');
@@ -136,6 +137,7 @@
  	}
 
  	public function logout() {
+		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('is_logged_in');
 		$this->session->unset_userdata('vendor');

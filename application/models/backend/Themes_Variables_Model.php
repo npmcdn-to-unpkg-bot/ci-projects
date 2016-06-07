@@ -93,5 +93,16 @@ class Themes_Variables_Model extends CI_Model
 		return $themes_variables = array(
 		);
 	}
+	
+	function myinfo() {
+		return $themes_variables = array(
+		);
+	}
+	
+	function changemypassword() {
+		return $themes_variables = array(
+		);
+	}
+
 }
 ?>

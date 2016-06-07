@@ -18,7 +18,7 @@ class Users_Model extends CI_Model
 		}
 	}
 
-	function get_users() {
+	function get_perm_users() {
 
 		$userdata = array();
 
@@ -66,6 +66,11 @@ class Users_Model extends CI_Model
 			return TRUE; // email can be reg'd
 		}
 
+	}
+
+	function get_users() {
+		$get_users_result = $this->db->query('SELECT users.*,users_address.*,permissions.id AS perm_id, permissions.name AS perm_name FROM users JOIN users_address ON users.id = users_address.users_id JOIN users_permissions ON users.id = users_permissions.users_id RIGHT JOIN permissions ON users_permissions.permissions_id = permissions.id WHERE users.id = '.$this->session->userdata('user_id'));
+		return $get_users_result->result();
 	}
 
 	function add_users() {

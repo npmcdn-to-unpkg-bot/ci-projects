@@ -1,1 +1,1 @@
-asd,<?php echo $sidebar_value->content ?>
+<div class="qwe_blok"><div class="qwe_blok_baslik"><h3><?php echo $sidebar_value->title ?></h3></div><div class="qwe_blok_icerik"><?php echo $sidebar_value->content ?></div></div>
