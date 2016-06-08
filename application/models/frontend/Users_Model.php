@@ -69,7 +69,7 @@ class Users_Model extends CI_Model
 	}
 
 	function get_users() {
-		$get_users_result = $this->db->query('SELECT users.*,users_address.*,permissions.id AS perm_id, permissions.name AS perm_name FROM users JOIN users_address ON users.id = users_address.users_id JOIN users_permissions ON users.id = users_permissions.users_id RIGHT JOIN permissions ON users_permissions.permissions_id = permissions.id WHERE users.id = '.$this->session->userdata('user_id'));
+		$get_users_result = $this->db->query('SELECT u.id, u.username, u.email, u.name, u.surname, u.gender, u.date_of_birth, u.day_of_birth, u.month_of_birth, u.year_of_birth, ua.phone, ua.phone2, ua.gsm, ua.company, ua.county_id, ua.city_id, ua.district_id, ua.neighborhood_id, ua.address FROM users AS u JOIN users_address AS ua ON u.id = ua.users_id WHERE u.id = '.$this->session->userdata('user_id'));
 		return $get_users_result->result();
 	}
 
