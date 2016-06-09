@@ -25,11 +25,17 @@
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
 		$data['myinfo'] = $this->themes_model->get_themes_class_name('myinfo');
 
-		$data['get_users'] = $this->users_model->get_users();
+		$get_users_ = $this->users_model->get_users();
+		$data['get_users'] = $get_users_[0];
+		$data['city'] = $this->city();
 
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/myinfo',$data);
 		$this->load->view('frontend/layout/footer',$data);
+ 	}
+
+ 	public function changemypassword() {
+
  	}
 
  } 
