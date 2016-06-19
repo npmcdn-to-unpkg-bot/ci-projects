@@ -14,6 +14,8 @@
 						<?php
 							echo validation_errors('<p style="color:#dc0001;">');
 						?>
+						<div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
+            			<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
 						<form action="" method="post">
 							<div class="form-group">
 								<div class="checkbox">

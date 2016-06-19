@@ -98,5 +98,43 @@ class Users_Model extends CI_Model
 			$this->users_permissions_model->add_users_permissions($last_add_users_id);
 		}
 	}
+
+	function update_users() {
+		$users_update_data = array(
+			'username' => $this->input->post('username'),
+			'email' => $this->input->post('email'),
+			'name' => $this->input->post('name'),
+			'surname' => $this->input->post('surname'),
+			'gender' => $this->input->post('gender'),
+			'date_of_birth' => $this->input->post('date_of_birth'),
+			'day_of_birth' => $this->input->post('day_of_birth'),
+			'month_of_birth' => $this->input->post('month_of_birth'),
+			'year_of_birth' => $this->input->post('year_of_birth')
+		);
+		$this->db->set($users_update_data);
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('users');
+
+		if ($this->input->post('users_address')) {
+			$this->load->model('frontend/users_address_model');
+			$this->users_address_model->update_users_address($this->input->post('id'));
+		}
+	}
+
+	function update_changemypassword() {
+		$update_changemypassword_data = array(
+			'password' => $this->encryption->encrypt($this->input->post('password')),
+		);
+		$this->db->set($update_changemypassword_data);
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('users');
+	}
+
+	function check_old_password($old_password) {
+		$this->db->select('password');
+		$this->db->where('id',$this->input->post('id'));
+		$old_pass = $this->db->get('users');
+		return $old_pass->result()[0]->password;
+	}
 }
 ?>

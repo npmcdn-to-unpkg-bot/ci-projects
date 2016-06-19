@@ -118,6 +118,10 @@ $(function(){
                                 </div>
                                 <div class="tab-pane fade" id="settings03">
                                     <div class="form-group">
+                                        <label>Kategori Linki</label>
+                                        <input type="text" name="cat_link" class="form-control" value="<?php if(isset($add_stream_cat_link)){echo $add_stream_cat_link;} ?>" />
+                                    </div>
+                                    <div class="form-group">
                                         <label>Meta Title</label>
                                         <textarea name="meta_title" class="form-control"><?php if(isset($add_stream_meta_title)){echo $add_stream_meta_title;} ?></textarea>
                                     </div>

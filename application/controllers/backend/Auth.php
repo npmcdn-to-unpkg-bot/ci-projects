@@ -130,7 +130,14 @@ class Auth extends Backend_Controller
 	}
 
 	/*public function encrypt_pass() {
-		echo $this->encryption->encrypt(123456);
+		echo $this->encryption->encrypt(1234);
+	}
+	
+	public function encrypt_users() {
+		$this->db->select('*');
+		$this->db->where('id', 2);
+		$u = $this->db->get('users');
+		echo "<pre>";var_dump($this->encryption->decrypt($u->result()[0]->password));
 	}*/
 } 
 

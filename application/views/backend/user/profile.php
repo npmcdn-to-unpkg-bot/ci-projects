@@ -53,18 +53,6 @@
 								<label>Adres</label>
 								<?php echo form_input('address',$address,'class="form-control"'); ?>
 							</div>
-							<div class="form-group">
-								<label>Firma</label>
-								<?php echo form_input('corporation',$corporation,'class="form-control"'); ?>
-							</div>
-							<div class="form-group">
-								<label>Kıdem</label>
-								<?php echo form_input('seniority',$seniority,'class="form-control"'); ?>
-							</div>
-							<div class="form-group">
-								<label>TC No:</label>
-								<?php echo form_input('tc_no',$tc_no,'class="form-control"'); ?>
-							</div>
 							<?php echo form_submit('submit','Güncelle','class="btn btn-default"'); ?>
 						<?php 
 							echo form_close();

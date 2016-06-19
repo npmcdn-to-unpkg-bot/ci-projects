@@ -260,6 +260,7 @@ class Themes extends Backend_Controller
 				$this->load->library('parser');
 				$content = $this->parser->parse_string($this->input->post('content', FALSE),$this->themes_variables_model->$class_name());
 				$this->themes_model->themes_edit($content);
+				$this->session->set_flashdata('success','güncelleme yapildi.');
 				redirect('backend/themes/themes_edit/'.$this->input->post('themes_id'));
 			}
 		} else {

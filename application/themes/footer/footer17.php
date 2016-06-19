@@ -1,5 +1,3 @@
-</section>
-</div>
 <div id="footer">
 <div class="container">
 hazir tema footer icerik

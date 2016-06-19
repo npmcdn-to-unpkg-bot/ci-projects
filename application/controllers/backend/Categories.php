@@ -67,6 +67,7 @@ class Categories extends Backend_Controller
 				$data['add_stream_queue'] = $this->input->post('queue');
 				$data['add_stream_list_layout'] = $this->input->post('list_layout');
 				$data['add_stream_status'] = $this->input->post('status');
+				$data['add_stream_cat_link'] = $this->input->post('cat_link');
 				$data['add_stream_meta_title'] = $this->input->post('meta_title');
 				$data['add_stream_meta_description'] = $this->input->post('meta_description');
 				$data['add_stream_meta_keyword'] = $this->input->post('meta_keyword');
@@ -111,7 +112,8 @@ class Categories extends Backend_Controller
 			} else {
 
 				$this->categories_model->update_categories($images);
-				redirect('backend/categories');
+				$this->session->set_flashdata('success','kaydedildi.');
+				redirect('backend/categories/categoriesUpdate/'.$cat_id);
 			}
 		} else {
 

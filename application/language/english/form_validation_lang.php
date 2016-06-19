@@ -38,3 +38,4 @@ $lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.'
 
 $lang['check_if_username_exists']	= 'Sorry, that username is already taken';
 $lang['check_if_email_exists']		= 'Sorry, that email has already been registed';
+$lang['check_old_password']		= '{param} ile {field} alanı eşleşmemiştir';

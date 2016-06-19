@@ -1,0 +1,1 @@
+<?php require(APPPATH.$categories[0]->file_path); ?>

@@ -71,7 +71,7 @@ class Users_Model extends CI_Model
 	function user_info($username) {
 
 		$this->db->where('username',$username);
-		$this->db->join('users_details udetails', 'udetails.users_id = users.id');
+		$this->db->join('users_address udetails', 'udetails.users_id = users.id');
 		$query = $this->db->get('users');
 		return $query->row();
 		
@@ -103,9 +103,6 @@ class Users_Model extends CI_Model
 			'phone' => $this->input->post('phone'),
 			'phone2' => $this->input->post('phone2'),
 			'address' => $this->input->post('address'),
-			'corporation' => $this->input->post('corporation'),
-			'seniority' => $this->input->post('seniority'),
-			'tc_no' => $this->input->post('tc_no')
 		);
 
 		
@@ -116,7 +113,7 @@ class Users_Model extends CI_Model
 		
 		$this->db->set($users_details_update_data);
 		$this->db->where('users_id',$users_id);
-		$update2 = $this->db->update('users_details');
+		$update2 = $this->db->update('users_address');
 		
 		if ($update && $update2) {
 			// var_dump($update);

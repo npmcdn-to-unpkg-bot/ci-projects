@@ -13,6 +13,8 @@
                     <form action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         <div class="col-lg-12">
                             <?php echo validation_errors('<p style="color:#dc0001;">');  ?>
+                            <div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
+                            <div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs categories-tabs">
                                 <li class="active"><a href="#settings01" data-toggle="tab">Genel Ayarları</a></li>
@@ -69,6 +71,10 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="settings03">
+                                    <div class="form-group">
+                                        <label>Kategori Linki</label>
+                                        <input type="text" name="cat_link" class="form-control" value="<?php echo $cat->cat_link; ?>" />
+                                    </div>
                                     <div class="form-group">
                                         <label>Meta Title</label>
                                         <textarea name="meta_title" class="form-control"><?php echo $cat->meta_title ?></textarea>

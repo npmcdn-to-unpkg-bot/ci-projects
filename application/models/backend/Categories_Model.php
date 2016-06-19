@@ -15,7 +15,7 @@ class Categories_Model extends CI_Model
 			return $result = $query->result();
 		}
 	}
-
+	
 	function add_categories($images) {
 		
 		if (empty($this->input->post('status'))) {
@@ -28,7 +28,7 @@ class Categories_Model extends CI_Model
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),
 			'status' => $status,
-			// 'cat_link' => $this->input->post('cat_link'),
+			'cat_link' => $this->input->post('cat_link'),
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
 			'queue' => $this->input->post('queue'),
@@ -81,7 +81,7 @@ class Categories_Model extends CI_Model
 		}
 		$categories_update_data = array(
 			'status' => $status,
-			// 'cat_link' => $this->input->post('cat_link'),
+			'cat_link' => $this->input->post('cat_link'),
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
 			'image' => $db_img_name['image'],
