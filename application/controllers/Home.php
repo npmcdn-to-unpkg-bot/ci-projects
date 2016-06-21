@@ -32,6 +32,7 @@ class Home extends Frontend_Controller
 		// bloklar
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
+			$data['sidebar_leftbar'] = $this->themes_model->get_themes_class_name('sidebar_leftbar');
 			$leftbar = $this->sidebar_model->get_leftbar();
 			foreach ($leftbar as $key => $value) {
 				$get_themes = $this->themes_model->get_themes($value->themes_id);
@@ -40,6 +41,7 @@ class Home extends Frontend_Controller
 			}
 		}
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'rightbar') {
+			$data['sidebar_rightbar'] = $this->themes_model->get_themes_class_name('sidebar_rightbar');
 			$rightbar = $this->sidebar_model->get_rightbar();
 			foreach ($rightbar as $key => $value) {
 				$get_themes = $this->themes_model->get_themes($value->themes_id);

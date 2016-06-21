@@ -87,13 +87,35 @@ class Themes_Variables_Model extends CI_Model
 		);
 	}
 
+	function sidebar_leftbar() {
+		return $themes_variables = array(
+			'içerik' => '<?php if (isset($leftbar)) { foreach($leftbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>'
+		);
+	}
+
+	function sidebar_rightbar() {
+		return $themes_variables = array(
+			'içerik' => '<?php if (isset($rightbar)) { foreach($rightbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>'
+		);
+	}
+
 	function home() {
 		return $themes_variables = array(
 			'slider' => '<?php if (isset($slider)) { require(APPPATH.$slider_themes[0]->file_path); } ?>',
 			'banner' => '<?php if (isset($banner)) { require(APPPATH.$banner_themes[0]->file_path); } ?>',
 			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
-			'leftbar' => '<?php if (isset($leftbar)) { foreach($leftbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>',
-			'rightbar' => '<?php if (isset($rightbar)) { foreach($rightbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>',
+			'leftbar' => '<?php if (isset($sidebar_leftbar)) { require(APPPATH.$sidebar_leftbar[0]->file_path); } ?>',
+			'rightbar' => '<?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>',
+		);
+	}
+	
+	function category_listing() {
+		return $themes_variables = array(
+			'slider' => '<?php if (isset($slider)) { require(APPPATH.$slider_themes[0]->file_path); } ?>',
+			'banner' => '<?php if (isset($banner)) { require(APPPATH.$banner_themes[0]->file_path); } ?>',
+			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
+			'leftbar' => '<?php if (isset($sidebar_leftbar)) { require(APPPATH.$sidebar_leftbar[0]->file_path); } ?>',
+			'rightbar' => '<?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>',
 		);
 	}
 
@@ -195,16 +217,6 @@ class Themes_Variables_Model extends CI_Model
 	
 	function changemypassword() {
 		return $themes_variables = array(
-		);
-	}
-	
-	function category_listing() {
-		return $themes_variables = array(
-			'slider' => '<?php if (isset($slider)) { require(APPPATH.$slider_themes[0]->file_path); } ?>',
-			'banner' => '<?php if (isset($banner)) { require(APPPATH.$banner_themes[0]->file_path); } ?>',
-			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
-			'leftbar' => '<?php if (isset($leftbar)) { foreach($leftbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>',
-			'rightbar' => '<?php if (isset($rightbar)) { foreach($rightbar as $sidebar_key => $sidebar_value) {include(APPPATH.$sidebar_value->file_path);} } ?>',
 		);
 	}
 
