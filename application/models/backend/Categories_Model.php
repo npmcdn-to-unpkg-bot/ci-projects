@@ -28,7 +28,6 @@ class Categories_Model extends CI_Model
 		$new_categories_insert_data = array(
 			'parent_id' => $this->input->post('parent_id'),
 			'status' => $status,
-			'cat_link' => $this->input->post('cat_link'),
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
 			'queue' => $this->input->post('queue'),
@@ -51,6 +50,7 @@ class Categories_Model extends CI_Model
 		}
 		$this->db->set('image', $db_img_name['image']);
 		$this->db->set('banner', $db_img_name['banner']);
+		$this->db->set('cat_link', 'categories/'.$last_id);
 		$this->db->where('id',$last_id);
 		$this->db->update('categories');
 	}
