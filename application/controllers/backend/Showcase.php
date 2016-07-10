@@ -12,7 +12,20 @@ class Showcase extends Backend_Controller
 	
 	public function index() {
 		$this->load->model('backend/showcase_model');
-		$data['showcase_list'] = $this->showcase_model->get_showcase();
+		$this->load->model('backend/categories_model');
+		$get_showcase = $this->showcase_model->get_showcase();
+		foreach ($get_showcase as $key => $value) {
+			$get_showcase_to_categories = $this->showcase_model->get_showcase_to_categories($value->id);
+			$data['showcase_list'][$key] = $value;
+			$data['showcase_list'][$key]->showcase_to_categories = $get_showcase_to_categories;
+			
+		}
+		$showcase_to_categories = $this->showcase_model->get_showcase_to_categories();
+		foreach ($showcase_to_categories as $key => $value) {
+			$data['showcase_to_categories'][$value->categories_id] = $this->categories_model->get_categories($value->categories_id);
+			$data['showcase_to_categories'][$value->categories_id] = $data['showcase_to_categories'][$value->categories_id][0];
+		}
+		// echo "<pre>";var_dump($data);exit;
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/showcase/showcase_management',$data);
 		$this->load->view('backend/layout/footer');
@@ -128,6 +141,11 @@ class Showcase extends Backend_Controller
 		$this->load->view('backend/layout/header');
 		$this->load->view('backend/showcase/blog_to_showcase',$data);
 		$this->load->view('backend/layout/footer');
+	}
+
+	public function showcase_move() {
+		$this->load->model('backend/showcase_model');
+		$this->showcase_model->showcase_move();
 	}
 }
 ?>

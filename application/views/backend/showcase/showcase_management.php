@@ -1,3 +1,4 @@
+<script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Vitrin Yönetimi</h1>
@@ -14,13 +15,24 @@
 						<div class="errors"><?php echo (!empty($this->session->flashdata('errors'))) ? $this->session->flashdata('errors') : '' ; ?></div>
 						<div class="success"><?php echo (!empty($this->session->flashdata('success'))) ? $this->session->flashdata('success') : '' ; ?></div>
 						<div class="form-group">
-							<a href="backend/showcase/showcase_add" class="btn btn-outline btn-warning">Vitrin Ekle</a>
+							<a href="javascript:;" class="btn btn-outline btn-danger showcase-queue">Sıralamayı Kaydet</a>
+							<a href="backend/showcase/showcase_add" class="btn btn-outline btn-warning">Vitrin Ekle</a>							
+						</div>
+						<div class="form-group">
+							<div id="filters" class="button-group">
+								<button class="btn btn-outline btn-default btn-primary showcase-show-all" data-filter="*">Hepsini Göster</button>
+								<?php foreach ($showcase_to_categories as $key => $value): ?>
+									<button class="btn btn-outline btn-default" data-filter=".cat_<?php echo $value->id; ?>"><?php echo $value->name; ?></button>
+								<?php endforeach ?>
+							</div>
 						</div>
 						<div class="form-group">
 							<!-- vitrin listelemesi -->
-							<ul id="draggablePanelList" class="list-unstyled">
+							<ul id="draggablePanelList" class="list-unstyled isotope-grid">
 								<?php foreach ($showcase_list as $key => $value) { ?>
-									<li class="panel panel-info">
+									<li class="panel panel-info <?php foreach ($value->showcase_to_categories as $stc_key => $stc_value) {
+										echo "cat_".$stc_value->categories_id." ";
+									} ?>" rel="<?php echo $value->id; ?>">
 										<div class="panel-heading"><?php echo $value->title ?></div>
 										<div class="panel-body">
 											<a href="backend/showcase/blog_to_showcase/<?php echo $value->id ?>">Vitrine Blog Ekle </a>
@@ -66,16 +78,45 @@
 <script>
 	var panelList = $('#draggablePanelList');
 	panelList.sortable({
-		// Only make the .panel-heading child elements support dragging.
-		// Omit this to make then entire <li>...</li> draggable.
-		handle: '.panel-heading', 
-		update: function() {
-			$('.panel', panelList).each(function(index, elem) {
-				var $listItem = $(elem),
-				newIndex = $listItem.index();
-				// Persist the new indices.
-			});
+		handle: '.panel-heading'
+	});
+	// init Isotope
+	var $grid = $('.isotope-grid').isotope({
+		itemSelector: '.panel',
+		layoutMode: 'vertical',
+		getSortData: {
+			name: '.panel-heading'
 		}
+	});
+	// bind filter button click
+	$('#filters').on( 'click', 'button', function() {
+		var filterValue = $( this ).attr('data-filter');
+		// use filterFn if matches value
+		$grid.isotope({ filter: filterValue });
+	});
+	// change is-checked class on buttons
+	$('.button-group').each( function( i, buttonGroup ) {
+		var $buttonGroup = $( buttonGroup );
+		$buttonGroup.on( 'click', 'button', function() {
+			$buttonGroup.find('.btn-primary').removeClass('btn-primary');
+			$(this).addClass('btn-primary');
+			if($(this).hasClass('showcase-show-all')) {
+				$('.showcase-queue').show();
+			} else {
+				$('.showcase-queue').hide();
+			}
+		});
+	});
+	$('.panel').attr('style','');
+	$('.showcase-queue').on('click', function(){
+		$('.panel').each(function(index, elem) {
+			newIndex = $(elem).index()+1;
+			listId = $(elem).attr('rel');
+			// console.log('newIndex:'+newIndex+'listId:'+listId);
+			$.post('backend/showcase/showcase_move',{id:listId,queue:newIndex},function(o){
+				// console.log(o);
+			});
+		});
 	});
 	$('.modal_showcase_delete').on('click', function(){
         var rel = $(this).attr('rel');
@@ -84,3 +125,6 @@
         $('#showcase_delete #showcase_delete_name').text('"'+showcase_delete_name+'"');
     });
 </script>
+<style>
+	.panel-heading {cursor:move;}
+</style>

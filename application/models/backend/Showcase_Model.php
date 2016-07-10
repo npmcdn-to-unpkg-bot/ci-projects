@@ -8,14 +8,17 @@ class Showcase_Model extends CI_Model
 		if ($showcase_id != null) {
 			$this->db->where('id', $showcase_id);
 		}
+		$this->db->order_by('queue', 'ASC');
 		$query = $this->db->get('showcase');
 		if ($query->num_rows()>0) {
 			return $result = $query->result();
 		}
 	}
 
-	function get_showcase_to_categories($id) {
-		$this->db->where('showcase_id', $id);
+	function get_showcase_to_categories($id = null) {
+		if ($id != null) {
+			$this->db->where('showcase_id', $id);
+		}
 		$query = $this->db->get('showcase_to_categories');
 		if ($query->num_rows()>0) {
 			return $result = $query->result();
@@ -140,6 +143,15 @@ class Showcase_Model extends CI_Model
 				$this->db->set($blog_to_showcase_new_data)->insert('blog_to_showcase');
 			}
 		}
+	}
+
+	function showcase_move() {
+		$showcase_move_update_data = array(
+			'queue' => $this->input->post('queue')
+		);
+		$this->db->set($showcase_move_update_data);
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('showcase');
 	}
 
 }
