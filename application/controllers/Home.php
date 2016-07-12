@@ -75,7 +75,7 @@ class Home extends Frontend_Controller
 						$value->blog[$bts_key] = $bts_value;
 					}
 				} else {
-					$blog_errors = array('file_path' => 'themes/blog/views/blog_errors.php' );
+					$blog_errors = array('file_path' => 'themes/blog/list/blog_errors.php' );
 					$value->blog = array((object)$blog_errors);
 				}
 				$data['showcase'][$key] = $value;

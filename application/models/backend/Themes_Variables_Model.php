@@ -80,6 +80,16 @@ class Themes_Variables_Model extends CI_Model
 		);
 	}
 
+	function blog_list() {
+		return $themes_variables = array(
+			'sayfa link(perma)' => '<?php echo $blog_value->perma_link ?>',
+			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
+			'sayfa başlık' => '<?php echo $blog_value->list_title ?>',
+			'sayfa resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
+			'sayfa içerik' => '<?php echo $blog_value->list_content ?>'
+		);
+	}
+
 	function sidebar_frame() {
 		return $themes_variables = array(
 			'bileşen başlık' => '<?php echo $sidebar_value->title ?>',
