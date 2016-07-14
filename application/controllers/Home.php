@@ -29,6 +29,9 @@ class Home extends Frontend_Controller
 		$data['home'] = $this->themes_model->get_themes_class_name('home');
 		$data['slider_themes'] = $this->themes_model->get_themes_class_name('slider');
 		$data['banner_themes'] = $this->themes_model->get_themes_class_name('banner');
+		// home_page_passive_footer
+		$passive_footer_ = $this->site_settings_model->get_settings_name('home_page_passive_footer');
+		$passive_footer = $passive_footer_[0];
 		// bloklar
 		$sidebar_ = $this->site_settings_model->get_settings_name('home_page_sidebar');
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
@@ -86,10 +89,13 @@ class Home extends Frontend_Controller
 		$data['banner'] = $this->banner_model->get_banner('banner','home');
 
 		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
+		// var_dump($passive_footer->settings_value);exit;
 
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/home',$data);
-		$this->load->view('frontend/layout/footer',$data);
+		if ($passive_footer->settings_value !== 'passive_footer') {
+			$this->load->view('frontend/layout/footer',$data);
+		}
 
 	}
 }

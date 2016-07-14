@@ -59,6 +59,7 @@ $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'home';
 $route['auth'] = 'auth';
 $route['categories/(:any)'] = 'categories/index/$1';
+$route['blog/(:any)'] = 'blog/index/$1';
 
 $route['admin'] = 'backend/auth';
 $route['admin/auth/(:any)'] = 'backend/auth/$1';

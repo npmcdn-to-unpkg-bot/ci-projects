@@ -113,10 +113,9 @@
 			newIndex = $(elem).index()+1;
 			listId = $(elem).attr('rel');
 			// console.log('newIndex:'+newIndex+'listId:'+listId);
-			$.post('backend/showcase/showcase_move',{id:listId,queue:newIndex},function(o){
-				// console.log(o);
-			});
+			$.post('backend/showcase/showcase_move',{id:listId,queue:newIndex},function(o){});
 		});
+		alert('Sıralama Kaydedildi.');
 	});
 	$('.modal_showcase_delete').on('click', function(){
         var rel = $(this).attr('rel');

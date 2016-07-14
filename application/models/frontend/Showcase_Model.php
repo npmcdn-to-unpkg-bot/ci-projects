@@ -31,6 +31,11 @@ class Showcase_Model extends CI_Model
 		return $get_showcase_categories->result();
 	}
 
+	function get_showcase_blog($blog_id) {
+		$get_showcase_blog = $this->db->query('SELECT sh.*,stb.blog_id FROM showcase_to_blog AS stb JOIN showcase AS sh on stb.showcase_id = sh.id where stb.blog_id = '.$blog_id);
+		return $get_showcase_blog->result();
+	}
+
 	function get_blog_to_showcase($showcase_id = null) {
 		$this->db->select('blog_id,themes_id,themes_area_id');
 		if ($showcase_id != null) {

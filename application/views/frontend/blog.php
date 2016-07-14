@@ -1,0 +1,1 @@
+<?php require(APPPATH.$blog[0]->file_path); ?>

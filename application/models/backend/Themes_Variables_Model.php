@@ -34,7 +34,7 @@ class Themes_Variables_Model extends CI_Model
 					if ($currLevel > $prevLevel) $tree .= "<ul class='submenu'>";
 					if ($currLevel == $prevLevel) $tree .= "</li>";
 					($category->status == 1)?$status = 'active':$status = 'passive';
-					$tree .= '<li><a href="categories/'.$category->id.'" title="'.$category->description.'" class="'.$status.'">'.$category->name.'</a>';
+					$tree .= '<li><a href="'.$category->cat_link.'" title="'.$category->name.'" class="'.$status.'">'.$category->name.'</a>';
 					if ($currLevel > $prevLevel) { $prevLevel = $currLevel; }
 					$currLevel++;
 					$tree .= $this->catTree($array, $category->id, $catLevel, $currLevel, $prevLevel);
@@ -70,19 +70,8 @@ class Themes_Variables_Model extends CI_Model
 		);
 	}
 
-	function blog_views() {
-		return $themes_variables = array(
-			'sayfa link(perma)' => '<?php echo $blog_value->perma_link ?>',
-			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
-			'sayfa başlık' => '<?php echo $blog_value->list_title ?>',
-			'sayfa resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
-			'sayfa içerik' => '<?php echo $blog_value->list_content ?>'
-		);
-	}
-
 	function blog_list() {
 		return $themes_variables = array(
-			'sayfa link(perma)' => '<?php echo $blog_value->perma_link ?>',
 			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
 			'sayfa başlık' => '<?php echo $blog_value->list_title ?>',
 			'sayfa resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
@@ -126,6 +115,24 @@ class Themes_Variables_Model extends CI_Model
 			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
 			'leftbar' => '<?php if (isset($sidebar_leftbar)) { require(APPPATH.$sidebar_leftbar[0]->file_path); } ?>',
 			'rightbar' => '<?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>',
+		);
+	}
+
+	function blog_views() {
+		return $themes_variables = array(
+			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
+			'leftbar' => '<?php if (isset($sidebar_leftbar)) { require(APPPATH.$sidebar_leftbar[0]->file_path); } ?>',
+			'rightbar' => '<?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>',
+			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
+			'sayfa başlık' => '<?php echo $blog_value->title ?>',
+			'sayfa içerik' => '<?php echo $blog_value->content ?>',
+			'sayfa listeleme resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
+			'hızlı menü' => '<?php foreach ($blog_qlink as $key => $qlink) { ?>',
+			'hızlı menü id' => '<?php echo $qlink->id ?>',
+			'hızlı menü tipi' => '<?php echo $qlink->pages_type ?>',
+			'hızlı menü linki' => '<?php echo $qlink->pages_link ?>',
+			'hızlı menü başlık' => '<?php echo $qlink->title ?>',
+			'/hızlı menü' => '<?php } ?>',
 		);
 	}
 
