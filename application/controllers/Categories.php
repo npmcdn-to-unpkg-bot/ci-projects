@@ -9,8 +9,9 @@ class Categories extends Frontend_Controller
 	{
 		parent::__construct();
 		$this->load->model('frontend/site_settings_model');
+		$restrict = $this->site_settings_model->get_settings_name('restrict_roaming');
 		$restrict_ = $this->site_settings_model->get_settings_name('listing_restrict_roaming');
-		if ($restrict_[0]->settings_value == 'enable') {
+		if ($restrict_[0]->settings_value == 'enable' && $restrict[0]->settings_value == 'enable') {
 			$this->loginControl();
 		}
 		// var_dump($this->session->all_userdata());
@@ -29,8 +30,7 @@ class Categories extends Frontend_Controller
 		$data['slider_themes'] = $this->themes_model->get_themes_class_name('slider');
 		$data['banner_themes'] = $this->themes_model->get_themes_class_name('banner');
 		// category_page_passive_footer
-		$passive_footer_ = $this->site_settings_model->get_settings_name('category_page_passive_footer');
-		$passive_footer = $passive_footer_[0];
+		$passive_footer = $this->site_settings_model->get_settings_name('category_page_passive_footer');
 		// bloklar
 		$sidebar_ = $this->site_settings_model->get_settings_name('category_page_sidebar');
 		if ($sidebar_[0]->settings_value == 'sidebar' || $sidebar_[0]->settings_value == 'leftbar') {
@@ -89,7 +89,7 @@ class Categories extends Frontend_Controller
 		
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/categories',$data);
-		if ($passive_footer->settings_value !== 'passive_footer') {
+		if ($passive_footer[0]->settings_value !== 'passive_footer') {
 			$this->load->view('frontend/layout/footer',$data);
 		}
 	}
