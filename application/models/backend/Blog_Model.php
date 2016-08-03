@@ -14,13 +14,23 @@ class Blog_Model extends CI_Model
 			return $result = $query->result();
 		}
 	}
+
+	function get_blog_groupby($groupby = null) {
+		$this->db->select($groupby);
+		if ($groupby != null) {
+			$this->db->group_by($groupby);
+		}
+		$query = $this->db->get('blog');
+		if ($query->num_rows()>0) {
+			return $result = $query->result();
+		}
+	}
 	
 	function blog_add($images) {
 		$this->load->helper('rand_helper');
 		$new_blog_insert_data = array(
-			'pages_type' => 'pages_type',
-			'pages_link' => 'pages_link',
-			'perma_link' => 'perma_link',
+			'pages_type' => $this->input->post('pages_type'),
+			'quick_link' => $this->input->post('quick_link'),
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content', FALSE),
 			'list_title' => $this->input->post('list_title'),
@@ -44,6 +54,7 @@ class Blog_Model extends CI_Model
 				'list_image' => $db_img_name[$key]
 			);
 			$this->db->set($blog_add_image);
+			$this->db->set('pages_link','blog/'.$last_id);
 			$this->db->where('id', $last_id);
 			$this->db->update('blog');
 		}
@@ -52,9 +63,10 @@ class Blog_Model extends CI_Model
 	function blog_update($images) {
 		$this->load->helper('rand_helper');
 		$blog_update_data = array(
-			'pages_type' => 'pages_type',
-			'pages_link' => 'pages_link',
-			'perma_link' => 'perma_link',
+			'pages_type' => $this->input->post('pages_type'),
+			'perma_link' => $this->input->post('perma_link'),
+			'perma_active' => $this->input->post('perma_active'),
+			'quick_link' => $this->input->post('quick_link'),
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content', FALSE),
 			'list_title' => $this->input->post('list_title'),

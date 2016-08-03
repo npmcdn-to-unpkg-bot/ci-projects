@@ -1,1 +1,1 @@
-<?php require(APPPATH.$categories[0]->file_path); ?>
+<?php require(APPPATH.$category[0]->file_path); ?>

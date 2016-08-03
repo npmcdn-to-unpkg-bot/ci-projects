@@ -24,12 +24,24 @@ class Home extends Frontend_Controller
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
 		$this->load->model('frontend/banner_model');
-		// header - footer - home - slider - banner -> file_path
+		$this->load->model('frontend/categories_model');
+		// header - headercategory - footer - home - slider - banner -> file_path
 		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['header_category'] = $this->themes_model->get_themes_class_name('header_category');
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
 		$data['home'] = $this->themes_model->get_themes_class_name('home');
 		$data['slider_themes'] = $this->themes_model->get_themes_class_name('slider');
 		$data['banner_themes'] = $this->themes_model->get_themes_class_name('banner');
+		// categories
+		$categories = $this->categories_model->get_categories_menu();
+		$childs = array();
+		foreach($categories as $item) {
+		    $childs[$item->parent_id][] = $item;
+		}
+		foreach($categories as $item) if (isset($childs[$item->id])) {
+		    $item->childs = $childs[$item->id];
+		}
+		$data['categories'] = $childs[0];
 		// home_page_passive_footer
 		$passive_footer = $this->site_settings_model->get_settings_name('home_page_passive_footer');
 		// bloklar
@@ -88,6 +100,7 @@ class Home extends Frontend_Controller
 		$data['slider'] = $this->banner_model->get_banner('slide','home');
 		$data['banner'] = $this->banner_model->get_banner('banner','home');
 
+		// echo "<pre>";var_dump($data['categories']);exit;
 		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
 		// var_dump($passive_footer->settings_value);exit;
 

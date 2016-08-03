@@ -10,54 +10,43 @@ class Themes_Variables_Model extends CI_Model
 		$this->db->where('settings_name','site_logo');
 		$db_site_logo = $this->db->get('site_settings');
 		$db_site_logo = $db_site_logo->result();
-		// category
-		$this->load->model('backend/categories_model');
-		$category = $this->categories_model->get_categories();
-		$category0 = $this->catTree($category,0,0);
-		$category1 = $this->catTree($category,0,1);
-		$category2 = $this->catTree($category,0,2);
 		return $themes_variables = array(
 			'site_url' => site_url(),
 			'logo' => '<img src="'.$db_site_logo[0]->settings_value.'" />',
-			'ana kategori' => $category0,
-			'ana kategori 1' => $category1,
-			'ana kategori 2' => $category2,
+			'kategori menüsü' => '<?php include(APPPATH.$header_category[0]->file_path); ?>',
 			'kullanıcı adı' => '<?php echo $this->session->userdata("username") ?>'
 		);
 	}
-
-	function catTree($array, $currentParent, $catLevel, $currLevel = 0, $prevLevel = 0) {
-		$tree = "";
-		foreach ($array as $category) {
-			if ($currentParent == $category->parent_id) {
-				if ($currLevel <= $catLevel) {
-					if ($currLevel > $prevLevel) $tree .= "<ul class='submenu'>";
-					if ($currLevel == $prevLevel) $tree .= "</li>";
-					($category->status == 1)?$status = 'active':$status = 'passive';
-					$tree .= '<li><a href="'.$category->cat_link.'" title="'.$category->name.'" class="'.$status.'">'.$category->name.'</a>';
-					if ($currLevel > $prevLevel) { $prevLevel = $currLevel; }
-					$currLevel++;
-					$tree .= $this->catTree($array, $category->id, $catLevel, $currLevel, $prevLevel);
-					$currLevel--;
-				}
-			}
-		}
-		if ($currLevel == $prevLevel) $tree .= "</li></ul>";
-		return $tree;
+	
+	function header_category() {
+		return $themes_variables = array(
+			'ana kategori' => '<?php foreach ($categories as $key => $value) { ?>',
+			'ana kategori (id)' => '<?php echo $value->id ?>',
+			'ana kategori (linki)' => '<?php echo ($value->perma_active)?$value->perma_link:$value->cat_link; ?>',
+			'ana kategori (adı)' => '<?php echo $value->name ?>',
+			'ana kategori (aciklama)' => '<?php echo $value->description ?>',
+			'/ana kategori' => '<?php } ?>',
+			'alt kategori' => '<?php if (isset($value->childs)) { echo "<ul class=\'submenu\'>"; foreach ($value->childs as $key2 => $value2) { ?>',
+			'alt kategori (id)' => '<?php echo $value2->id ?>',
+			'alt kategori (linki)' => '<?php echo ($value2->perma_active)?$value2->perma_link:$value2->cat_link; ?>',
+			'alt kategori (adı)' => '<?php echo $value2->name ?>',
+			'alt kategori (aciklama)' => '<?php echo $value2->description ?>',
+			'/alt kategori' => '<?php } echo "</ul>"; } ?>',
+			'alt kategori 2' => '<?php if (isset($value2->childs)) { echo "<ul class=\'submenu2\'>"; foreach ($value2->childs as $key3 => $value3) { ?>',
+			'alt kategori 2 (id)' => '<?php echo $value3->id ?>',
+			'alt kategori 2 (linki)' => '<?php echo ($value3->perma_active)?$value3->perma_link:$value3->cat_link; ?>',
+			'alt kategori 2 (adı)' => '<?php echo $value3->name ?>',
+			'alt kategori 2 (aciklama)' => '<?php echo $value3->description ?>',
+			'/alt kategori 2' => '<?php } echo "</ul>"; } ?>',
+		);
 	}
 
 	function footer() {
 		// category
 		$this->load->model('backend/categories_model');
 		$category = $this->categories_model->get_categories();
-		$category0 = $this->catTree($category,0,0);
-		$category1 = $this->catTree($category,0,1);
-		$category2 = $this->catTree($category,0,2);
 		return $themes_variables = array(
 			'footer logo' => '<img src="assets/uploads/images/logo.png" />',
-			'ana kategori' => $category0,
-			'ana kategori 1' => $category1,
-			'ana kategori 2' => $category2,
 			'kullanıcı adı' => '<?php echo $this->session->userdata("username") ?>'
 		);
 	}
@@ -72,10 +61,10 @@ class Themes_Variables_Model extends CI_Model
 
 	function blog_list() {
 		return $themes_variables = array(
-			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
-			'sayfa başlık' => '<?php echo $blog_value->list_title ?>',
+			'sayfa link' => '<?php echo ($blog_value->perma_active)?$blog_value->perma_link:$blog_value->pages_link; ?>',
+			'sayfa başlık' => '<?php echo ($blog_value->list_title)? $blog_value->list_title : $blog_value->title ; ?>',
 			'sayfa resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
-			'sayfa içerik' => '<?php echo $blog_value->list_content ?>'
+			'sayfa içerik' => '<?php echo ($blog_value->list_content)? $blog_value->list_content : $blog_value->content ;  ?>'
 		);
 	}
 
@@ -108,7 +97,7 @@ class Themes_Variables_Model extends CI_Model
 		);
 	}
 	
-	function category_listing() {
+	function category() {
 		return $themes_variables = array(
 			'slider' => '<?php if (isset($slider)) { require(APPPATH.$slider_themes[0]->file_path); } ?>',
 			'banner' => '<?php if (isset($banner)) { require(APPPATH.$banner_themes[0]->file_path); } ?>',
@@ -123,16 +112,16 @@ class Themes_Variables_Model extends CI_Model
 			'vitrin' => '<?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?>',
 			'leftbar' => '<?php if (isset($sidebar_leftbar)) { require(APPPATH.$sidebar_leftbar[0]->file_path); } ?>',
 			'rightbar' => '<?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>',
-			'sayfa link' => '<?php echo $blog_value->pages_link ?>',
+			'sayfa link' => '<?php echo ($blog_value->perma_link)?$blog_value->perma_link:$blog_value->pages_link; ?>',
 			'sayfa başlık' => '<?php echo $blog_value->title ?>',
 			'sayfa içerik' => '<?php echo $blog_value->content ?>',
-			'sayfa listeleme resim' => '<img src="<?php echo $blog_value->list_image ?>" />',
-			'hızlı menü' => '<?php foreach ($blog_qlink as $key => $qlink) { ?>',
+			'sayfa listeleme resim' => '<?php if (isset($blog_value->list_image)) { ?><img src="<?php echo $blog_value->list_image ?>" /><?php } ?>',
+			'hızlı menü' => '<?php if (isset($blog_qlink)) { foreach ($blog_qlink as $key => $qlink) { ?>',
 			'hızlı menü id' => '<?php echo $qlink->id ?>',
 			'hızlı menü tipi' => '<?php echo $qlink->pages_type ?>',
-			'hızlı menü linki' => '<?php echo $qlink->pages_link ?>',
+			'hızlı menü linki' => '<?php echo ($qlink->perma_link)?$qlink->perma_link:$qlink->pages_link; ?>',
 			'hızlı menü başlık' => '<?php echo $qlink->title ?>',
-			'/hızlı menü' => '<?php } ?>',
+			'/hızlı menü' => '<?php } } ?>',
 		);
 	}
 

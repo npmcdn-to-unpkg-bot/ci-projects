@@ -23,12 +23,24 @@ class Categories extends Frontend_Controller
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
 		$this->load->model('frontend/banner_model');
-		// header - footer - categories - slider - banner -> file_path
+		$this->load->model('frontend/categories_model');
+		// header - headercategory - footer - categories - slider - banner -> file_path
 		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['header_category'] = $this->themes_model->get_themes_class_name('header_category');
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
-		$data['categories'] = $this->themes_model->get_themes_class_name('category_listing');
+		$data['category'] = $this->themes_model->get_themes_class_name('category');
 		$data['slider_themes'] = $this->themes_model->get_themes_class_name('slider');
 		$data['banner_themes'] = $this->themes_model->get_themes_class_name('banner');
+		// categories
+		$categories = $this->categories_model->get_categories_menu();
+		$childs = array();
+		foreach($categories as $item) {
+		    $childs[$item->parent_id][] = $item;
+		}
+		foreach($categories as $item) if (isset($childs[$item->id])) {
+		    $item->childs = $childs[$item->id];
+		}
+		$data['categories'] = $childs[0];
 		// category_page_passive_footer
 		$passive_footer = $this->site_settings_model->get_settings_name('category_page_passive_footer');
 		// bloklar

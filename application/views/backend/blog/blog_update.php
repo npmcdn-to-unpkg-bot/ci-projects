@@ -27,6 +27,23 @@
 							<div class="tab-content tab-content-margin-top">
 								<div class="tab-pane fade in active" id="blog">
 									<div class="form-group">
+										<label>İçerik Türü</label><a href="javascript:;" onclick="pages_type()" class="pull-right">İçerik türü ekle <i class="fa fa-plus"></i></a>
+										<select name="pages_type" id="pages_type" class="form-control">
+											<?php foreach ($blog_groupby as $key => $value): ?>
+												<?php if ($value->pages_type == $data[0]->pages_type): ?>
+													<option value="<?php echo $value->pages_type ?>" selected><?php echo $value->pages_type ?></option>
+												<?php else: ?>
+													<option value="<?php echo $value->pages_type ?>"><?php echo $value->pages_type ?></option>
+												<?php endif ?>
+											<?php endforeach ?>
+										</select>
+									</div>
+									<div class="form-group">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1" name="quick_link" <?php echo ($data[0]->quick_link==1)? "checked":""; ?>> hızlı menü aktif olsun mu?</label>
+                                        </div>
+                                    </div>
+									<div class="form-group">
 										<label>İçerik Başlık</label>
 										<input type="text" class="form-control" name="title" value="<?php echo (isset($data[0]->title))?$data[0]->title:''; ?>" />
 									</div>
@@ -55,6 +72,15 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="blog_seo">
+									<div class="form-group">
+										<label>İçerik linki</label>
+										<input type="text" class="form-control" name="pages_link" value="<?php echo (isset($data[0]->pages_link))?$data[0]->pages_link:''; ?>" disabled/>
+									</div>
+									<div class="form-group">
+										<label>İçerik Perma linki</label>
+										<p class="pull-right"><input type="checkbox" value="1" name="perma_active" <?php echo ($data[0]->perma_active==1)? "checked":""; ?>> permalink kullanılsın mı?</p>
+										<input type="text" class="form-control" name="perma_link" value="<?php echo (isset($data[0]->perma_link))?$data[0]->perma_link:''; ?>" />
+									</div>
 									<div class="form-group">
 										<label>İçerik Meta Description</label>
 										<input type="text" class="form-control" name="meta_description" value="<?php echo (isset($data[0]->meta_description))?$data[0]->meta_description:''; ?>" />

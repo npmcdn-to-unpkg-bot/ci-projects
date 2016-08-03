@@ -25,6 +25,19 @@
 							<div class="tab-content tab-content-margin-top">
 								<div class="tab-pane fade in active" id="blog">
 									<div class="form-group">
+										<label>İçerik Türü</label><a href="javascript:;" onclick="pages_type()" class="pull-right">İçerik türü ekle <i class="fa fa-plus"></i></a>
+										<select name="pages_type" id="pages_type" class="form-control">
+											<?php foreach ($blog_groupby as $key => $value): ?>
+												<option value="<?php echo $value->pages_type ?>"><?php echo $value->pages_type ?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+									<div class="form-group">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1" name="quick_link" checked="checked"> hızlı menü aktif olsun mu?</label>
+                                        </div>
+                                    </div>
+									<div class="form-group">
 										<label>İçerik Başlık</label>
 										<input type="text" class="form-control" name="title" value="<?php echo (isset($title))?$title:''; ?>" />
 									</div>
@@ -74,4 +87,11 @@
 <script>
     CKEDITOR.replace( 'content' );
     CKEDITOR.replace( 'list_content' );
+	function pages_type() {
+		var pages_type = prompt("İçerik türü ekleyiniz");
+
+		if (pages_type.length > 0) {
+			$('#pages_type').append('<option value="'+pages_type+'">'+pages_type+'</option>');
+		}
+	}
 </script>

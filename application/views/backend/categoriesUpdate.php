@@ -73,7 +73,12 @@
                                 <div class="tab-pane fade" id="settings03">
                                     <div class="form-group">
                                         <label>Kategori Linki</label>
-                                        <input type="text" name="cat_link" class="form-control" value="<?php echo $cat->cat_link; ?>" />
+                                        <input type="text" name="cat_link" class="form-control" value="<?php echo $cat->cat_link; ?>" disabled/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori Perma linki</label>
+                                        <p class="pull-right"><input type="checkbox" value="1" name="perma_active" <?php echo ($cat->perma_active==1)? "checked":""; ?>> permalink kullanılsın mı?</p>
+                                        <input type="text" class="form-control" name="perma_link" value="<?php echo (isset($cat->perma_link))?$cat->perma_link:''; ?>" />
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Title</label>

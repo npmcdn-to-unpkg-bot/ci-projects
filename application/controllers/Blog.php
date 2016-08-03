@@ -22,15 +22,27 @@ class Blog extends Frontend_Controller
 		$this->load->model('frontend/sidebar_model');
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
-		// header - footer - blog -> file_path
+		$this->load->model('frontend/categories_model');
+		// header - headercategory - footer - blog -> file_path
 		$data['header'] = $this->themes_model->get_themes_class_name('header');
+		$data['header_category'] = $this->themes_model->get_themes_class_name('header_category');
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
 		$data['blog'] = $this->themes_model->get_themes_class_name('blog_views');
+		// categories
+		$categories = $this->categories_model->get_categories_menu();
+		$childs = array();
+		foreach($categories as $item) {
+		    $childs[$item->parent_id][] = $item;
+		}
+		foreach($categories as $item) if (isset($childs[$item->id])) {
+		    $item->childs = $childs[$item->id];
+		}
+		$data['categories'] = $childs[0];
 		// blog_value
 		$blog_value = $this->blog_model->get_blog($blog_id);
 		$data['blog_value'] = $blog_value[0];
 		// blog_quick_link
-		$blog_qlink = $this->blog_model->get_quick_link();
+		$blog_qlink = $this->blog_model->get_quick_link($blog_value[0]->pages_type);
 		$data['blog_qlink'] = $blog_qlink;
 		// blog_page_passive_footer
 		$passive_footer = $this->site_settings_model->get_settings_name('blog_page_passive_footer');

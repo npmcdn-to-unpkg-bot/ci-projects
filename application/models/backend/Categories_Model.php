@@ -81,7 +81,8 @@ class Categories_Model extends CI_Model
 		}
 		$categories_update_data = array(
 			'status' => $status,
-			'cat_link' => $this->input->post('cat_link'),
+			'perma_link' => $this->input->post('perma_link'),
+			'perma_active' => $this->input->post('perma_active'),
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
 			'image' => $db_img_name['image'],

@@ -22,12 +22,14 @@ class Blog extends Backend_Controller
 
 	public function blog_add() {
 		$this->load->model('backend/blog_model');
+		$data['blog_groupby'] = $this->blog_model->get_blog_groupby('pages_type');
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
 				$_POST[$key] = $key;
 				$images[$key] = $value;
 			}
 			$data = $this->input->post();
+			$data['blog_groupby'] = $this->blog_model->get_blog_groupby('pages_type');
 			// form_validation
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('title','','trim|required');
@@ -43,19 +45,21 @@ class Blog extends Backend_Controller
 			}
 		} else {
 			$this->load->view('backend/layout/header');
-			$this->load->view('backend/blog/blog_add');
+			$this->load->view('backend/blog/blog_add',$data);
 			$this->load->view('backend/layout/footer');
 		}
 	}
 
 	public function blog_update($id) {
 		$this->load->model('backend/blog_model');
+		$data['blog_groupby'] = $this->blog_model->get_blog_groupby('pages_type');
 		if ($this->input->post()) {
 			foreach ($_FILES as $key => $value) {
 				$_POST[$key] = $key;
 				$images[$key] = $value;
 			}
 			$data = $this->input->post();
+			$data['blog_groupby'] = $this->blog_model->get_blog_groupby('pages_type');
 			// form_validation
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('title','','trim|required');
