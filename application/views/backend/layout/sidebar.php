@@ -38,25 +38,13 @@
                 <a href="backend/blog"><i class="fa fa-edit fa-fw"></i> İçerik Yönetimi</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-comments-o fa-fw"></i> Yorum Ayarları<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="panels-wells.html">Panels and Wells</a>
+                        <a href="backend/comments/blog_comments"><i class="glyphicon glyphicon-comment fa-fw"></i> Blog Yorumları</a>
                     </li>
                     <li>
-                        <a href="buttons.html">Buttons</a>
-                    </li>
-                    <li>
-                        <a href="notifications.html">Notifications</a>
-                    </li>
-                    <li>
-                        <a href="typography.html">Typography</a>
-                    </li>
-                    <li>
-                        <a href="icons.html"> Icons</a>
-                    </li>
-                    <li>
-                        <a href="grid.html">Grid</a>
+                        <a href="buttons.html"><i class="glyphicon glyphicon-comment fa-fw"></i> Ürün Yorumları</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

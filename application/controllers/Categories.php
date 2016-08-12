@@ -99,11 +99,13 @@ class Categories extends Frontend_Controller
 		$data['slider'] = $this->banner_model->get_banner('slide','cat_'.$categories_id);
 		$data['banner'] = $this->banner_model->get_banner('banner','cat_'.$categories_id);
 		
+		$this->load->view('frontend/layout/head',$data);
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/categories',$data);
 		if ($passive_footer[0]->settings_value !== 'passive_footer') {
 			$this->load->view('frontend/layout/footer',$data);
 		}
+		$this->load->view('frontend/layout/foot',$data);
 	}
 
 }

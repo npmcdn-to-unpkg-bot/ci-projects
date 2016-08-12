@@ -23,11 +23,12 @@ class Blog extends Frontend_Controller
 		$this->load->model('frontend/showcase_model');
 		$this->load->model('frontend/blog_model');
 		$this->load->model('frontend/categories_model');
-		// header - headercategory - footer - blog -> file_path
+		// header - headercategory - footer - blog - blog_comments -> file_path
 		$data['header'] = $this->themes_model->get_themes_class_name('header');
 		$data['header_category'] = $this->themes_model->get_themes_class_name('header_category');
 		$data['footer'] = $this->themes_model->get_themes_class_name('footer');
 		$data['blog'] = $this->themes_model->get_themes_class_name('blog_views');
+		$data['blog_comments'] = $this->themes_model->get_themes_class_name('blog_comments');
 		// categories
 		$categories = $this->categories_model->get_categories_menu();
 		$childs = array();
@@ -38,6 +39,9 @@ class Blog extends Frontend_Controller
 		    $item->childs = $childs[$item->id];
 		}
 		$data['categories'] = $childs[0];
+		// blog yorumları
+		$this->load->model('frontend/comments_model');
+		$data['blog_comments_value'] = $this->comments_model->get_blog_comments($blog_id);
 		// blog_value
 		$blog_value = $this->blog_model->get_blog($blog_id);
 		$data['blog_value'] = $blog_value[0];
@@ -99,11 +103,13 @@ class Blog extends Frontend_Controller
 			}	
 		}
 		// echo "<pre>";var_dump($data);exit;
+		$this->load->view('frontend/layout/head',$data);
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/blog',$data);
 		if ($passive_footer[0]->settings_value !== 'passive_footer') {
 			$this->load->view('frontend/layout/footer',$data);
 		}
+		$this->load->view('frontend/layout/foot',$data);
 	}
 
 }

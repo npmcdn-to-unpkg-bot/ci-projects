@@ -31,6 +31,7 @@ class Blog_Model extends CI_Model
 		$new_blog_insert_data = array(
 			'pages_type' => $this->input->post('pages_type'),
 			'quick_link' => $this->input->post('quick_link'),
+			'blog_comments_enable' => $this->input->post('blog_comments_enable'),
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content', FALSE),
 			'list_title' => $this->input->post('list_title'),
@@ -67,6 +68,7 @@ class Blog_Model extends CI_Model
 			'perma_link' => $this->input->post('perma_link'),
 			'perma_active' => $this->input->post('perma_active'),
 			'quick_link' => $this->input->post('quick_link'),
+			'blog_comments_enable' => $this->input->post('blog_comments_enable'),
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content', FALSE),
 			'list_title' => $this->input->post('list_title'),

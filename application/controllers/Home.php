@@ -14,11 +14,11 @@ class Home extends Frontend_Controller
 		if ($restrict_[0]->settings_value == 'enable' && $restrict[0]->settings_value == 'enable') {
 			$this->loginControl();
 		}
-		// var_dump($this->session->all_userdata());
+		var_dump($this->session->all_userdata());
 	}
 
 	public function index() {
-
+		
 		$this->load->model('frontend/themes_model');
 		$this->load->model('frontend/sidebar_model');
 		$this->load->model('frontend/showcase_model');
@@ -104,11 +104,13 @@ class Home extends Frontend_Controller
 		// echo "<pre>";var_dump($sidebar_);var_dump($data);exit;
 		// var_dump($passive_footer->settings_value);exit;
 
+		$this->load->view('frontend/layout/head',$data);
 		$this->load->view('frontend/layout/header',$data);
 		$this->load->view('frontend/home',$data);
 		if ($passive_footer[0]->settings_value !== 'passive_footer') {
 			$this->load->view('frontend/layout/footer',$data);
 		}
+		$this->load->view('frontend/layout/foot',$data);
 
 	}
 }

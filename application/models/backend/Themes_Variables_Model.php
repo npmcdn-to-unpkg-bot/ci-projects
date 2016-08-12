@@ -68,6 +68,37 @@ class Themes_Variables_Model extends CI_Model
 		);
 	}
 
+	function blog_comments() {
+		return $themes_variables = array(
+			'üye girişi var' => '<?php if($this->session->userdata("user")) { ?>',
+			'/üye girişi var' => '<?php } ?>',
+			'üye girişi yok' => '<?php if(!$this->session->userdata("user")) { ?>',
+			'/üye girişi yok' => '<?php } ?>',
+			'yorumlar' => '<?php if (isset($blog_comments_value)) { foreach ($blog_comments_value as $blogc_key => $blogc_value) { ?>',
+			'yorumlar(ad)' => '<?php echo $blogc_value->name ?>',
+			'yorumlar(soyad)' => '<?php echo $blogc_value->surname ?>',
+			'yorumlar(email)' => '<?php echo $blogc_value->email ?>',
+			'yorumlar(tarih)' => '<?php echo $blogc_value->created_time ?>',
+			'yorumlar(başlık)' => '<?php echo $blogc_value->title ?>',
+			'yorumlar(içerik)' => '<?php echo $blogc_value->content ?>',
+			'/yorumlar' => '<?php } } ?>',
+			'hata mesajı' => '<div class="blog_comments_message"></div>',
+			'ad' => '<input class="form-control blog_comments_name" name="blog_comments_name">',
+			'soyad' => '<input class="form-control blog_comments_surname" name="blog_comments_surname">',
+			'email' => '<input class="form-control blog_comments_email" name="blog_comments_email">',
+			'blog başlık' => '<input class="form-control blog_comments_title" name="blog_comments_title">',
+			'blog içerik' => '<textarea name="blog_comments_content" class="form-control blog_comments_content" rows="5"></textarea>',
+			'yorum yap' => '<a href="javascript:;" onclick="blog_comments()" class="btn btn-default blog_comments_btn">Yorum yap</a>
+		<input type="hidden" value="<?php echo $blog_value->id; ?>" name="blog_id">
+		<?php if($this->session->userdata("user")) { ?>
+<input type="hidden" value="<?php echo $this->session->userdata("user")["id"] ?>" name="user_id">
+<input type="hidden" name="blog_comments_name" value="<?php echo $this->session->userdata("user")["name"] ?>">
+<input type="hidden" name="blog_comments_surname" value="<?php echo $this->session->userdata("user")["surname"] ?>">
+<input type="hidden" name="blog_comments_email" value="<?php echo $this->session->userdata("user")["email"] ?>"> 
+		<?php } ?>',
+		);
+	}
+
 	function sidebar_frame() {
 		return $themes_variables = array(
 			'bileşen başlık' => '<?php echo $sidebar_value->title ?>',
@@ -122,6 +153,7 @@ class Themes_Variables_Model extends CI_Model
 			'hızlı menü linki' => '<?php echo ($qlink->perma_link)?$qlink->perma_link:$qlink->pages_link; ?>',
 			'hızlı menü başlık' => '<?php echo $qlink->title ?>',
 			'/hızlı menü' => '<?php } } ?>',
+			'yorum sistemi' => '<?php if (isset($blog_comments)) { require(APPPATH.$blog_comments[0]->file_path); } ?>',
 		);
 	}
 

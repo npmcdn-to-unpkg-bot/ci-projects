@@ -38,9 +38,11 @@
 			$this->form_validation->set_rules('username','','trim|required|min_length[3]');
 			$this->form_validation->set_rules('email','','trim|required|valid_email');
 			if ($this->form_validation->run() === FALSE) {
+				$this->load->view('frontend/layout/head',$data);
 				$this->load->view('frontend/layout/header',$data);
 				$this->load->view('frontend/myinfo',$data);
 				$this->load->view('frontend/layout/footer',$data);
+				$this->load->view('frontend/layout/foot',$data);
 			} else {
 				$this->users_model->update_users();
 
@@ -48,9 +50,11 @@
 				redirect('users/myinfo');
 			}
 		} else {
+			$this->load->view('frontend/layout/head',$data);
 			$this->load->view('frontend/layout/header',$data);
 			$this->load->view('frontend/myinfo',$data);
 			$this->load->view('frontend/layout/footer',$data);
+			$this->load->view('frontend/layout/foot',$data);
 		}
  	}
 
@@ -77,9 +81,11 @@
 			$this->form_validation->set_rules('old_password_conf','Eski şifreniz(tekrar)','trim|required');
 			$this->form_validation->set_rules('password','Şifreniz','trim|required');
 			if ($this->form_validation->run() === FALSE) {
+				$this->load->view('frontend/layout/head',$data);
 				$this->load->view('frontend/layout/header',$data);
 				$this->load->view('frontend/myinfo',$data);
 				$this->load->view('frontend/layout/footer',$data);
+				$this->load->view('frontend/layout/foot',$data);
 			} else {
 				$this->users_model->update_changemypassword();
 
@@ -87,9 +93,11 @@
 				redirect('users/changemypassword');
 			}
 		} else {
+			$this->load->view('frontend/layout/head',$data);
 			$this->load->view('frontend/layout/header',$data);
 			$this->load->view('frontend/myinfo',$data);
 			$this->load->view('frontend/layout/footer',$data);
+			$this->load->view('frontend/layout/foot',$data);
 		}
  	}
 

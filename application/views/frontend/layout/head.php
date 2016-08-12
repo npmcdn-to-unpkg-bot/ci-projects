@@ -15,3 +15,4 @@
 	</style>
 	<?php require(APPPATH.'themes/head/head.php'); ?>
 </head>
+<body>

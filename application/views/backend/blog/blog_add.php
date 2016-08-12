@@ -38,6 +38,11 @@
                                         </div>
                                     </div>
 									<div class="form-group">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1" name="blog_comments_enable" checked="checked"> bloga yorum yapılabilsin mi?</label>
+                                        </div>
+                                    </div>
+									<div class="form-group">
 										<label>İçerik Başlık</label>
 										<input type="text" class="form-control" name="title" value="<?php echo (isset($title))?$title:''; ?>" />
 									</div>

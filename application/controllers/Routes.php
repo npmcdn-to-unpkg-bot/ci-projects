@@ -38,7 +38,7 @@ class Routes extends Frontend_Controller
 		$blog_route = $this->blog_model->get_perma_link($routes_);
 
 		if ($categories_route) {
-
+			// kategori sayfasi
 			$restrict = $this->site_settings_model->get_settings_name('restrict_roaming');
 			$restrict_ = $this->site_settings_model->get_settings_name('listing_restrict_roaming');
 			if ($restrict_[0]->settings_value == 'enable' && $restrict[0]->settings_value == 'enable') {
@@ -107,14 +107,16 @@ class Routes extends Frontend_Controller
 				}	
 			}
 
+			$this->load->view('frontend/layout/head',$data);
 			$this->load->view('frontend/layout/header',$data);
 			$this->load->view('frontend/categories',$data);
 			if ($passive_footer[0]->settings_value !== 'passive_footer') {
 				$this->load->view('frontend/layout/footer',$data);
 			}
+			$this->load->view('frontend/layout/foot',$data);
 
 		} elseif ($blog_route) {
-
+			// blog sayfasi
 			$restrict = $this->site_settings_model->get_settings_name('restrict_roaming');
 			$restrict_ = $this->site_settings_model->get_settings_name('blog_restrict_roaming');
 			if ($restrict_[0]->settings_value == 'enable' && $restrict[0]->settings_value == 'enable') {
@@ -122,6 +124,10 @@ class Routes extends Frontend_Controller
 			}
 			// blog sayfasi
 			$data['blog'] = $this->themes_model->get_themes_class_name('blog_views');
+			$data['blog_comments'] = $this->themes_model->get_themes_class_name('blog_comments');
+			// blog yorumları
+			$this->load->model('frontend/comments_model');
+			$data['blog_comments_value'] = $this->comments_model->get_blog_comments($blog_route[0]->id);
 			// blog
 			$data['blog_value'] = $blog_route[0];
 			// blog_quick_link
@@ -182,16 +188,22 @@ class Routes extends Frontend_Controller
 				}	
 			}
 			// echo "<pre>";var_dump($data);exit;
+			$this->load->view('frontend/layout/head',$data);
 			$this->load->view('frontend/layout/header',$data);
 			$this->load->view('frontend/blog',$data);
 			if ($passive_footer[0]->settings_value !== 'passive_footer') {
 				$this->load->view('frontend/layout/footer',$data);
 			}
+			$this->load->view('frontend/layout/foot',$data);
 
 		} else {
+			// hata sayfası
+			$this->load->view('frontend/layout/head',$data);
 			$this->load->view('frontend/layout/header',$data);
 			$this->load->view('errors/index.html');
 			$this->load->view('frontend/layout/footer',$data);
+			$this->load->view('frontend/layout/foot',$data);
+
 		}
 	}
 }
