@@ -14,7 +14,7 @@ class Home extends Frontend_Controller
 		if ($restrict_[0]->settings_value == 'enable' && $restrict[0]->settings_value == 'enable') {
 			$this->loginControl();
 		}
-		var_dump($this->session->all_userdata());
+		// var_dump($this->session->all_userdata());
 	}
 
 	public function index() {
