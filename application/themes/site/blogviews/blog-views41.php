@@ -15,8 +15,8 @@
 <?php echo $blog_value->content ?>
 <div id="yorum_container" class="y"><?php if (isset($blog_comments)) { require(APPPATH.$blog_comments[0]->file_path); } ?></div>
 </div>
-</div>
 <?php if (isset($sidebar_rightbar)) { require(APPPATH.$sidebar_rightbar[0]->file_path); } ?>
 <div class="col-lg-12" id="vitrin_container" class="v"><?php if (isset($showcase)) { foreach($showcase as $showcase_key => $showcase_value) {include(APPPATH.$showcase_value->file_path);} } ?></div>
+</div>
 </div>
 </section>
